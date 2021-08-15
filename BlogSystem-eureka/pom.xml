@@ -18,11 +18,11 @@
         <spring-cloud.version>2021.0.0-SNAPSHOT</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency>
+        <dependency><!--微服务间通信要用基于Http的Restful，所以要添加web依赖-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
+        <dependency><!--eureka server端-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>

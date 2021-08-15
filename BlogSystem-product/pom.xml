@@ -18,22 +18,22 @@
         <spring-cloud.version>2021.0.0-SNAPSHOT</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency>
+        <dependency><!--微服务间通信要用基于Http的Restful，所以要添加web依赖-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
+        <dependency><!--eureka client端-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <dependency><!-- 将entity依赖添加到product工程中  -->
+        <dependency><!--将entity依赖添加到product工程中-->
             <groupId>com.example</groupId>
             <artifactId>BlogSystem-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency><!--  添加springboot fegin依赖，product项目即可以作为生产者，又可以作为消费者-->
+        <dependency><!--spring cloud oepnfegin依赖，product项目即可以作为生产者，又可以作为消费者-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.0.3</version>

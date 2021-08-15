@@ -18,21 +18,21 @@
         <spring-cloud.version>2021.0.0-SNAPSHOT</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency>
+        <dependency><!--微服务间通信要用基于Http的Restful，所以要添加web依赖-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
+        <dependency><!--eureka client端-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <dependency><!--添加springboot fegin依赖，consumer项目即可以作为生产者，又可以作为消费者-->
+        <dependency><!--spring cloud oepnfegin依赖，consumer项目即可以作为生产者，又可以作为消费者-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.0.3</version>
         </dependency>
-        <dependency>
+        <dependency><!--Thymeleaf是面向Web和独立环境的现代服务器端Java模板引擎-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>2.6.0-SNAPSHOT</version>
