@@ -28,7 +28,7 @@ eureka:
 #actuator配置
 management:
   endpoints:
-    #金禁用其他端点
+    #禁用其他端点
     enabled-by-default: false
     web:
       #暴露端点

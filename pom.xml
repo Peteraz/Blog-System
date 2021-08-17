@@ -8,6 +8,7 @@
         <module>BlogSystem-eureka</module>
         <module>BlogSystem-product</module>
         <module>BlogSystem-consumer</module>
+        <module>BlogSystem-user-provider</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -32,7 +33,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <scope>test</scope><!--依赖作用范围-->
         </dependency>
     </dependencies>
 
@@ -42,7 +43,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin><!--用来显示actuator那些端口的显示-->
+            <plugin><!--用来显示actuator那些端口的信息-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.2.0</version>

@@ -31,7 +31,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency><!--将entity依赖添加到product工程中-->
+        <dependency><!--将entity依赖添加到user-provider工程中-->
             <groupId>com.example</groupId>
             <artifactId>BlogSystem-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>

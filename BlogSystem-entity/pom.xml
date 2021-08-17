@@ -16,11 +16,4 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
-    <dependencies><!--mybatis-->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.7</version>
-        </dependency>
-    </dependencies>
 </project>
