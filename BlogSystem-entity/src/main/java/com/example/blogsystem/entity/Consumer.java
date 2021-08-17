@@ -1,21 +1,21 @@
-package com.example.blogsystementity.entity;
+package com.example.blogsystem.entity;
 
-public class Product{
+public class Consumer {
     private String name;
     private int age;
     private String add;
     private String email;
 
-    public Product(){
+    public Consumer(){
         this.name="name";
         this.age=12;
         this.add="澳门历史互通";
         this.email="12345678@qq.com";
-
     }
+
     @Override
     public String toString(){
-        return "Product{" +
+        return "Consumer{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", add='" + add + '\'' +
