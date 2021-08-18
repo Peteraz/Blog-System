@@ -9,13 +9,15 @@
             <!--是否去除自动生成的注释 true是：false 否-->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-        <!--数据库连接-->
-        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/blog_user?serverTimezone=GMT%2B8" driverClass="com.mysql.cj.jdbc.Driver" userId="root" password="123"  ></jdbcConnection>
+        <!--数据库连接:驱动类、连接地址、用户名、密码-->
+        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/blog_user?serverTimezone=GMT%2B8" driverClass="com.mysql.cj.jdbc.Driver" userId="root" password="123"  >
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
-        <!--targetPackage目标包，生成实体类的位置-->
+        <!--targetPackage目标包，生成实体类即entity的位置-->
         <javaModelGenerator targetPackage="com.example.blogsystem.entity" targetProject="BlogSystem-entity/src/main/java">
             <!--enableSubPackages,是否让schema作为包的后缀-->
             <property name="enableSubPackages" value="false"/>
@@ -23,9 +25,8 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--targetProject:mapper映射文件生成的位置-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="BlogSystem-user-provider/src/main/resources">
+        <sqlMapGenerator targetPackage="mapping" targetProject="BlogSystem-user-provider/src/main/resources">
             <property name="enableSubPackages" value="false"></property>
-
         </sqlMapGenerator>
         <!--targetPackage:mapper接口生成的位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.blogsystemuserprovider.dao" targetProject="BlogSystem-user-provider/src/main/java">
@@ -33,6 +34,6 @@
         </javaClientGenerator>
         <!--指定数据库表，要和数据库中进行对应，否则将会出错-->
         <!--<table tableName="tb_hotel"  domainObjectName="Hotel"></table>-->
-        <table tableName="user"  domainObjectName="User"></table>
+        <table tableName="user"  domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>
