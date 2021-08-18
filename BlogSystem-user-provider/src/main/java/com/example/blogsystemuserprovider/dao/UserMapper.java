@@ -1,17 +1,22 @@
 package com.example.blogsystemuserprovider.dao;
 
 import com.example.blogsystem.entity.User;
+import org.apache.ibatis.annotations.Mapper;
 
+//每个dao层的接口(interface)要添加加@Mapper, 在编译之后会生成相应的接口实现类
+@Mapper
 public interface UserMapper {
-    int deleteByPrimaryKey(String userid);
+    User getUserById(String userid);
 
-    int insert(User record);
+    User getUserByAccount(String account);
+
+    int deleteById(String userid);
+
+    int insertUser(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(String userid);
+    int updateByUserSelective(User record);
 
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
+    int updateByUser(User record);
 }

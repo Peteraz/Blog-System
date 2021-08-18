@@ -27,6 +27,12 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
+        <dependency><!--将entity依赖添加到product工程中-->
+            <groupId>com.example</groupId>
+            <artifactId>BlogSystem-entity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency><!--spring cloud actuator，应用监控与管理-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>

@@ -18,17 +18,23 @@
     userid, account, password, email, name, age, sex, create_time, login_time, last_login_time, 
     login_count
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
     where userid = #{userid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <select id="getUserByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where account = #{account,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.String">
     delete from user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.blogsystem.entity.User">
+  <insert id="insertUser" parameterType="com.example.blogsystem.entity.User">
     insert into user (userid, account, password, 
       email, name, age, sex, 
       create_time, login_time, last_login_time, 
