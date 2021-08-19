@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--加载资源文件-->
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!--是否去除自动生成的注释 true是：false 否-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接:驱动类、连接地址、用户名、密码-->
+        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/blog_comment?serverTimezone=GMT%2B8" driverClass="com.mysql.cj.jdbc.Driver" userId="root" password="123">
+            <!--指定服务器的时区
+            <property name="serverTimezone" value="GMT%2B8"/>-->
+            <!--避免generator会为MySql中信息数据库(sys, information_schema, performance_schema)的表生成代码-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--targetPackage目标包，生成实体类即entity的位置-->
+        <javaModelGenerator targetPackage="com.example.blogsystem.entity" targetProject="BlogSystem-entity/src/main/java">
+            <!--enableSubPackages,是否让schema作为包的后缀-->
+            <property name="enableSubPackages" value="false"/>
+            <!--从数据库返回的值被清除前后空格,是否对数据库查询结果进行trim操作-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--targetProject:mapper映射文件生成的位置-->
+        <sqlMapGenerator targetPackage="mapping" targetProject="BlogSystem-comment-provider/src/main/resources">
+            <!--enableSubPackages,是否让schema作为包的后缀-->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!--targetPackage:mapper接口生成的位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.blogsystemcommentprovider.dao" targetProject="BlogSystem-comment-provider/src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--指定数据库表，要和数据库中进行对应，否则将会出错-->
+        <!--<table tableName="tb_hotel"  domainObjectName="Hotel"></table>-->
+        <table tableName="comment"  domainObjectName="Comment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>

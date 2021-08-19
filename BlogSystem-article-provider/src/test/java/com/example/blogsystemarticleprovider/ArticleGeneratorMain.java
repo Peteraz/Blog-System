@@ -1,4 +1,4 @@
-package com.example.blogsystemuserprovider;
+package com.example.blogsystemarticleprovider;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -11,12 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-class GeneratorMain {
+class ArticleGeneratorMain {
     public static void main(String[] args) {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //读取配置文件
-        File configFile = new File("BlogSystem-user-provider/src/main/resources/generateConfig.xml");
+        File configFile = new File("BlogSystem-article-provider/src/main/resources/generateConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config;
         try {
