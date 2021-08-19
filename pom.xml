@@ -9,6 +9,7 @@
         <module>BlogSystem-product</module>
         <module>BlogSystem-consumer</module>
         <module>BlogSystem-user-provider</module>
+        <module>BlogSystem-article-provider</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

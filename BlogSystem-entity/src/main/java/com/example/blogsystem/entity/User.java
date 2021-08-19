@@ -25,6 +25,8 @@ public class User {
 
     private Long loginCount;
 
+    private String identity;
+
     public String getUserid() {
         return userid;
     }
@@ -111,5 +113,13 @@ public class User {
 
     public void setLoginCount(Long loginCount) {
         this.loginCount = loginCount;
+    }
+
+    public String getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(String identity) {
+        this.identity = identity == null ? null : identity.trim();
     }
 }

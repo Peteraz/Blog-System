@@ -1,6 +1,6 @@
 server:
   #定义端口号
-  port: 7090
+  port: 7110
   servlet:
     #定义项目的访问访问路径
     context-path: /consumer

@@ -4,7 +4,6 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.dao.UserMapper;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 
 @Service
