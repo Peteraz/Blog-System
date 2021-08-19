@@ -6,10 +6,10 @@ import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UserIdUtils;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Map;
 
@@ -25,7 +25,7 @@ public class UserController {
         User user=new User();
         long count=0;
         try{
-            if(userService.getUserByAccount(map.get("account"))!=null){
+            if(userService.getUserByAccountAndPassword(map.get("account"),null)!=null){
                 return JsonUtils.jsonPrint(-1,"用户已存在",null);//账号已存在
             }
             user.setUserid(UserIdUtils.getUserId());
@@ -47,12 +47,10 @@ public class UserController {
     }
 
     @RequestMapping(value="getLogin")
-    public String getLogin(HttpServletRequest request,Map<String,String> map){
+    public String getLogin(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
         try{
             User user=new User();
-            String account=map.get("account");
-            String password=map.get("password");
-            user=userService.getUserByAccount(account);
+            user=userService.getUserByAccountAndPassword(account,null);
             if(user==null){
                 return JsonUtils.jsonPrint(-1,"登账号错误!",null);
             }else if( user.getPassword().equals(SHA256Utils.getSHA256(password))){
@@ -67,8 +65,6 @@ public class UserController {
                 user.setLoginCount(user.getLoginCount()+1);
                 //避免暴露密码
                 user.setPassword("null");
-                //使用request对象的getSession()获取session，如果session不存在则创建一个
-                HttpSession session=request.getSession();
                 //用session保存用户
                 session.setAttribute("user",user);
                 return JsonUtils.jsonPrint(1,"登录成功!",null);
@@ -78,5 +74,4 @@ public class UserController {
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
-
 }

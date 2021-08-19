@@ -5,7 +5,7 @@ import com.example.blogsystem.entity.User;
 public interface UserService {
     User getUserById(String userid);
 
-    User getUserByAccount(String account);
+    User getUserByAccountAndPassword(String account,String password);
 
     int deleteById(String userid);
 

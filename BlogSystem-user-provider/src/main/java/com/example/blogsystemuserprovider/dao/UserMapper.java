@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     User getUserById(String userid);
 
-    User getUserByAccount(String account);
+    User getUserByAccountAndPassword(String account,String password);
 
     int deleteById(String userid);
 

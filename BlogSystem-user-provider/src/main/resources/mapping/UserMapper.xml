@@ -24,11 +24,13 @@
     from user
     where userid = #{userid,jdbcType=VARCHAR}
   </select>
-  <select id="getUserByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="getUserByAccountAndPassword" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from user
-    where account = #{account,jdbcType=VARCHAR}
+    from user where account = #{account,jdbcType=VARCHAR}
+      <if test="password != null">
+         and password= #{password,jdbcType=VARCHAR}
+      </if>
   </select>
   <delete id="deleteById" parameterType="java.lang.String">
     delete from user

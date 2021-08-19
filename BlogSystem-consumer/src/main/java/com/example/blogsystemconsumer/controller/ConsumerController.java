@@ -2,12 +2,9 @@ package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @RestController
@@ -17,7 +14,7 @@ public class ConsumerController {
     private UserProviderService userProviderService;
 
     @RequestMapping(value="getRegister",method= RequestMethod.POST)
-    public String getRegister(@RequestParam Map<String,String> map){
+    public String getRegister(@RequestBody Map<String,String> map){
         try{
             userProviderService.getRegister(map);
             return JsonUtils.jsonPrint(1,"注册成功",null);
@@ -28,9 +25,9 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="getLogin",method= RequestMethod.POST)
-    public String getLogin(HttpServletRequest request, @RequestParam Map<String,String> map){
+    public String getLogin(HttpSession session, @RequestParam("account") String account,@RequestParam("password") String password){
         try{
-            userProviderService.getLogin(request,map);
+            userProviderService.getLogin(session,account,password);
             return JsonUtils.jsonPrint(1,"登录成功",null);
         }catch(Exception e){
             e.printStackTrace();

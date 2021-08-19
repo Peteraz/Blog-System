@@ -16,7 +16,7 @@ class BlogSystemUserProviderApplicationTests {
     @Test
     void contextLoads() {
         Map<String,String> map=new HashMap<>();
-        map.put("account", "aabbcc");
+        map.put("account", "Peterkuan");
         map.put("password", "12345678");
         map.put("email", "132456@qq.com");
         map.put("name", "Peter");
