@@ -2,6 +2,7 @@ package com.example.blogsystemconsumer.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
@@ -16,7 +17,7 @@ import java.util.Map;
 @Component
 public interface UserProviderService {
     @RequestMapping(value="getRegister")//注册
-    String getRegister(Map<String,String> map);
+    String getRegister(@RequestBody Map<String,String> map);
 
     @RequestMapping(value="getLogin")//登录
     String getLogin(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password);

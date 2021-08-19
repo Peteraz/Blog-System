@@ -1,6 +1,5 @@
 package com.example.blogsystemuserprovider;
 
-import com.example.blogsystem.common.UserIdUtils;
 import com.example.blogsystemuserprovider.controller.UserController;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

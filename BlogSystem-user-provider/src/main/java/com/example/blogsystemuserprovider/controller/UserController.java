@@ -3,8 +3,9 @@ package com.example.blogsystemuserprovider.controller;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.SHA256Utils;
-import com.example.blogsystem.common.UserIdUtils;
+import com.example.blogsystem.common.UUIDUtils;
 import com.example.blogsystemuserprovider.service.UserService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,25 +22,26 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value="getRegister")
-    public String getRegister(Map<String,String> map){
+    public String getRegister(@RequestBody  Map<String,String> map){
         User user=new User();
         long count=0;
         try{
-            if(userService.getUserByAccountAndPassword(map.get("account"),null)!=null){
-                return JsonUtils.jsonPrint(-1,"用户已存在",null);//账号已存在
-            }
-            user.setUserid(UserIdUtils.getUserId());
-            user.setAccount(map.get("account"));
-            user.setPassword(SHA256Utils.getSHA256(map.get("password")));
-            user.setEmail(map.get("email"));
-            user.setName(map.get("name"));
-            user.setAge(Integer.getInteger(map.get("age")));
-            user.setSex(map.get("sex"));
-            Date time = new Date();
-            user.setCreateTime(time);
-            user.setLoginCount(count);
-            userService.insertSelective(user);
-            return JsonUtils.jsonPrint(1,"成功",null);//注册失败
+              if(userService.getUserByAccountAndPassword(map.get("account"),null)!=null){
+                  return JsonUtils.jsonPrint(-1,"用户已存在",null);//账号已存在
+              }else{
+                  user.setUserid(UUIDUtils.getUserId());
+                  user.setAccount(map.get("account"));
+                  user.setPassword(SHA256Utils.getSHA256(map.get("password")));
+                  user.setEmail(map.get("email"));
+                  user.setName(map.get("name"));
+                  user.setAge(Integer.getInteger(map.get("age")));
+                  user.setSex(map.get("sex"));
+                  Date time = new Date();
+                  user.setCreateTime(time);
+                  user.setLoginCount(count);
+                  userService.insertSelective(user);
+                  return JsonUtils.jsonPrint(1,"成功",null);//注册失败
+              }
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);//注册失败
@@ -48,8 +50,8 @@ public class UserController {
 
     @RequestMapping(value="getLogin")
     public String getLogin(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
+        User user=new User();
         try{
-            User user=new User();
             user=userService.getUserByAccountAndPassword(account,null);
             if(user==null){
                 return JsonUtils.jsonPrint(-1,"登账号错误!",null);
