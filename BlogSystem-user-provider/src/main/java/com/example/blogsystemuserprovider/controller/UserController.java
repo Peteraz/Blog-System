@@ -1,15 +1,15 @@
 package com.example.blogsystemuserprovider.controller;
 
+import com.example.blogsystem.entity.User;
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UserIdUtils;
-import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.Map;
 
@@ -25,16 +25,20 @@ public class UserController {
         User user=new User();
         long count=0;
         try{
+            if(userService.getUserByAccount(map.get("account"))!=null){
+                return JsonUtils.jsonPrint(-1,"用户已存在",null);//账号已存在
+            }
             user.setUserid(UserIdUtils.getUserId());
             user.setAccount(map.get("account"));
             user.setPassword(SHA256Utils.getSHA256(map.get("password")));
             user.setEmail(map.get("email"));
             user.setName(map.get("name"));
+            user.setAge(Integer.getInteger(map.get("age")));
             user.setSex(map.get("sex"));
             Date time = new Date();
             user.setCreateTime(time);
             user.setLoginCount(count);
-            userService.insertUser(user);
+            userService.insertSelective(user);
             return JsonUtils.jsonPrint(1,"成功",null);//注册失败
         }catch(Exception e){
             e.printStackTrace();
@@ -61,6 +65,8 @@ public class UserController {
                 user.setLoginTime(new Date());
                 //登录次数+1
                 user.setLoginCount(user.getLoginCount()+1);
+                //避免暴露密码
+                user.setPassword("null");
                 //使用request对象的getSession()获取session，如果session不存在则创建一个
                 HttpSession session=request.getSession();
                 //用session保存用户

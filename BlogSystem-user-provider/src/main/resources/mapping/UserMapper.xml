@@ -117,7 +117,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByUserSelective" parameterType="com.example.blogsystem.entity.User">
     update user
     <set>
       <if test="account != null">
@@ -153,7 +153,7 @@
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByUser" parameterType="com.example.blogsystem.entity.User">
     update user
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

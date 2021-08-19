@@ -53,9 +53,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency><!--单元测试-->
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.0-M1</version>
             <scope>test</scope>
         </dependency>
         <dependency><!--spring cloud oepnfegin依赖，product项目即可以作为生产者，又可以作为消费者-->

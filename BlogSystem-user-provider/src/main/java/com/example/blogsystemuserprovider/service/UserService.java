@@ -1,7 +1,6 @@
 package com.example.blogsystemuserprovider.service;
 
 import com.example.blogsystem.entity.User;
-import org.springframework.stereotype.Service;
 
 public interface UserService {
     User getUserById(String userid);

@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 public class ConsumerController {
-    //@Autowired是用在JavaBean中的注解，通过byType形式，用来给指定的字段或方法注入所需的外部资源。@Autowired是优先根据类型装配。
+    //@Resource默认按byName自动注入,有两个重要属性分别是name和type
     @Resource
     private UserProviderService userProviderService;
 
