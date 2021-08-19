@@ -5,7 +5,6 @@ import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UserIdUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
-import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
@@ -44,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping(value="getLogin")
-    public String getLogin(HttpServletRequest request,Map<String, String> map){
+    public String getLogin(HttpServletRequest request,Map<String,String> map){
         try{
             User user=new User();
             String account=map.get("account");
@@ -52,9 +51,16 @@ public class UserController {
             user=userService.getUserByAccount(account);
             if(user==null){
                 return JsonUtils.jsonPrint(-1,"登账号错误!",null);
-            }else if( user.getPassword()!=password){
+            }else if( user.getPassword().equals(SHA256Utils.getSHA256(password))){
                 return JsonUtils.jsonPrint(0,"密码错误!",null);
             }else{
+                if(user.getLoginTime()!=null){
+                    user.setLastLoginTime(user.getLoginTime());
+                }
+                //当前登录时间
+                user.setLoginTime(new Date());
+                //登录次数+1
+                user.setLoginCount(user.getLoginCount()+1);
                 //使用request对象的getSession()获取session，如果session不存在则创建一个
                 HttpSession session=request.getSession();
                 //用session保存用户
