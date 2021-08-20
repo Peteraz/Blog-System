@@ -1,9 +1,9 @@
 server:
   #定义端口号
-  port: 7080
+  port: 7090
   servlet:
     #定义项目的访问访问路径
-    context-path: /user-provider
+    context-path: /article-provider
 #下面这些内容是为了让MyBatis映射
 #指定Mybatis的Mapper文件
 mybatis:
@@ -13,14 +13,14 @@ mybatis:
 spring:
   application:
     #定义应用名称，即服务名称
-    name: user-provider-server
+    name: article-provider-server
   # 数据库驱动：
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 数据源名称
     name: userDataSource
     # 数据库连接地址
-    url: jdbc:mysql://localhost:3306/blog_user?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/blog_article?serverTimezone=UTC
     # 数据库用户名&密码：
     username: root
     password: 123
@@ -34,7 +34,7 @@ eureka:
       defaultZone: http://localhost:8080/eureka/eureka/
   instance:
     #微服务的ID,也是唯一的ID,用来被server发现
-    instance-id: user-provider-server
+    instance-id: article-provider-server
     #访问路径可以显示IP地址
     prefer-ip-address: true
 #actuator配置
@@ -63,4 +63,3 @@ feign:
         connectTimeout: 5000 #连接超时
         readTimeout: 5000 #读取超时
         loggerLevel: basic #日志等级
-

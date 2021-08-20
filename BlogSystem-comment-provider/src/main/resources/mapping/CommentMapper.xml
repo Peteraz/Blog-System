@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.blogsystemcommentprovider.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.example.blogsystem.entity.Comment">
+    <id column="commentid" jdbcType="VARCHAR" property="commentid" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="comment_name" jdbcType="VARCHAR" property="commentName" />
+    <result column="comment_contents" jdbcType="VARCHAR" property="commentContents" />
+    <result column="comment_timne" jdbcType="TIMESTAMP" property="commentTimne" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    commentid, userid, comment_name, comment_contents, comment_timne
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where commentid = #{commentid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from comment
+    where commentid = #{commentid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.blogsystem.entity.Comment">
+    insert into comment (commentid, userid, comment_name, 
+      comment_contents, comment_timne)
+    values (#{commentid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{commentName,jdbcType=VARCHAR}, 
+      #{commentContents,jdbcType=VARCHAR}, #{commentTimne,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.blogsystem.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        commentid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="commentName != null">
+        comment_name,
+      </if>
+      <if test="commentContents != null">
+        comment_contents,
+      </if>
+      <if test="commentTimne != null">
+        comment_timne,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        #{commentid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="commentName != null">
+        #{commentName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContents != null">
+        #{commentContents,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTimne != null">
+        #{commentTimne,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.Comment">
+    update comment
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="commentName != null">
+        comment_name = #{commentName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContents != null">
+        comment_contents = #{commentContents,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTimne != null">
+        comment_timne = #{commentTimne,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where commentid = #{commentid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.Comment">
+    update comment
+    set userid = #{userid,jdbcType=VARCHAR},
+      comment_name = #{commentName,jdbcType=VARCHAR},
+      comment_contents = #{commentContents,jdbcType=VARCHAR},
+      comment_timne = #{commentTimne,jdbcType=TIMESTAMP}
+    where commentid = #{commentid,jdbcType=VARCHAR}
+  </update>
+</mapper>

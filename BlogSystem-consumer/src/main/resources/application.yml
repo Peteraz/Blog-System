@@ -51,3 +51,18 @@ feign:
         connectTimeout: 5000 #连接超时
         readTimeout: 5000 #读取超时
         loggerLevel: basic #日志等级
+  compression:
+  response:
+    enabled: true
+  request:
+    enabled: true
+  #熔断
+  hystrix:
+    enabled: true
+#hystrix超时时间配置(如果不配置的话默认是1000毫秒超时）
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread: 5000
