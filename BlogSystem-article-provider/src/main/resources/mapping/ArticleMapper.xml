@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.blogsystemarticleprovider.dao.ArticleMapper">
-  <resultMap id="BaseResultMap" type="com.example.blogsystem.entity.Article">
+<mapper namespace="com.blogsystemarticleprovider.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.blogsystem.entity.Article">
     <id column="articleid" jdbcType="VARCHAR" property="articleid" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="article_name" jdbcType="VARCHAR" property="articleName" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.blogsystem.entity.Article">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blogsystem.entity.Article">
     <result column="article_contents" jdbcType="LONGVARCHAR" property="articleContents" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -29,7 +29,7 @@
     delete from article
     where articleid = #{articleid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.blogsystem.entity.Article">
+  <insert id="insert" parameterType="com.blogsystem.entity.Article">
     insert into article (articleid, userid, article_name, 
       publish_time, edit_time, article_contents
       )
@@ -37,7 +37,7 @@
       #{publishTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, #{articleContents,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.blogsystem.entity.Article">
+  <insert id="insertSelective" parameterType="com.blogsystem.entity.Article">
     insert into article
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleid != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.Article">
+  <update id="updateByPrimaryKeySelective" parameterType="com.blogsystem.entity.Article">
     update article
     <set>
       <if test="userid != null">
@@ -101,7 +101,7 @@
     </set>
     where articleid = #{articleid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.blogsystem.entity.Article">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blogsystem.entity.Article">
     update article
     set userid = #{userid,jdbcType=VARCHAR},
       article_name = #{articleName,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
       article_contents = #{articleContents,jdbcType=LONGVARCHAR}
     where articleid = #{articleid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.Article">
+  <update id="updateByPrimaryKey" parameterType="com.blogsystem.entity.Article">
     update article
     set userid = #{userid,jdbcType=VARCHAR},
       article_name = #{articleName,jdbcType=VARCHAR},

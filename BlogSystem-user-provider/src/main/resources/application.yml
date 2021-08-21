@@ -1,6 +1,6 @@
 server:
   #定义端口号
-  port: 7080
+  port: 7010
   servlet:
     #定义项目的访问访问路径
     context-path: /user-provider
@@ -9,7 +9,7 @@ server:
 mybatis:
   mapper-locations: classpath:mapping/*xml
   #指定Mybatis的实体目录
-  type-aliases-package: com.example.blogsystem.entity
+  type-aliases-package: com.blogsystem.entity
 spring:
   application:
     #定义应用名称，即服务名称

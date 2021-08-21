@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.blogsystemuserprovider.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.example.blogsystem.entity.User">
+<mapper namespace="com.blogsystemuserprovider.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.blogsystem.entity.User">
     <id column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -37,7 +37,7 @@
     delete from user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insertUser" parameterType="com.example.blogsystem.entity.User">
+  <insert id="insertUser" parameterType="com.blogsystem.entity.User">
     insert into user (userid, account, password, 
       email, name, age, sex, 
       create_time, login_time, last_login_time, 
@@ -47,7 +47,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
       #{loginCount,jdbcType=BIGINT}, #{identity,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.blogsystem.entity.User">
+  <insert id="insertSelective" parameterType="com.blogsystem.entity.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -126,7 +126,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByUserSelective" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByUserSelective" parameterType="com.blogsystem.entity.User">
     update user
     <set>
       <if test="account != null">
@@ -165,7 +165,7 @@
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByUser" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByUser" parameterType="com.blogsystem.entity.User">
     update user
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

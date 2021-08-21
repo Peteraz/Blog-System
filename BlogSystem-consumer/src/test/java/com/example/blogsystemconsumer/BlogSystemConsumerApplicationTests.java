@@ -1,6 +1,6 @@
 package com.example.blogsystemconsumer;
 
-import com.example.blogsystemconsumer.controller.ConsumerController;
+import com.blogsystemconsumer.controller.ConsumerController;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

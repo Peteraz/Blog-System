@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.blogsystemcommentprovider.dao.CommentMapper">
-  <resultMap id="BaseResultMap" type="com.example.blogsystem.entity.Comment">
+<mapper namespace="com.blogsystemcommentprovider.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.blogsystem.entity.Comment">
     <id column="commentid" jdbcType="VARCHAR" property="commentid" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="comment_name" jdbcType="VARCHAR" property="commentName" />
@@ -21,13 +21,13 @@
     delete from comment
     where commentid = #{commentid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.blogsystem.entity.Comment">
+  <insert id="insert" parameterType="com.blogsystem.entity.Comment">
     insert into comment (commentid, userid, comment_name, 
       comment_contents, comment_timne)
     values (#{commentid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{commentName,jdbcType=VARCHAR}, 
       #{commentContents,jdbcType=VARCHAR}, #{commentTimne,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.blogsystem.entity.Comment">
+  <insert id="insertSelective" parameterType="com.blogsystem.entity.Comment">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="commentid != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.blogsystem.entity.Comment">
     update comment
     <set>
       <if test="userid != null">
@@ -82,7 +82,7 @@
     </set>
     where commentid = #{commentid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.blogsystem.entity.Comment">
     update comment
     set userid = #{userid,jdbcType=VARCHAR},
       comment_name = #{commentName,jdbcType=VARCHAR},

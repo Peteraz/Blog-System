@@ -10,6 +10,7 @@
         <module>BlogSystem-consumer</module>
         <module>BlogSystem-user-provider</module>
         <module>BlogSystem-article-provider</module>
+        <module>BlogSystem-mail-provider</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
