@@ -1,6 +1,6 @@
 package com.example.blogsystemproduct.controller;
 
-import com.blogsystem.entity.Product;
+import com.example.blogsystem.entity.Product;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
