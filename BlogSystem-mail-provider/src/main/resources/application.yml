@@ -1,0 +1,83 @@
+server:
+  #定义端口号
+  port: 7050
+  servlet:
+    #定义项目的访问访问路径
+    context-path: /mail-provider
+#下面这些内容是为了让MyBatis映射
+#指定Mybatis的Mapper文件
+mybatis:
+  mapper-locations: classpath:mapping/*xml
+  #指定Mybatis的实体目录
+  type-aliases-package: com.example.blogsystem.entity
+spring:
+  application:
+    #定义应用名称，即服务名称
+    name: mail-provider-server
+  # 数据库驱动：
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据源名称
+    name: mailDataSource
+    # 数据库连接地址
+    url: jdbc:mysql://localhost:3306/blog_user?serverTimezone=UTC
+    # 数据库用户名&密码：
+    username: root
+    password: 123
+  mail:
+    #smtp服务主机
+    host: smtp.163.com
+    #服务协议
+    protocol: smtp
+    #编码集
+    default-encoding: UTF-8
+    #用户名
+    username: changepasword@163.com
+    #设置授权密码
+    password: HWNFIRRADWMBEVIX
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+eureka:
+  client:
+    service-url:
+      #defaultZone 这个是不会提示的，此处需要自己写
+      #实际上属性应该是service-url,这个属性是个map（key-value）格式；当key是defaultZone的时候才能被解析；所以这里没有提示，
+      #但是自己还需要写一个defaultZone；
+      #server端配置的contextPath内容加到client端的defaultZone的访问路径端口号后面，所以client端的defaultZone:要加一个/eureka。
+      defaultZone: http://localhost:8080/eureka/eureka/
+  instance:
+    #微服务的ID,也是唯一的ID,用来被server发现
+    instance-id: mail-provider-server
+    #访问路径可以显示IP地址
+    prefer-ip-address: true
+#actuator配置
+management:
+  endpoints:
+    #禁用其他端点
+    enabled-by-default: false
+    web:
+      #暴露端点
+      exposure:
+        include: info
+  endpoint:
+    #开启info端点
+    info:
+      enabled: true
+info:
+  app.name: BlogSystem
+  company.name: www.BlogSystem.com
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@
+#feign配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000 #连接超时
+        readTimeout: 5000 #读取超时
+        loggerLevel: basic #日志等级
