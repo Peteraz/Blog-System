@@ -1,4 +1,4 @@
-package com.example.blogsystemconsumer.Hystrix;
+package com.example.blogsystemconsumer.hystrix;
 
 import com.example.blogsystemconsumer.service.UserProviderService;
 import org.springframework.cloud.openfeign.FallbackFactory;

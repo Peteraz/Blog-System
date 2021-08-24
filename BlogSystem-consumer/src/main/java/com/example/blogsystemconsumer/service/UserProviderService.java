@@ -1,6 +1,6 @@
 package com.example.blogsystemconsumer.service;
 
-import com.example.blogsystemconsumer.Hystrix.HystrixUserClientService;
+import com.example.blogsystemconsumer.hystrix.HystrixUserClientService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;

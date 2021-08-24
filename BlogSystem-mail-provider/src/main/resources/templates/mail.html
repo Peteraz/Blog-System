@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>密码修改</title>
+</head>
+<body>
+<p>亲爱的<span th:text="${username}"></span>用户</p>
+    <p>你是否申请密码修改？</p>
+    <p>如果是的的话请点击链接以修改密码:<a th:href="${link}" font="blue">修改密码</a></p>
+</body>
+</html>

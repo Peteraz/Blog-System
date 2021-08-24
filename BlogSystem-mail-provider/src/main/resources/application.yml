@@ -9,7 +9,7 @@ server:
 mybatis:
   mapper-locations: classpath:mapping/*xml
   #指定Mybatis的实体目录
-  type-aliases-package: com.blogsystem.entity
+  type-aliases-package: com.example.blogsystem.entity
 spring:
   application:
     #定义应用名称，即服务名称
@@ -24,6 +24,24 @@ spring:
     # 数据库用户名&密码：
     username: root
     password: 123
+  mail:
+    #smtp服务主机
+    host: smtp.163.com
+    #服务协议
+    protocol: smtp
+    #编码集
+    default-encoding: UTF-8
+    #用户名
+    username: changepasword@163.com
+    #设置授权密码
+    password: HWNFIRRADWMBEVIX
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 eureka:
   client:
     service-url:
