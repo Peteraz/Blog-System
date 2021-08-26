@@ -16,12 +16,22 @@ public class HystrixUserClientService implements FallbackFactory<UserProviderSer
     public UserProviderService create(Throwable throwable){
         return new UserProviderService(){
             @Override
-            public String getRegister(@RequestBody Map<String,String> map){
+            public String Register(@RequestBody Map<String,String> map){
                 return "连接超时，稍后重试。";
             }
 
             @Override
-            public String getLogin(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
+            public String Login(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
+                return "连接超时，稍后重试。";
+            }
+
+            @Override
+            public String Logout(HttpSession session){
+                return "连接超时，稍后重试。";
+            }
+
+            @Override
+            public String ForgetPWD(@RequestParam("account") String account){
                 return "连接超时，稍后重试。";
             }
         };

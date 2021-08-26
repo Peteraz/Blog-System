@@ -22,7 +22,7 @@ class BlogSystemConsumerApplicationTests {
         map.put("name", "Peter");
         map.put("age", "18");
         map.put("sex", "男");
-        String result=consumerController.getRegister(map);
+        String result=consumerController.Register(map);
         System.out.println(result);
     }
 }

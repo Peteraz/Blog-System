@@ -13,7 +13,7 @@ class BlogSystemMailProviderApplicationTests {
     @Test
     void contextLoads() {
         try{
-            sendMailService.SendMail();
+            sendMailService.SendInlineMail();
             System.out.println("邮件发送成功！");
         }catch(Exception e){
             e.printStackTrace();

@@ -21,7 +21,7 @@ class BlogSystemUserProviderApplicationTests {
         map.put("name", "Peter");
         map.put("age", "18");
         map.put("sex", "男");
-        String result=userController.getRegister(map);
+        String result=userController.Register(map);
         System.out.println(result);
     }
 }

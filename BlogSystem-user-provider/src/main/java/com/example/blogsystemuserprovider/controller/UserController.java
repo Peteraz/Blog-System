@@ -5,13 +5,11 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UUIDUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
@@ -21,8 +19,8 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping(value="getRegister")
-    public String getRegister(@RequestBody  Map<String,String> map){
+    @RequestMapping(value="Register",method= RequestMethod.POST)
+    public String Register(@RequestBody  Map<String,String> map){
         User user=new User();
         long count=0;
         try{
@@ -50,8 +48,8 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="getLogin")
-    public String getLogin(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
+    @RequestMapping(value="Login",method= RequestMethod.GET)
+    public String Login(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
         User user=new User();
         try{
             user=userService.getUserByAccountAndPassword(account,null);
@@ -76,6 +74,31 @@ public class UserController {
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value="Logout",method= RequestMethod.POST)
+    public String Logout(HttpSession session){
+        try{
+            //清空用户资料
+            session.setAttribute("user",null);
+            return "1";
+        }catch(Exception e){
+            e.printStackTrace();
+            return "-1";
+        }
+    }
+
+    @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)
+    public String ForgetPWD(@RequestParam("account") String account) {
+        try {
+            if (userService.getUserByAccountAndPassword(account, null) != null) {
+                return "1";
+            }
+            return "-1";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "0";
         }
     }
 }
