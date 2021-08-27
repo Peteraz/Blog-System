@@ -28,6 +28,7 @@ public class SendMailController {
     private String receiver="673840304@qq.com";  //收件人
     private String loaclhost="http://localhost:7040/mail-provider/?token=";
 
+    @RequestMapping(value="SendSimpleMail",method= RequestMethod.POST)
     public void SendSimpleMail () throws Exception{
         SimpleMailMessage mailMessage=new SimpleMailMessage();
         mailMessage.setFrom(Sender);
@@ -37,6 +38,7 @@ public class SendMailController {
         mailSender.send(mailMessage);
     }
 
+    @RequestMapping(value="SendAttchmentsMail",method= RequestMethod.POST)
     public void SendAttchmentsMail() throws Exception{
         MimeMessage mimeMailMessage=mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMailMessage,true);
@@ -51,6 +53,7 @@ public class SendMailController {
         mailSender.send(mimeMailMessage);
     }
 
+    @RequestMapping(value="SendInlineMail",method= RequestMethod.POST)
     public void SendInlineMail() throws Exception{
         MimeMessage mimeMessage=mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,true);

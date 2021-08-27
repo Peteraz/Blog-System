@@ -1,5 +1,6 @@
 package com.example.blogsystemconsumer.service;
 
+import com.example.blogsystemconsumer.hystrix.HystrixMailClientService;
 import com.example.blogsystemconsumer.hystrix.HystrixUserClientService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 //name 为user-provider项目中application.yml配置文件中的application.name;
 //path 为user-provider项目中application.yml配置文件中的context.path;
-@FeignClient(name = "user-provider-server",path="/user-provider",fallbackFactory = HystrixUserClientService.class)
+@FeignClient(name = "mail-provider-server",path="/mail-provider",fallbackFactory = HystrixMailClientService.class)
 //@Component:把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>,也就是配置类
 //@Componet注解最好加上，不加idea会显示有错误，但是不影响系统运行；
 @Component

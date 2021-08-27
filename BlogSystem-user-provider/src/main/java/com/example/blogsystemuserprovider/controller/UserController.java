@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
@@ -38,13 +37,13 @@ public class UserController {
                   user.setCreateTime(time);
                   user.setLoginCount(count);
                   userService.insertSelective(user);
-                  return JsonUtils.jsonPrint(1,"成功",null);//注册成功
-              } else{
-                  return JsonUtils.jsonPrint(-2,"未能获取参数",null);//注册失败
+                  return "1";//注册成功
+              }else{
+                  return "0";//注册失败
               }
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);//注册失败
+            return "-1";//注册失败
         }
     }
 
@@ -54,9 +53,9 @@ public class UserController {
         try{
             user=userService.getUserByAccountAndPassword(account,null);
             if(user==null){
-                return JsonUtils.jsonPrint(-1,"登账号错误!",null);
+                return "-2";
             }else if( user.getPassword().equals(SHA256Utils.getSHA256(password))){
-                return JsonUtils.jsonPrint(0,"密码错误!",null);
+                return "-3";
             }else{
                 if(user.getLoginTime()!=null){
                     user.setLastLoginTime(user.getLoginTime());
@@ -69,11 +68,11 @@ public class UserController {
                 user.setPassword("null");
                 //用session保存用户
                 session.setAttribute("user",user);
-                return JsonUtils.jsonPrint(1,"登录成功!",null);
+                return "1";
             }
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
+            return "-1";
         }
     }
 
@@ -95,10 +94,10 @@ public class UserController {
             if (userService.getUserByAccountAndPassword(account, null) != null) {
                 return "1";
             }
-            return "-1";
+            return "0";
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return "-1";
         }
     }
 }
