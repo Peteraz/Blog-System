@@ -11,11 +11,13 @@ public class User {
 
     private String email;
 
-    private String name;
+    private String userName;
 
     private Integer age;
 
     private String sex;
+
+    private String phoneNumber;
 
     private Date createTime;
 
@@ -59,12 +61,12 @@ public class User {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public Integer getAge() {
@@ -81,6 +83,14 @@ public class User {
 
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
     }
 
     public Date getCreateTime() {
@@ -130,9 +140,10 @@ public class User {
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", createTime=" + createTime +
                 ", loginTime=" + loginTime +
                 ", lastLoginTime=" + lastLoginTime +

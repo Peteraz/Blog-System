@@ -8,8 +8,10 @@ import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.SimpleTimeZone;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
 // 但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
@@ -30,7 +32,7 @@ public class UserController {
                   user.setAccount(map.get("account"));
                   user.setPassword(SHA256Utils.getSHA256(map.get("password")));
                   user.setEmail(map.get("email"));
-                  user.setName(map.get("name"));
+                  user.setUserName(map.get("name"));
                   user.setAge(Integer.getInteger(map.get("age")));
                   user.setSex(map.get("sex"));
                   Date time = new Date();

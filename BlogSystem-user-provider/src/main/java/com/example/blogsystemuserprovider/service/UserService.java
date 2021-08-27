@@ -9,11 +9,11 @@ public interface UserService {
 
     int deleteById(String userid);
 
-    int insertUser(User record);
+    int insert(User record);
 
     int insertSelective(User record);
 
     int updateByUserSelective(User record);
 
-    int updateByUser(User record);
+    int updateById(User record);
 }

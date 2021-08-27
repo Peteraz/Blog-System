@@ -75,7 +75,7 @@ public class SendMailController {
             mimeMessageHelper.setTo(receiver);
             mimeMessageHelper.setSubject("博客密码修改");
             Context context=new Context();
-            context.setVariable("username",user.getName());
+            context.setVariable("username",user.getUserName());
             context.setVariable("link",loaclhost+ UUIDUtils.getToken());
             String emailContent=templateEngine.process("/mail",context);
             mimeMessageHelper.setText(emailContent,true);

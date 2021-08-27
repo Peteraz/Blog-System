@@ -1,17 +1,17 @@
-package com.example.blogsystem.entity;
+package com.example.blogsystem.dto;
 
 import java.util.Date;
 
-public class Article {
+public class ArticleDto {
     private String articleid;
 
     private String userid;
 
+    private String account;
+
     private String articleName;
 
     private Date publishTime;
-
-    private Date editTime;
 
     private String articleContents;
 
@@ -20,7 +20,7 @@ public class Article {
     }
 
     public void setArticleid(String articleid) {
-        this.articleid = articleid == null ? null : articleid.trim();
+        this.articleid = articleid;
     }
 
     public String getUserid() {
@@ -28,7 +28,15 @@ public class Article {
     }
 
     public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+        this.userid = userid;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getArticleName() {
@@ -36,7 +44,7 @@ public class Article {
     }
 
     public void setArticleName(String articleName) {
-        this.articleName = articleName == null ? null : articleName.trim();
+        this.articleName = articleName;
     }
 
     public Date getPublishTime() {
@@ -47,19 +55,22 @@ public class Article {
         this.publishTime = publishTime;
     }
 
-    public Date getEditTime() {
-        return editTime;
-    }
-
-    public void setEditTime(Date editTime) {
-        this.editTime = editTime;
-    }
-
     public String getArticleContents() {
         return articleContents;
     }
 
     public void setArticleContents(String articleContents) {
-        this.articleContents = articleContents == null ? null : articleContents.trim();
+        this.articleContents = articleContents;
+    }
+    @Override
+    public String toString() {
+        return "ArticleDto{" +
+                "articleid='" + articleid + '\'' +
+                ", userid='" + userid + '\'' +
+                ", author='" + account + '\'' +
+                ", articleName='" + articleName + '\'' +
+                ", publishTime=" + publishTime +
+                ", articleContents='" + articleContents + '\'' +
+                '}';
     }
 }

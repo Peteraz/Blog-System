@@ -9,6 +9,12 @@ public class UUIDUtils {
         return userid;
     }
 
+    public static String getId(){
+        //产生UUID
+        String userid=UUID.randomUUID().toString().replace("-", "");
+        return userid;
+    }
+
     public static String getToken(){
         String token=UUID.randomUUID().toString();
         return token;
