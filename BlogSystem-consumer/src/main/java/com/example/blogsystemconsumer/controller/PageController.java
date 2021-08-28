@@ -19,4 +19,18 @@ public class PageController {
         modelAndView.addObject("data","Hello World!!!I ma the profile page!");
         return modelAndView;
     }
+
+    @RequestMapping(value="getArticle")
+    public ModelAndView getArticle(){
+        ModelAndView modelAndView=new ModelAndView("article");
+        modelAndView.addObject("data","Hello World!!!I ma the article page!");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="getSetting")
+    public ModelAndView getSetting(){
+        ModelAndView modelAndView=new ModelAndView("settings");
+        modelAndView.addObject("data","Hello World!!!I ma the setting page!");
+        return modelAndView;
+    }
 }
