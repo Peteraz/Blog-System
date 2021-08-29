@@ -6,6 +6,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class PageController {
+    @RequestMapping(value="getLogin")
+    public ModelAndView getLogin(){
+        ModelAndView modelAndView=new ModelAndView("login");
+        modelAndView.addObject("data","Hello World!!!I ma the Login page!");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="getRegister")
+    public ModelAndView getRegister(){
+        ModelAndView modelAndView=new ModelAndView("register");
+        modelAndView.addObject("data","Hello World!!!I ma the Login page!");
+        return modelAndView;
+    }
     @RequestMapping(value="getIndex")
     public ModelAndView getIndex(){
         ModelAndView modelAndView=new ModelAndView("index");
@@ -17,6 +30,13 @@ public class PageController {
     public ModelAndView getProfile(){
         ModelAndView modelAndView=new ModelAndView("profile");
         modelAndView.addObject("data","Hello World!!!I ma the profile page!");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="getResetPassword")
+    public ModelAndView getResetPassword(){
+        ModelAndView modelAndView=new ModelAndView("reset-password");
+        modelAndView.addObject("data","Hello World!!!I ma the ResetPassword page!");
         return modelAndView;
     }
 

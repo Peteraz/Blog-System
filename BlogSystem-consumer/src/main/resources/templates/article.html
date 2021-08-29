@@ -336,8 +336,16 @@
 			editor.text.clear()
 		})
 		editor.config.height=400
+		//有图片又有文字，则只粘贴文字，不粘贴图片。
 		editor.config.pasteIgnoreImg = true
+		// 使用 base64 保存图片
 		editor.config.uploadImgShowBase64 = true
+		// 3M
+		editor.config.uploadImgMaxSize=3*1024*1024;
+		//照片格式
+		editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
+		// 限制一次最多上传 1 张图片
+		editor.config.uploadImgMaxLength = 1;
 		editor.create()
 	</script>
 </body>
