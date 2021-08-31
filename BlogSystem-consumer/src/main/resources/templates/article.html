@@ -337,22 +337,27 @@
 	<script type="text/javascript" src="js/wangEditor.min.js"></script>
 	<script type="text/javascript">
 		const E=window.wangEditor
+		//创建富文本
 		const editor=new E('#editor')
+		//清空富文本
 		const clean=document.getElementById('clean')
 		clean.addEventListener('click',function (){
 			editor.text.clear()
 		})
+		//富文本高度
 		editor.config.height=400
 		//有图片又有文字，则只粘贴文字，不粘贴图片。
 		editor.config.pasteIgnoreImg = true
-		// 使用 base64 保存图片
-		editor.config.uploadImgShowBase64 = true
+		//配置 server 接口地址
+		editor.config.uploadImgServer='/upload-img'
+		/*使用 base64 保存图片
+		editor.config.uploadImgShowBase64 = true*/
 		// 3M
 		editor.config.uploadImgMaxSize=3*1024*1024;
 		//照片格式
 		editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
-		// 限制一次最多上传 1 张图片
-		editor.config.uploadImgMaxLength = 1;
+		// 限制一次最多上传 5 张图片
+		editor.config.uploadImgMaxLength = 5;
 		editor.create()
 	</script>
 </body>

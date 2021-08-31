@@ -10,6 +10,7 @@
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
@@ -17,7 +18,7 @@
     <result column="identity" jdbcType="VARCHAR" property="identity" />
   </resultMap>
   <sql id="Base_Column_List">
-    userid, account, password, email, user_name, age, sex, phone_number, create_time, 
+    userid, account, password, email, user_name, age, sex, phone_number, birthday, create_time, 
     login_time, last_login_time, login_count, identity
   </sql>
   <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -41,14 +42,14 @@
   <insert id="insert" parameterType="com.example.blogsystem.entity.User">
     insert into user (userid, account, password, 
       email, user_name, age, 
-      sex, phone_number, create_time, 
-      login_time, last_login_time, login_count, 
-      identity)
+      sex, phone_number, birthday, 
+      create_time, login_time, last_login_time, 
+      login_count, identity)
     values (#{userid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{sex,jdbcType=CHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{loginTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{loginCount,jdbcType=BIGINT}, 
-      #{identity,jdbcType=VARCHAR})
+      #{sex,jdbcType=CHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{loginCount,jdbcType=BIGINT}, #{identity,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.blogsystem.entity.User">
     insert into user
@@ -76,6 +77,9 @@
       </if>
       <if test="phoneNumber != null">
         phone_number,
+      </if>
+      <if test="birthday != null">
+        birthday,
       </if>
       <if test="createTime != null">
         create_time,
@@ -118,6 +122,9 @@
       <if test="phoneNumber != null">
         #{phoneNumber,jdbcType=VARCHAR},
       </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -135,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByUserSelective" parameterType="com.example.blogsystem.entity.User">
     update user
     <set>
       <if test="account != null">
@@ -158,6 +165,9 @@
       </if>
       <if test="phoneNumber != null">
         phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -186,6 +196,7 @@
       age = #{age,jdbcType=INTEGER},
       sex = #{sex,jdbcType=CHAR},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       login_time = #{loginTime,jdbcType=TIMESTAMP},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},

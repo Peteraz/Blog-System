@@ -3,7 +3,7 @@ package com.example.blogsystem.common;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class AgeUtil {
+public class AgeUtils {
     public static String getAgeDetail(String date){
         //如果有空格
         int index=date.indexOf(" ");

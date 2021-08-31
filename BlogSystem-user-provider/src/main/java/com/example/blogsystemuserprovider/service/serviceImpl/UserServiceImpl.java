@@ -1,8 +1,8 @@
 package com.example.blogsystemuserprovider.service.serviceImpl;
 
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.dao.UserMapper;
 import com.example.blogsystemuserprovider.service.UserService;
-import com.example.blogsystem.entity.User;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 

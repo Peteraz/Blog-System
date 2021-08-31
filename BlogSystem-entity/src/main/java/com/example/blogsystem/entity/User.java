@@ -19,6 +19,8 @@ public class User {
 
     private String phoneNumber;
 
+    private String birthday;
+
     private Date createTime;
 
     private Date loginTime;
@@ -93,6 +95,14 @@ public class User {
         this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday == null ? null : birthday.trim();
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -131,24 +141,5 @@ public class User {
 
     public void setIdentity(String identity) {
         this.identity = identity == null ? null : identity.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userid='" + userid + '\'' +
-                ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", createTime=" + createTime +
-                ", loginTime=" + loginTime +
-                ", lastLoginTime=" + lastLoginTime +
-                ", loginCount=" + loginCount +
-                ", identity='" + identity + '\'' +
-                '}';
     }
 }

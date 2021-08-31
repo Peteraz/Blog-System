@@ -1,17 +1,15 @@
 package com.example.blogsystemuserprovider.controller;
 
-import com.example.blogsystemuserprovider.service.UserService;
 import com.example.blogsystem.entity.User;
+import com.example.blogsystemuserprovider.service.UserService;
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.SimpleTimeZone;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
 // 但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
