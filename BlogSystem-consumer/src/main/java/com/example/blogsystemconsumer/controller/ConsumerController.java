@@ -35,19 +35,19 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="Login",method= RequestMethod.POST)
-    public String Login(HttpSession session, @RequestParam("account") String account,@RequestParam("password") String password){
+    public ModelAndView  Login(HttpSession session, @RequestParam("account") String account,@RequestParam("password") String password){
         try{
             if(userProviderService.Login(session,account,password).equals("1")){
-                return JsonUtils.jsonPrint(1,"登录成功!",null);
+                return new ModelAndView("index");
             }else if(userProviderService.Login(session,account,password).equals("-1")){
-                return JsonUtils.jsonPrint(-2,"登录账号错误!",null);
+                return new ModelAndView("login").addObject("status",-1).addObject("msg","登录账号错误!");
             }else if(userProviderService.Login(session,account,password).equals("-2")){
-                return JsonUtils.jsonPrint(-3,"登录密码错误!",null);
+                return new ModelAndView("login").addObject("status",-2).addObject("msg","登录密码错误!");
             }
-            return JsonUtils.jsonPrint(-4,"未知错误!",null);
+            return new ModelAndView("login").addObject("status",-3).addObject("msg","未知错误!");
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(-1,e.getMessage(),null);
+            return new ModelAndView("login").addObject("status",0).addObject("msg",e.getMessage());
         }
     }
 

@@ -24,3 +24,21 @@ const upload=function(resultFiles,insertImgFn){
 				}
 			});
 }
+
+$('#login').click(function (){
+	$.ajax({
+		url:"http://localhost:7090/consumer/Login",
+		data:{account:$('#account').val(),password:$('#password').val()},
+		type:"POST",
+		contentType:"application/json",
+		dataType: "json",
+		success:function(result){
+			if(result.status=="0"){
+
+			}else{
+				alert(result.msg);
+				return;
+			}
+		}
+	});
+});
