@@ -1,12 +1,15 @@
 package com.example.blogsystemconsumer.controller;
 
+import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
@@ -73,5 +76,29 @@ public class ConsumerController {
             e.printStackTrace();
             return JsonUtils.jsonPrint(-1,e.getMessage(),null);
         }
+    }
+
+    @RequestMapping(value="FileUpload",method= RequestMethod.POST)
+    public String FileUpload(@RequestParam("file") MultipartFile[] file) {
+        ArrayList data=new ArrayList();
+        System.out.println(file.toString());
+        if (file==null || file.length==0) {
+            return JsonUtils.jsonPrint(1, null);
+        }
+        for(int i=0;i<file.length;i++){
+            if(FileUploadUtils.IsImg(file[i]).equals("yes")){
+                try{
+                    String url=FileUploadUtils.Upload(file[i]);
+                    if(!url.equals("error")){
+                        data.add(url);
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                    return JsonUtils.jsonPrint(1,null);
+                }
+            }
+        }
+        System.out.print(JsonUtils.jsonPrint(0,data));
+        return JsonUtils.jsonPrint(0,data);
     }
 }

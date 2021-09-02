@@ -271,7 +271,6 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
-					<h1 class="h3 mb-3">Form Layouts</h1>
 						<div class="col-12 col-xl-6">
 							<div class="card">
 								<div class="card-header">
@@ -282,7 +281,7 @@
 									<form>
 										<div class="mb-3">
 											<label class="form-label">文章标题</label>
-											<input type="article_name" class="form-control" placeholder="请输入">
+											<input id="article_name" type="article_name" class="form-control" placeholder="请输入">
 										</div>
 										<div class="mb-3">
 											<label class="form-label">文章内容</label>
@@ -294,7 +293,7 @@
 											<label class="form-label">Textarea</label>
 											<textarea class="form-control" placeholder="Textarea" rows="1"></textarea>
 										</div>-->
-										<button type="submit" class="btn btn-primary">提交文章</button>
+										<button id="submit" type="submit" class="btn btn-primary">提交文章</button>
 										<button id="clean" type="submit" class="btn btn-primary">清除</button>
 									</form>
 								</div>
@@ -334,7 +333,9 @@
 	</div>
 
 	<script src="js/app.js"></script>
-	<script type="text/javascript" src="js/wangEditor.min.js"></script>
+	<script src="js/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="js/wangEditor.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript">
 		const E=window.wangEditor
 		//创建富文本
@@ -345,19 +346,57 @@
 			editor.text.clear()
 		})
 		//富文本高度
-		editor.config.height=400
-		//有图片又有文字，则只粘贴文字，不粘贴图片。
-		editor.config.pasteIgnoreImg = true
-		//配置 server 接口地址
-		editor.config.uploadImgServer='/upload-img'
-		/*使用 base64 保存图片
-		editor.config.uploadImgShowBase64 = true*/
+		editor.config.height=400;
+		editor.config.debug=true;
+		// 关闭粘贴内容中的样式
+		editor.config.pasteFilterStyle = false;
+		//复制时有图片又有文字，则只粘贴文字，不粘贴图片
+		editor.config.pasteIgnoreImg = true;
+		editor.config.uploadFileName='file';
 		// 3M
-		editor.config.uploadImgMaxSize=3*1024*1024;
+		editor.config.uploadImgMaxSize=5*1024*1024;
 		//照片格式
 		editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
 		// 限制一次最多上传 5 张图片
 		editor.config.uploadImgMaxLength = 5;
+		editor.config.uploadImgServer='http://localhost:7090/consumer/FileUpload'
+		editor.config.uploadImgHeaders = {
+			Accept: 'text/x-json',
+			a: 100,
+		}
+		editor.config.uploadImgHooks={
+			fail:function(xhr, editor, result){
+				// 图片上传并返回结果，但图片插入错误时触发
+				// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+				alert(result)
+			}
+		}
+		editor.config.customUploadImg=function(resultFiles,insertImgFn){
+			let file=new FormData();
+			for(let i=0;i<resultFiles.length;i++){
+				file.append("file",resultFiles[i]);
+			}
+			$.ajax({
+				url:'http://localhost:7090/consumer/FileUpload',
+				type: "POST",
+				data: file,
+				async: false,
+				cache: false,
+				processData: false,
+				contentType: false,
+				dataType: "json",
+				success:function(result){
+					if(result.errno.toString()=="0"){
+						for(let j=0;j<result.data.length;j++){
+							insertImgFn(result.data[j],"picture"+j);
+						}
+					}else{
+						alert("error!");
+						return;
+					}
+				}
+			});
+		}
 		editor.create()
 	</script>
 </body>

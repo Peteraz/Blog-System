@@ -5,26 +5,28 @@ import java.io.File;
 import java.util.UUID;
 
 public class FileUploadUtils {
+    private static String realpath="H://Repository//SpringCloud//BlogSystem//BlogSystem-consumer//src//main//resources//static//img//photos//";
+    private static String virtualpath="/consumer/static/img/photos/";
     public static String Upload( MultipartFile file){
         //文件名字
-        String fileName=file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
         //副档名
-        String suffixName=fileName.substring(fileName.lastIndexOf("."));
-        //上传的路径
-        String filePath="H:\\Repository\\SpringCloud\\BlogSystem\\BlogSystem-consumer\\src\\main\\resources\\static\\img\\photos";
+        //String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        //上传后的路径
+        String filePath = realpath;
         //新文件名字
-        fileName= UUID.randomUUID().toString().replace("-","")+fileName;
-        File dest=new File(filePath,fileName);
+        fileName = UUID.randomUUID().toString().replace("-", "") + fileName;
+        File dest = new File(filePath, fileName);
         //不存的话在创建一个文件夹
-        if(!dest.getParentFile().exists()){
+        if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
-        try{
+        try {
             file.transferTo(dest);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        String filename="H:\\Repository\\SpringCloud\\BlogSystem\\BlogSystem-consumer\\src\\main\\resources\\static\\img\\photos"+fileName;
+        String filename=virtualpath+fileName;
         return filename;
     }
 
@@ -33,15 +35,17 @@ public class FileUploadUtils {
             System.out.print("文件是空的");
             return "null";
         }
+
         if(file.getSize()>5*1024*1024){
             return "too big";
         }else{
             String fileType= file.getContentType();;
-            if(fileType.equals("image/jpeg") || fileType.equals("image/png") || fileType.equals("image/bmp") || fileType.equals("image/gif") || fileType.equals("image/raw")){
+            if(fileType.equals("image/jpeg") || fileType.equals("image/jpg") || fileType.equals("image/png") || fileType.equals("image/bmp") || fileType.equals("image/gif") || fileType.equals("image/raw")){
                 return "yes";
             }else{
                 return "no";
             }
         }
+
     }
 }

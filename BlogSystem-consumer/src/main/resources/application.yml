@@ -17,6 +17,12 @@ spring:
     name: consumer-server
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      #上传文件的最大值
+      max-file-size: 50MB
+      #总上传数据大值
+      max-request-size: 50MB
 eureka:
   client:
     service-url:

@@ -14,4 +14,13 @@ public class JsonUtils {
         //System.out.println(JSONArray.toJSONString(map));
         return JSONArray.toJSONString(map);
     }
+
+    //map转换成Json字符串传回前端
+    public static String jsonPrint(Integer errno,Object data){
+        Map<String, Object> map = new HashMap<>();
+        map.put("errno", errno);
+        map.put("data", data);
+        //System.out.println(JSONArray.toJSONString(map));
+        return JSONArray.toJSONString(map);
+    }
 }

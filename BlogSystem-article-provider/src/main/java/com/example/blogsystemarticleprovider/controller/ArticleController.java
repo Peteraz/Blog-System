@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
-public class ArticleCotroller {
+public class ArticleController {
     @Resource
     private ArticleService articleService;
 

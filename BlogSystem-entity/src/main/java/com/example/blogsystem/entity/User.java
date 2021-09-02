@@ -142,4 +142,24 @@ public class User {
     public void setIdentity(String identity) {
         this.identity = identity == null ? null : identity.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid='" + userid + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", createTime=" + createTime +
+                ", loginTime=" + loginTime +
+                ", lastLoginTime=" + lastLoginTime +
+                ", loginCount=" + loginCount +
+                ", identity='" + identity + '\'' +
+                '}';
+    }
 }
