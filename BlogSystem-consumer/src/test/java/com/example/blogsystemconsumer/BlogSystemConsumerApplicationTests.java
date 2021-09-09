@@ -3,10 +3,11 @@ package com.example.blogsystemconsumer;
 import com.example.blogsystemconsumer.controller.ConsumerController;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @SpringBootTest
 class BlogSystemConsumerApplicationTests {
@@ -15,14 +16,11 @@ class BlogSystemConsumerApplicationTests {
 
     @Test
     void contextLoads() {
-        Map<String,String> map=new HashMap<>();
-        map.put("account", "PeterKuan");
-        map.put("password", "123456789");
-        map.put("email", "132456@qq.com");
-        map.put("name", "Peter");
-        map.put("age", "18");
-        map.put("sex", "男");
-        String result=consumerController.Register(map);
+        String account="Peter";
+        String password="123456";
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        String result=consumerController.Login(account,password);
         System.out.println(result);
     }
 }

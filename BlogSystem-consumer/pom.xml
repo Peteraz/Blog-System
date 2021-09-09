@@ -37,10 +37,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency><!--spring cloud oepnfegin依赖，consumer项目即可以作为生产者，又可以作为消费者-->
+        <dependency><!--spring cloud oepnfegin依赖-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.0.3</version>
+        </dependency>
+        <dependency><!--单元测试-->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.0-M1</version>
+            <scope>test</scope>
         </dependency>
         <dependency><!--Thymeleaf是面向Web和独立环境的现代服务器端Java模板引擎-->
             <groupId>org.springframework.boot</groupId>

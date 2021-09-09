@@ -1,10 +1,12 @@
 package com.example.blogsystemconsumer.hystrix;
 
+import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -21,7 +23,7 @@ public class HystrixUserClientService implements FallbackFactory<UserProviderSer
             }
 
             @Override
-            public String Login(HttpSession session, @RequestParam("account") String account, @RequestParam("password") String password){
+            public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
                 return "连接超时，稍后重试。";
             }
 

@@ -18,19 +18,22 @@ const upload=function(resultFiles,insertImgFn){
 							insertImgFn(result.data[j],"picture"+j);
 						}
 					}else{
-						alert("error!");
+						alert(result.msg);
 						return;
 					}
 				}
 			});
 }
 
-$('#login').click(function (){
+$('#login').click(function (result){
+	let account=$("#account").val();
+	let password=$("#password").val();
 	$.ajax({
 		url:"http://localhost:7090/consumer/Login",
-		data:{account:$('#account').val(),password:$('#password').val()},
+		data:{account:account,password:password},
 		type:"POST",
-		contentType:"application/json",
+		async: false,
+		cache: false,
 		dataType: "json",
 		success:function(result){
 			if(result.status=="0"){

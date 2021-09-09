@@ -55,12 +55,3 @@ info:
   company.name: www.BlogSystem.com
   build.artifactId: @project.artifactId@
   build.version: @project.version@
-#feign配置
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000 #连接超时
-        readTimeout: 5000 #读取超时
-        loggerLevel: basic #日志等级
-

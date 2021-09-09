@@ -2,6 +2,7 @@ package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystemconsumer.service.MailProviderService;
+import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
 import org.springframework.web.bind.annotation.*;
@@ -16,38 +17,53 @@ import java.util.Map;
 public class ConsumerController {
     //@Resource默认按byName自动注入,有两个重要属性分别是name和type
     @Resource
+    private ProductService productService;
+
+    @Resource
     private UserProviderService userProviderService;
 
     @Resource
     private MailProviderService mailProviderService;
 
-    @RequestMapping(value="Register",method= RequestMethod.POST)
-        public String Register(@RequestBody Map<String,String> map){
+    @RequestMapping(value="getConsumer")
+    public String getConsumer(){
+        String str=productService.getProduct();
+        return str;
+    }
+
+    @RequestMapping(value="Register",method = RequestMethod.POST)
+    public String Register(@RequestBody Map<String,String> map){
         try{
-            if(userProviderService.Register(map).equals("1")){
+            String result=userProviderService.Register(map);
+            System.out.println(result);
+            if(result.equals("1")){
                 return JsonUtils.jsonPrint(1,"注册成功!",null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1,"用户名已存在!",null);
             }
-            return JsonUtils.jsonPrint(0,"注册失败!",null);
+            return JsonUtils.jsonPrint(-2,"注册失败!",null);
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(-1,e.getMessage(),null);
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
 
-    @RequestMapping(value="Login",method= RequestMethod.POST)
-    public ModelAndView  Login(HttpSession session, @RequestParam("account") String account,@RequestParam("password") String password){
+    @RequestMapping(value = "Login", method = RequestMethod.POST)
+    public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
         try{
-            if(userProviderService.Login(session,account,password).equals("1")){
-                return new ModelAndView("index");
-            }else if(userProviderService.Login(session,account,password).equals("-1")){
-                return new ModelAndView("login").addObject("status",-1).addObject("msg","登录账号错误!");
-            }else if(userProviderService.Login(session,account,password).equals("-2")){
-                return new ModelAndView("login").addObject("status",-2).addObject("msg","登录密码错误!");
+            String result=userProviderService.Login(account,password);
+            System.out.println(result);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1,null,null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1,"登录账号错误!",null);
+            }else if(result.equals("-2")){
+                return JsonUtils.jsonPrint(-2,"登录密码错误!",null);
             }
-            return new ModelAndView("login").addObject("status",-3).addObject("msg","未知错误!");
+            return JsonUtils.jsonPrint(-3,"未知错误!",null);
         }catch(Exception e){
             e.printStackTrace();
-            return new ModelAndView("login").addObject("status",0).addObject("msg",e.getMessage());
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
 
@@ -78,7 +94,7 @@ public class ConsumerController {
         }
     }
 
-    @RequestMapping(value="FileUpload",method= RequestMethod.POST)
+    @RequestMapping(value="FileUpload")
     public String FileUpload(@RequestParam("file") MultipartFile[] file) {
         ArrayList data=new ArrayList();
         System.out.println(file.toString());
