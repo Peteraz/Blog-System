@@ -51,3 +51,9 @@ info:
   company.name: www.BlogSystem.com
   build.artifactId: @project.artifactId@
   build.version: @project.version@
+#设置openfeign超时时间(openfeign包含ribbon)
+ribbon:
+  #处理请求的超时时间，默认为7秒
+  ReadTimeout: 7000
+  #连接建立的超时时长，默认7秒
+  ConnectTimeout: 7000

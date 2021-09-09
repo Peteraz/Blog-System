@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Map;
@@ -50,15 +51,20 @@ public class ConsumerController {
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
+        if(account.isEmpty()){
+            return JsonUtils.jsonPrint(-1,"请输入账号!",null);
+        }else if(password.isEmpty()){
+            return JsonUtils.jsonPrint(-1,"请输入密码!",null);
+        }
         try{
             String result=userProviderService.Login(account,password);
             System.out.println(result);
             if(result.equals("1")){
-                return JsonUtils.jsonPrint(1,null,null);
+                return JsonUtils.jsonPrint(1,"登录成功!",null);
             }else if(result.equals("-1")){
                 return JsonUtils.jsonPrint(-1,"登录账号错误!",null);
             }else if(result.equals("-2")){
-                return JsonUtils.jsonPrint(-2,"登录密码错误!",null);
+                return JsonUtils.jsonPrint(-1,"登录密码错误!",null);
             }
             return JsonUtils.jsonPrint(-3,"未知错误!",null);
         }catch(Exception e){

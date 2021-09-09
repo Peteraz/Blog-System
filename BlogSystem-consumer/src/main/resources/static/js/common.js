@@ -28,20 +28,26 @@ const upload=function(resultFiles,insertImgFn){
 $('#login').click(function (result){
 	let account=$("#account").val();
 	let password=$("#password").val();
-	$.ajax({
-		url:"http://localhost:7090/consumer/Login",
-		data:{account:account,password:password},
-		type:"POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		success:function(result){
-			if(result.status=="0"){
-
-			}else{
-				alert(result.msg);
-				return;
+	if(!account){
+		alert("请输入账号！");
+	} else if(!password){
+		alert("请输入密码！");
+	}else{
+		$.ajax({
+			url:"http://localhost:7090/consumer/Login",
+			data:{account:account,password:password},
+			type:"POST",
+			async: false,
+			cache: false,
+			dataType: "json",
+			success:function(result){
+				if(result.status=="1"){
+					$(location).attr("href","http://localhost:7090/consumer/getIndex");
+				}else{
+					alert(result.msg);
+					return;
+				}
 			}
-		}
-	});
+		});
+	}
 });

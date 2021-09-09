@@ -18,8 +18,6 @@ class BlogSystemConsumerApplicationTests {
     void contextLoads() {
         String account="Peter";
         String password="123456";
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
         String result=consumerController.Login(account,password);
         System.out.println(result);
     }

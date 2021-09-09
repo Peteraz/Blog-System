@@ -56,9 +56,9 @@ public class UserController {
         try {
             user = userService.getUserByAccountAndPassword(account, null);
             if (user == null) {
-                return JsonUtils.jsonPrint(-2,null,null);
-            } else if (user.getPassword().equals(SHA256Utils.getSHA256(password))) {
-                return JsonUtils.jsonPrint(-3,null,null);
+                return "-1";
+            } else if (!user.getPassword().equals(SHA256Utils.getSHA256(password))) {
+                return "-2";
             } else {
                 if (user.getLoginTime() != null) {
                     user.setLastLoginTime(user.getLoginTime());
@@ -69,15 +69,17 @@ public class UserController {
                 user.setLoginCount(user.getLoginCount() + 1);
                 //避免暴露密码
                 user.setPassword("null");
-                //用session保存用户
                 HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
                 HttpSession session = request.getSession();
-                session.setAttribute("user", user);
-                return JsonUtils.jsonPrint(-1,null,null);
+                if(session!=null){
+                    //用session保存用户
+                    session.setAttribute("username", user.getUserName());
+                }
+                return "1";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return JsonUtils.jsonPrint(0,null,null);
+            return "0";
         }
     }
 
