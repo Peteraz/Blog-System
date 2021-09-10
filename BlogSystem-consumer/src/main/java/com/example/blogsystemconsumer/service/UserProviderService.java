@@ -1,13 +1,12 @@
 package com.example.blogsystemconsumer.service;
 
+import com.example.blogsystemconsumer.hystrix.HystrixUserClientService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -15,7 +14,7 @@ import java.util.Map;
 @Component
 //name 为user-provider项目中application.yml配置文件中的application.name;
 //path 为user-provider项目中application.yml配置文件中的context.path;
-@FeignClient(name = "user-provider-server",path="/user-provider")
+@FeignClient(name = "user-provider-server",path="/user-provider",fallback = HystrixUserClientService.class)
 public interface UserProviderService {
     @RequestMapping(value="Register",method = RequestMethod.POST)//注册
     String Register(@RequestBody Map<String,String> map);

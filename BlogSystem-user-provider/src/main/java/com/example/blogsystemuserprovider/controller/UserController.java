@@ -2,7 +2,6 @@ package com.example.blogsystemuserprovider.controller;
 
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
-import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.web.bind.annotation.*;

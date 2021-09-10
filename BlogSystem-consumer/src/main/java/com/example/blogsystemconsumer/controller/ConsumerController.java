@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Map;
@@ -74,15 +73,16 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="Logout",method= RequestMethod.POST)
-    public ModelAndView Logout(HttpSession session){
+    public String Logout(HttpSession session){
         try{
-            if(userProviderService.Logout(session).equals("1")){
-                return new ModelAndView("index");
+            String result=userProviderService.Logout(session);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1,"登出成功!",null);
             }
-            return new ModelAndView("error").addObject("message","登出发生错了");
+            return JsonUtils.jsonPrint(-1,"登出发生错了!",null);
         }catch(Exception e){
             e.printStackTrace();
-            return new ModelAndView("error").addObject("message",e.getMessage());
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
 

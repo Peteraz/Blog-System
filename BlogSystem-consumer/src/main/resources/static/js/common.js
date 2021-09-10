@@ -51,3 +51,21 @@ $('#login').click(function (result){
 		});
 	}
 });
+
+$('#login').click(function (result){
+	$.ajax({
+		url:"http://localhost:7090/consumer/Logout",
+		type:"POST",
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				$(location).attr("href","http://localhost:7090/consumer/getLogin");
+			}else{
+				alert(result.msg);
+				return;
+			}
+		}
+	});
+});
