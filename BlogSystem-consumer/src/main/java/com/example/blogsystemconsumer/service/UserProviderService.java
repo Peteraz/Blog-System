@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 //name 为user-provider项目中application.yml配置文件中的application.name;
 //path 为user-provider项目中application.yml配置文件中的context.path;
-@FeignClient(name = "user-provider-server",path="/user-provider",fallback = HystrixUserClientService.class)
+@FeignClient(name = "user-provider-server",path="/user-provider",fallbackFactory = HystrixUserClientService.class)
 public interface UserProviderService {
     @RequestMapping(value="Register",method = RequestMethod.POST)//注册
     String Register(@RequestBody Map<String,String> map);

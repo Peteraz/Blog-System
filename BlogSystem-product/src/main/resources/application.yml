@@ -1,9 +1,6 @@
 server:
   #定义端口号
-  port: 7080
-  servlet:
-    #定义项目的访问访问路径
-    context-path: /product
+  port: 8001
 spring:
   application:
     #定义应用名称，即服务名称

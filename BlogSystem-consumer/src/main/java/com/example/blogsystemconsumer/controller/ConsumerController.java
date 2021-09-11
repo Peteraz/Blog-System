@@ -7,7 +7,6 @@ import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class ConsumerController {
 
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
-        String str=productService.getProduct();
+        String str=productService.getService();
         return str;
     }
 

@@ -51,27 +51,21 @@ info:
   company.name: www.BlogSystem.com
   build.artifactId: @project.artifactId@
   build.version: @project.version@
-#设置openfeign超时时间(openfeign包含ribbon)
-ribbon:
-  #处理请求的超时时间，默认为3秒
-  ReadTimeout: 3000
-  #连接建立的超时时长，默认3秒
-  ConnectTimeout: 3000
+#openfeign配置
 feign:
+  client:
+    config:
+      default:
+        read-timeout: 2000
+        connect-timeout: 2000
   #替换掉JDK默认HttpURLConnection实现的 Http Client
   httpclient:
     enabled: true
-  #启用断路器
-  hystrix:
-    enabled: true
 hystrix:
   command:
-    default: #也可以针对多个服务
+    defalut: #也可以针对多个服务
       execution:
         isolation:
           thread:
-            # 设置hystrix的超时时间为24000ms
-            timeoutInMilliseconds: 24000
-        #开启hystrix,为false将超时控制交给ribbon
-        timeout:
-          enabled: true
+            # 设置hystrix的超时时间为5000ms
+            timeoutInMilliseconds: 5000
