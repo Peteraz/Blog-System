@@ -10,10 +10,10 @@ import java.util.Map;
 
 //@Component:把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>,也就是配置类
 @Component
-public class HystrixUserClientService implements FallbackFactory<UserProviderService> {
+public class HystrixUserClientService implements FallbackFactory<UserProviderService>{
     @Override
-    public UserProviderService create(Throwable throwable){
-        return new UserProviderService(){
+    public UserProviderService create(Throwable throwable) {
+        return new UserProviderService() {
             @Override
             public String Register(@RequestBody Map<String,String> map){
                 return "连接超时，稍后重试。";

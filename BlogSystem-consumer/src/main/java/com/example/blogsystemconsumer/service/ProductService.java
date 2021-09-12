@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Component
 //name 为user-provider项目中application.yml配置文件中的application.name;
 //path 为user-provider项目中application.yml配置文件中的context.path;
-@FeignClient(name = "product-server",fallback = HystrixProductService.class)
+@FeignClient(name = "product-server",fallbackFactory = HystrixProductService.class)
 public interface ProductService {
     @RequestMapping(value="getService")
     String getService();

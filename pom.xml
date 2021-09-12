@@ -7,6 +7,7 @@
         <module>BlogSystem-entity</module>
         <module>BlogSystem-eureka</module>
         <module>BlogSystem-product</module>
+        <module>BlogSystem-products</module>
         <module>BlogSystem-consumer</module>
         <module>BlogSystem-user-provider</module>
         <module>BlogSystem-article-provider</module>

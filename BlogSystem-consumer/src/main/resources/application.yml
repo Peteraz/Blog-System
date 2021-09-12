@@ -56,16 +56,20 @@ feign:
   client:
     config:
       default:
+        #指的是建立连接后从服务器读取到可用资源所用的时间
         read-timeout: 2000
+        #指的是建立连接所用的时间
         connect-timeout: 2000
+        loggerLevel: full
+  #熔断
+  circuitbreaker:
+    enabled: true
   #替换掉JDK默认HttpURLConnection实现的 Http Client
   httpclient:
     enabled: true
-hystrix:
-  command:
-    defalut: #也可以针对多个服务
-      execution:
-        isolation:
-          thread:
-            # 设置hystrix的超时时间为5000ms
-            timeoutInMilliseconds: 5000
+logging:
+  level:
+    com:
+      exapmle:
+        blogsystemconsumer:
+          service: debug

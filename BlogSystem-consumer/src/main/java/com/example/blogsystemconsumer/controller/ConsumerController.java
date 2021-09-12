@@ -64,7 +64,7 @@ public class ConsumerController {
             }else if(result.equals("-2")){
                 return JsonUtils.jsonPrint(-1,"登录密码错误!",null);
             }
-            return JsonUtils.jsonPrint(-3,"未知错误!",null);
+            return JsonUtils.jsonPrint(-3,result,null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
