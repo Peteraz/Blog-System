@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductsController {
     @RequestMapping(value="getService")
     public String getService() {
-        String serverport="8002";
+        String serverport="这是8002服务提供者,当你看到些字时候就是没问题了！";
         return serverport;
     }
 }
