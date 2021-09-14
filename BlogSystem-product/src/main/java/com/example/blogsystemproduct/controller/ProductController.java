@@ -18,7 +18,6 @@ public class ProductController {
     }
     @RequestMapping(value="getService")
     public String getService(){
-        Time.sleep(6000);
         String serverport="这是8001服务提供者,当你看到些字时候就是没问题了！";
         return serverport;
     }

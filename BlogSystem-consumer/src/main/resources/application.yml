@@ -63,8 +63,6 @@ feign:
         loggerLevel: full
   #替换掉JDK默认HttpURLConnection实现的Http Client
   httpclient:
-    enabled: false
-  okhttp:
     enabled: true
   #熔断
   circuitbreaker:
