@@ -52,7 +52,7 @@ $('#login').click(function (result){
 	}
 });
 
-$('#login').click(function (result){
+$('#logout').click(function (result){
 	$.ajax({
 		url:"http://localhost:7090/consumer/Logout",
 		type:"POST",

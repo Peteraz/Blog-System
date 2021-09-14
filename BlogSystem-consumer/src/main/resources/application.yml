@@ -57,19 +57,24 @@ feign:
     config:
       default:
         #指的是建立连接后从服务器读取到可用资源所用的时间
-        read-timeout: 2000
+        read-timeout: 5000
         #指的是建立连接所用的时间
-        connect-timeout: 2000
+        connect-timeout: 5000
         loggerLevel: full
+
+  #替换掉JDK默认HttpURLConnection实现的Http Client
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
   #熔断
   circuitbreaker:
     enabled: true
-  #替换掉JDK默认HttpURLConnection实现的 Http Client
-  httpclient:
-    enabled: true
+
 logging:
   level:
     com:
       exapmle:
         blogsystemconsumer:
-          service: debug
+          service:
+            UserProviderService: debug

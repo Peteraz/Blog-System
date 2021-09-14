@@ -57,12 +57,13 @@ public class ConsumerController {
         try{
             String result=userProviderService.Login(account,password);
             System.out.println(result);
-            if(result.equals("1")){
-                return JsonUtils.jsonPrint(1,"登录成功!",null);
-            }else if(result.equals("-1")){
-                return JsonUtils.jsonPrint(-1,"登录账号错误!",null);
-            }else if(result.equals("-2")){
-                return JsonUtils.jsonPrint(-1,"登录密码错误!",null);
+            switch (result) {
+                case "1":
+                    return JsonUtils.jsonPrint(1, "登录成功!", null);
+                case "-1":
+                    return JsonUtils.jsonPrint(-1, "登录账号错误!", null);
+                case "-2":
+                    return JsonUtils.jsonPrint(-1, "登录密码错误!", null);
             }
             return JsonUtils.jsonPrint(-3,result,null);
         }catch(Exception e){
