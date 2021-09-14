@@ -42,10 +42,6 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.1.0-SNAPSHOT</version>
         </dependency>
-        <dependency><!--loadbalance取代ribbon成为负载均衡-->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-loadbalancer</artifactId>
-        </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-okhttp</artifactId>

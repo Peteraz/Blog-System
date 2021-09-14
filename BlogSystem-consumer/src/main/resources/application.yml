@@ -66,6 +66,9 @@ feign:
     enabled: false
   okhttp:
     enabled: true
+  #熔断
+  circuitbreaker:
+    enabled: true
 logging:
   level:
     com:
