@@ -37,46 +37,46 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<form>
+									<form id="register-form">
 										<div class="mb-3">
 											<label class="form-label">账号</label>
-											<input class="form-control form-control-lg" type="text" name="account" placeholder="请输入账号" />
+											<input id="account" class="form-control form-control-lg" type="text" name="account" placeholder="请输入账号" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">密码</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="请输入密码" />
+											<input id="password" class="form-control form-control-lg" type="password" name="password" placeholder="请输入密码" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">名字</label>
-											<input class="form-control form-control-lg" type="text" name="name" placeholder="请输入名字" />
+											<input id="name" class="form-control form-control-lg" type="text" name="name" placeholder="请输入名字" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">邮箱</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="请输入邮箱" />
+											<input id="email" class="form-control form-control-lg" type="email" name="email" placeholder="请输入邮箱" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">生日</label>
-											<input class="form-control form-control-lg" type="date" name="age" placeholder="请选择出生日期" />
+											<input id="birthday" class="form-control form-control-lg" type="date" name="birthday" placeholder="请选择出生日期" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">性别</label>
 											<div>
 												<label class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="inline-radios-example" value="male">
+													<input class="form-check-input" type="radio" name="radios-sex" value="男">
 													<span class="form-check-label">男</span>
 												</label>
 												<label class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="inline-radios-example" value="female">
+													<input class="form-check-input" type="radio" name="radios-sex" value="女">
 													<span class="form-check-label">女</span>
 												</label>
 											</div>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">电话号码</label>
-											<input class="form-control form-control-lg" type="text" name="phone number" placeholder="请输入电话号码" />
+											<input id="phone_number" class="form-control form-control-lg" type="text" name="phone_number" placeholder="请输入电话号码" />
 										</div>
 										<div class="text-center mt-3">
-											<a href="index.html" class="btn btn-lg btn-primary">注册</a>
+											<a id="register"  class="btn btn-lg btn-primary">注册</a>
 											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign up</button> -->
 										</div>
 									</form>
@@ -91,6 +91,8 @@
 	</main>
 
 	<script src="js/app.js"></script>
+	<script src="js/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 </body>
 
 </html>

@@ -69,3 +69,32 @@ $('#logout').click(function (result){
 		}
 	});
 });
+
+$('#register').click(function (result){
+	let map=new Map();
+	map.put("account",$('#account').val());
+	map.put("password",$('#password').val());
+	map.put("name",$('#name').val());
+	map.put("email",$('#email').val());
+	map.put("birthday",$('#birthday').val());
+	map.put("sex",$("input[name='radios-sex']:checked").val());
+	map.put("phone_number",$('#phone_number').val());
+	$.ajax({
+		url:"http://localhost:7090/consumer/Register",
+		type:"POST",
+		data:{
+			   data:map,
+		     },
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				$(location).attr("href","http://localhost:7090/consumer/getLogin");
+			}else{
+				alert(result.msg);
+				return;
+			}
+		}
+	});
+});

@@ -1,5 +1,6 @@
 package com.example.blogsystemuserprovider.controller;
 
+import com.example.blogsystem.common.AgeUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import com.example.blogsystem.common.SHA256Utils;
@@ -24,6 +25,7 @@ public class UserController {
     public String Register(@RequestBody Map<String, String> map) {
         User user = new User();
         long count = 0;
+        String age="";
         try {
             if (userService.getUserByAccountAndPassword(map.get("account"), null) != null) {
                 return "-1";//账号已存在
@@ -33,6 +35,9 @@ public class UserController {
                 user.setPassword(SHA256Utils.getSHA256(map.get("password")));
                 user.setEmail(map.get("email"));
                 user.setUserName(map.get("name"));
+                user.setBirthday(map.get("birthday"));
+                age= AgeUtils.getAgeDetail(map.get("birthday"));
+                age=age.substring(0,age.indexOf("岁"));
                 user.setAge(Integer.valueOf(map.get("age")));
                 user.setSex(map.get("sex"));
                 Date time = new Date();
