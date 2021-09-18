@@ -31,7 +31,10 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="Register",method = RequestMethod.POST)
-    public String Register(@RequestBody Map<String,String> map){
+    public String Register(@RequestBody Map<String, String> map){
+        if(map.isEmpty()) {
+            return JsonUtils.jsonPrint(-3,"收不到注册信息!",null);
+        }
         try{
             String result=userProviderService.Register(map);
             System.out.println(result);

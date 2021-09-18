@@ -15,7 +15,7 @@ public class HystrixUserClientService implements FallbackFactory<UserProviderSer
     public UserProviderService create(Throwable throwable) {
         return new UserProviderService() {
             @Override
-            public String Register(@RequestBody Map<String,String> map){
+            public String Register(@RequestBody Map<String, String> map){
                 return "连接超时，稍后重试。";
             }
 

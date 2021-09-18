@@ -32,14 +32,16 @@ public class UserController {
             } else if (map != null) {
                 user.setUserid(UUIDUtils.getUserId());
                 user.setAccount(map.get("account"));
-                user.setPassword(SHA256Utils.getSHA256(map.get("password")));
-                user.setEmail(map.get("email"));
+                user.setPassword(SHA256Utils.getSHA256((String)map.get("password")));
                 user.setUserName(map.get("name"));
+                user.setEmail(map.get("email"));
                 user.setBirthday(map.get("birthday"));
                 age= AgeUtils.getAgeDetail(map.get("birthday"));
+                System.out.println(age);
                 age=age.substring(0,age.indexOf("岁"));
-                user.setAge(Integer.valueOf(map.get("age")));
+                user.setAge(Integer.valueOf(age));
                 user.setSex(map.get("sex"));
+                user.setPhoneNumber(map.get("phone_number"));
                 Date time = new Date();
                 user.setCreateTime(time);
                 user.setLoginCount(count);

@@ -71,25 +71,26 @@ $('#logout').click(function (result){
 });
 
 $('#register').click(function (result){
-	let map=new Map();
-	map.put("account",$('#account').val());
-	map.put("password",$('#password').val());
-	map.put("name",$('#name').val());
-	map.put("email",$('#email').val());
-	map.put("birthday",$('#birthday').val());
-	map.put("sex",$("input[name='radios-sex']:checked").val());
-	map.put("phone_number",$('#phone_number').val());
+	let map={
+		"account":$("#account").val(),
+		"password":$("#password").val(),
+		"name":$("#name").val(),
+		"email":$("#email").val(),
+		"birthday":$("#birthday").val(),
+		"sex":$("input[name='radios-sex']:checked").val(),
+		"phone_number":$("#phone_number").val()
+	}
 	$.ajax({
 		url:"http://localhost:7090/consumer/Register",
 		type:"POST",
-		data:{
-			   data:map,
-		     },
+		contentType: 'application/json;charset=utf-8',
+		data: JSON.stringify(map),
 		async: false,
 		cache: false,
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
+				alert("注册成功！");
 				$(location).attr("href","http://localhost:7090/consumer/getLogin");
 			}else{
 				alert(result.msg);
@@ -98,3 +99,24 @@ $('#register').click(function (result){
 		}
 	});
 });
+
+$('register-form').validate({
+	rules:{
+		account:"required",
+		password:"required",
+		name:"required",
+		email:"required",
+		birthday:"required",
+		sex:"required",
+		phone_number:"required"
+	},
+	messages:{
+		account:"不能空！",
+		password:"不能空！",
+		name:"不能空！",
+		email:"不能空！",
+		birthday:"不能空！",
+		sex:"不能空！",
+		phone_number:"不能空！"
+	}
+})

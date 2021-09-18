@@ -17,7 +17,7 @@ import java.util.Map;
 @FeignClient(name = "user-provider-server",path="/user-provider",fallbackFactory = HystrixUserClientService.class)
 public interface UserProviderService {
     @RequestMapping(value="Register",method = RequestMethod.POST)//注册
-    String Register(@RequestBody Map<String,String> map);
+    String Register(@RequestBody Map<String, String> map);
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     String Login(@RequestParam("account") String account, @RequestParam("password") String password);

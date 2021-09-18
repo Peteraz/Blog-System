@@ -11,7 +11,7 @@ public class AgeUtils {
             date=date.substring(0,index);
         }
         //分隔符
-        String[] data=date.split("/");
+        String[] data=date.split("-");
         Calendar birthday=new GregorianCalendar(Integer.valueOf(data[0]),Integer.valueOf(data[1]),Integer.valueOf(data[2]));
         Calendar now=Calendar.getInstance();
         int day=now.get(Calendar.DAY_OF_MONTH)-birthday.get(Calendar.DAY_OF_MONTH);
@@ -40,6 +40,8 @@ public class AgeUtils {
         }
         if(year==0 && month==0 && day==0){
             tag.append("今日出生");
+        }else if(year<0){
+            tag.append("还未出生，出生日期有问题！");
         }
         return String.valueOf(tag);
     }
