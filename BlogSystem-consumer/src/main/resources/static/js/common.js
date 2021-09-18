@@ -101,12 +101,22 @@ $('#register').click(function (result){
 	});
 });
 $('#birthday').click(function () {
+	//最早是100年前,最小是1年前的日期
 	let date=new Date();
     let year=date.getFullYear()-1;
 	let month=date.getMonth()+1;
 	let day=date.getDate();
+	if(month<10){
+		month="0"+month;
+	}
+	if(day<10){
+		day="0"+day;
+	}
 	let maxDay=year+"-"+month+"-"+day
 	$('#birthday').attr('max',maxDay);
+	year=date.getFullYear()-100;
+	maxDay=year+"-01-01"
+	$('#birthday').attr('min',maxDay);
 });
 
 $('#register-form').validate({
