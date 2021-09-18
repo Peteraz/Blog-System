@@ -74,12 +74,13 @@ $('#register').click(function (result){
 	let map={
 		"account":$("#account").val(),
 		"password":$("#password").val(),
-		"name":$("#name").val(),
+		"name":$("#user_name").val(),
 		"email":$("#email").val(),
 		"birthday":$("#birthday").val(),
-		"sex":$("input[name='radios-sex']:checked").val(),
+		"sex":$("input[name='sex']:checked").val(),
 		"phone_number":$("#phone_number").val()
 	}
+	alert(JSON.stringify(map));
 	$.ajax({
 		url:"http://localhost:7090/consumer/Register",
 		type:"POST",
@@ -99,24 +100,62 @@ $('#register').click(function (result){
 		}
 	});
 });
+$('#birthday').click(function () {
+	let date=new Date();
+    let year=date.getFullYear()-1;
+	let month=date.getMonth()+1;
+	let day=date.getDate();
+	let maxDay=year+"-"+month+"-"+day
+	$('#birthday').attr('max',maxDay);
+});
 
-$('register-form').validate({
+$('#register-form').validate({
 	rules:{
-		account:"required",
-		password:"required",
-		name:"required",
-		email:"required",
+		account:{
+			required:true,
+			maxlength:30
+		},
+		password:{
+			required:true,
+			maxlength:60
+		},
+		user_name:{
+			required:true,
+			maxlength:20
+		},
+		email:{
+			required:true,
+			email:true
+		},
 		birthday:"required",
 		sex:"required",
-		phone_number:"required"
+		phone_number:{
+			required:true,
+			maxlength:15
+		}
 	},
 	messages:{
-		account:"不能空！",
-		password:"不能空！",
-		name:"不能空！",
-		email:"不能空！",
+		account:{
+			required:"账号不能空!",
+			maxlength: $.validator.format( "最多可以输入30个字符" ),
+		},
+		password:{
+			required:"密码不能空!",
+			maxlength: $.validator.format( "最多可以输入60个字符" ),
+		},
+		user_name:{
+			required:"名字不能空!",
+			maxlength: $.validator.format( "最多可以输入20个字符" ),
+		},
+		email:{
+			required:"邮箱不能空!",
+			email:"请输入正确的邮箱!"
+		},
 		birthday:"不能空！",
 		sex:"不能空！",
-		phone_number:"不能空！"
+		phone_number:{
+			required:"电话号码不能空!",
+			maxlength: $.validator.format( "最多可以输入15个字符" )
+		}
 	}
 })
