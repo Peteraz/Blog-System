@@ -80,7 +80,6 @@ $('#register').click(function (result){
 		"sex":$("input[name='sex']:checked").val(),
 		"phone_number":$("#phone_number").val()
 	}
-	alert(JSON.stringify(map));
 	$.ajax({
 		url:"http://localhost:7090/consumer/Register",
 		type:"POST",
@@ -100,6 +99,7 @@ $('#register').click(function (result){
 		}
 	});
 });
+
 $('#birthday').click(function () {
 	//最早是100年前,最小是1年前的日期
 	let date=new Date();
@@ -168,4 +168,4 @@ $('#register-form').validate({
 			maxlength: $.validator.format( "最多可以输入15个字符" )
 		}
 	}
-})
+});
