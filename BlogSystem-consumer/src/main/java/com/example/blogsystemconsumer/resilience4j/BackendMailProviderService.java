@@ -9,7 +9,7 @@ public class BackendMailProviderService implements MailProviderService {
     private static final String BACKEND="backendA";
 
     @Override
-    @CircuitBreaker(name="BACKEND")
+    @CircuitBreaker(name=BACKEND)
     public String SendMail(Object object){
         return "发送错误!";
     }

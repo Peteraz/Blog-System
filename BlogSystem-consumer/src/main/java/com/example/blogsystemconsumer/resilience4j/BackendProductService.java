@@ -11,6 +11,6 @@ public class BackendProductService implements ProductService {
     @Override
     @CircuitBreaker(name=BACKEND)
     public String getService(){
-        return "连接超时！";
+        return "连接超时,请稍后重试!";
     }
 }
