@@ -23,10 +23,7 @@ public class ConsumerController {
 
     @Resource
     private MailProviderService mailProviderService;
-
-    private static final String BACKEND="backendA";
-
-
+    
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
         String str=productService.getService();
