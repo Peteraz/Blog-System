@@ -19,12 +19,12 @@ public interface UserProviderService {
     @RequestMapping(value="Register",method = RequestMethod.POST)//注册
     String Register(@RequestBody Map<String, String> map);
 
-    @RequestMapping(value = "Login", method = RequestMethod.POST)
+    @RequestMapping(value = "Login", method = RequestMethod.POST)//登录
     String Login(@RequestParam("account") String account, @RequestParam("password") String password);
 
-    @RequestMapping(value="Logout",method= RequestMethod.POST)//登录
+    @RequestMapping(value="Logout",method= RequestMethod.POST)//登出
     String Logout(HttpSession session);
 
-    @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//登录
+    @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//忘记密码
     String ForgetPWD(@RequestParam("account") String account);
 }

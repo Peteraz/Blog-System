@@ -1,7 +1,6 @@
 package com.example.blogsystemconsumer.service;
 
 import com.example.blogsystemconsumer.resilience4j.BackendProductService;
-import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Component
 //name 为user-provider项目中application.yml配置文件中的application.name;
 //path 为user-provider项目中application.yml配置文件中的context.path;
-@FeignClient(name = "product-server",fallbackFactory = BackendProductService.class)
+@FeignClient(name = "product-server",fallback = BackendProductService.class)
 public interface ProductService {
     @RequestMapping(value="getService")
     String getService();

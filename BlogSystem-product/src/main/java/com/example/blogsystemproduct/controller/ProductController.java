@@ -14,6 +14,7 @@ public class ProductController {
         Product product=new Product();
         return product.toString();
     }
+
     @RequestMapping(value="getService")
     public String getService(){
         String serverport="这是8001服务提供者,当你看到些字时候就是没问题了！";

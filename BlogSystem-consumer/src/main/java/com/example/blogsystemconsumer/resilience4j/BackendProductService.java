@@ -6,17 +6,9 @@ import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BackendProductService implements FallbackFactory<ProductService> {
-    private static final String BACKEND = "backendA";
+public class BackendProductService implements ProductService {
     @Override
-    public ProductService create(Throwable throwable){
-        return new ProductService() {
-            @Override
-            @CircuitBreaker(name = BACKEND)
-            public String getService() {
-                return "连接超时,请稍后重试!";
-            }
-        };
+    public String getService() {
+        return "连接超时,请稍后重试!";
     }
-
 }

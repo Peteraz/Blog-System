@@ -60,7 +60,6 @@ public class UserController {
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password) {
         User user = new User();
-        Time.sleep(2000);
         try {
             user = userService.getUserByAccountAndPassword(account, null);
             if (user == null) {
