@@ -5,6 +5,7 @@ import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
@@ -24,13 +25,22 @@ public class ConsumerController {
     @Resource
     private MailProviderService mailProviderService;
 
+    private static final String BACKEND="backendA";
+
+
     @RequestMapping(value="getConsumer")
+    @CircuitBreaker(name = BACKEND, fallbackMethod = "Consumerfallback")
     public String getConsumer(){
         String str=productService.getService();
         return str;
     }
 
+    public String Consumerfallback(Throwable e){
+        return "连接超时,请稍后重试!";
+    }
+
     @RequestMapping(value="Register",method = RequestMethod.POST)
+    @CircuitBreaker(name = BACKEND, fallbackMethod = "Registerfallback")
     public String Register(@RequestBody Map<String, String> map){
         if(map.isEmpty()) {
             return JsonUtils.jsonPrint(-3,"收不到注册信息!",null);
@@ -50,7 +60,12 @@ public class ConsumerController {
         }
     }
 
+    public String Registerfallback(){
+        return "连接超时,请稍后重试!";
+    }
+
     @RequestMapping(value = "Login", method = RequestMethod.POST)
+    @CircuitBreaker(name = BACKEND, fallbackMethod = "Loginfallback")
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
         if(account.isEmpty()){
             return JsonUtils.jsonPrint(-1,"请输入账号!",null);
@@ -75,7 +90,12 @@ public class ConsumerController {
         }
     }
 
+    public String Loginfallback(){
+        return "连接超时,请稍后重试!";
+    }
+
     @RequestMapping(value="Logout",method= RequestMethod.POST)
+    @CircuitBreaker(name = BACKEND, fallbackMethod = "Logoutfallback")
     public String Logout(HttpSession session){
         try{
             String result=userProviderService.Logout(session);
@@ -89,7 +109,12 @@ public class ConsumerController {
         }
     }
 
+    public String Logoutfallback(){
+        return "连接超时,请稍后重试!";
+    }
+
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)
+    @CircuitBreaker(name = BACKEND, fallbackMethod = "ForgetPWDfallback")
     public String ForgetPWD(@RequestParam("account") String account){
         try{
             if(userProviderService.ForgetPWD(account).equals("1")){
@@ -103,7 +128,12 @@ public class ConsumerController {
         }
     }
 
+    public String ForgetPWDfallback(){
+        return "连接超时,请稍后重试!";
+    }
+
     @RequestMapping(value="FileUpload")
+    @CircuitBreaker(name = BACKEND, fallbackMethod = "FileUploadfallback")
     public String FileUpload(@RequestParam("file") MultipartFile[] file) {
         ArrayList data=new ArrayList();
         System.out.println(file.toString());
@@ -125,5 +155,9 @@ public class ConsumerController {
         }
         System.out.print(JsonUtils.jsonPrint(0,data));
         return JsonUtils.jsonPrint(0,data);
+    }
+
+    public String FileUploadfallback(){
+        return "连接超时,请稍后重试!";
     }
 }

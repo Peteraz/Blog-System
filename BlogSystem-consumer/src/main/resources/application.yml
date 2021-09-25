@@ -23,6 +23,7 @@ spring:
       max-file-size: 50MB
       #总上传数据大值
       max-request-size: 50MB
+
 eureka:
   client:
     service-url:
@@ -64,9 +65,6 @@ feign:
   #替换掉JDK默认HttpURLConnection实现的Http Client
   httpclient:
     enabled: true
-  #熔断
-  circuitbreaker:
-    enabled: true
 logging:
   level:
     com:
@@ -74,11 +72,21 @@ logging:
         blogsystemconsumer:
           service: debug
 resilience4j.circuitbreaker:
-  backends:
-    backendA:
-      ringBufferSizeInClosedState: 5
-      ringBufferSizeInHalfOpenState: 3
-      waitInterval: 5000
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
-      registerHealthIndicator: true
+  instances:
+      backendA:
+            #熔断器关闭时的缓冲区大小，不会限制线程的并发量
+            ringBufferSizeInClosedState: 10
+            #熔断器半开时的缓冲区大小，会限制线程的并发量
+            ringBufferSizeInHalfOpenState: 100
+            #熔断器从打开状态变为半开状态等待的时间
+            waitDurationInOpenState: 1000
+            #在计算失败率或慢调用率时，窗口中至少要有多少个调用。
+            minimumNumberOfCalls: 3
+            #表示断路器从open切换到half closed状态时,需要保持的时间
+            waitInterval: 5000
+            #表示故障率阈值百分比，超过这个阈值，断路器就会打开
+            failureRateThreshold: 50
+            #表示事件缓冲区大小
+            eventConsumerBufferSize: 10
+            #健康监测
+            registerHealthIndicator: true

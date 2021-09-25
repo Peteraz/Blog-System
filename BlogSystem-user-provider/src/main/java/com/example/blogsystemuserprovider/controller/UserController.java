@@ -5,6 +5,7 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UUIDUtils;
+import org.apache.tomcat.jni.Time;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -59,6 +60,7 @@ public class UserController {
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password) {
         User user = new User();
+        Time.sleep(2000);
         try {
             user = userService.getUserByAccountAndPassword(account, null);
             if (user == null) {
