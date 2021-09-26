@@ -1,6 +1,5 @@
 package com.example.blogsystemproducts.controller;
 
-import org.apache.tomcat.jni.Time;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductsController {
     @RequestMapping(value="getService")
     public String getService() {
-        Time.sleep(6000);
         String serverport="这是8002服务提供者,当你看到些字时候就是没问题了！";
         return serverport;
     }

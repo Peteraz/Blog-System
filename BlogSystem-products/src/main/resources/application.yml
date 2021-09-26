@@ -1,34 +1,34 @@
 server:
-  #\u5B9A\u4E49\u7AEF\u53E3\u53F7
+  #定义端口号
   port: 8002
 spring:
   application:
-    #\u5B9A\u4E49\u5E94\u7528\u540D\u79F0\uFF0C\u5373\u670D\u52A1\u540D\u79F0
+    #定义应用名称，即服务名称
     name: product-server
 eureka:
   client:
     service-url:
-      #defaultZone \u8FD9\u4E2A\u662F\u4E0D\u4F1A\u63D0\u793A\u7684\uFF0C\u6B64\u5904\u9700\u8981\u81EA\u5DF1\u5199
-      #\u5B9E\u9645\u4E0A\u5C5E\u6027\u5E94\u8BE5\u662Fservice-url,\u8FD9\u4E2A\u5C5E\u6027\u662F\u4E2Amap\uFF08key-value\uFF09\u683C\u5F0F\uFF1B\u5F53key\u662FdefaultZone\u7684\u65F6\u5019\u624D\u80FD\u88AB\u89E3\u6790\uFF1B\u6240\u4EE5\u8FD9\u91CC\u6CA1\u6709\u63D0\u793A\uFF0C
-      #\u4F46\u662F\u81EA\u5DF1\u8FD8\u9700\u8981\u5199\u4E00\u4E2AdefaultZone\uFF1B
-      #server\u7AEF\u914D\u7F6E\u7684contextPath\u5185\u5BB9\u52A0\u5230client\u7AEF\u7684defaultZone\u7684\u8BBF\u95EE\u8DEF\u5F84\u7AEF\u53E3\u53F7\u540E\u9762\uFF0C\u6240\u4EE5client\u7AEF\u7684defaultZone:\u8981\u52A0\u4E00\u4E2A/eureka\u3002
+      #defaultZone 这个是不会提示的，此处需要自己写
+      #实际上属性应该是service-url,这个属性是个map（key-value）格式；当key是defaultZone的时候才能被解析；所以这里没有提示，
+      #但是自己还需要写一个defaultZone；
+      #server端配置的contextPath内容加到client端的defaultZone的访问路径端口号后面，所以client端的defaultZone:要加一个/eureka。
       defaultZone: http://localhost:8080/eureka/eureka/
   instance:
-    #\u5FAE\u670D\u52A1\u7684ID,\u4E5F\u662F\u552F\u4E00\u7684ID,\u7528\u6765\u88ABserver\u53D1\u73B0
+    #微服务的ID,也是唯一的ID,用来被server发现
     instance-id: products-server
-    #\u8BBF\u95EE\u8DEF\u5F84\u53EF\u4EE5\u663E\u793AIP\u5730\u5740
+    #访问路径可以显示IP地址
     prefer-ip-address: true
-#actuator\u914D\u7F6E
+#actuator配置
 management:
   endpoints:
-    #\u7981\u7528\u5176\u4ED6\u7AEF\u70B9
+    #禁用其他端点
     enabled-by-default: false
     web:
-      #\u66B4\u9732\u7AEF\u70B9
+      #暴露端点
       exposure:
         include: info
   endpoint:
-    #\u5F00\u542Finfo\u7AEF\u70B9
+    #开启info端点
     info:
       enabled: true
 info:

@@ -23,7 +23,7 @@ public class ConsumerController {
 
     @Resource
     private MailProviderService mailProviderService;
-    
+
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
         String str=productService.getService();

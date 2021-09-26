@@ -4,7 +4,7 @@ const upload=function(resultFiles,insertImgFn){
 				file.append("file",resultFiles[i]);
 			}
 			$.ajax({
-				url:'http://localhost:7090/consumer/FileUpload',
+				url:'http://localhost:9001/consumer/FileUpload',
 				type: "POST",
 				data: file,
 				async: false,
@@ -34,7 +34,7 @@ $('#login').click(function (result){
 		alert("请输入密码！");
 	}else{
 		$.ajax({
-			url:"http://localhost:7090/consumer/Login",
+			url:"http://localhost:9001/consumer/Login",
 			data:{account:account,password:password},
 			type:"POST",
 			async: false,
@@ -42,7 +42,7 @@ $('#login').click(function (result){
 			dataType: "json",
 			success:function(result){
 				if(result.status=="1"){
-					$(location).attr("href","http://localhost:7090/consumer/getIndex");
+					$(location).attr("href","http://localhost:9001/consumer/getIndex");
 				}else{
 					alert(result.msg);
 					return;
@@ -54,14 +54,14 @@ $('#login').click(function (result){
 
 $('#logout').click(function (result){
 	$.ajax({
-		url:"http://localhost:7090/consumer/Logout",
+		url:"http://localhost:9001/consumer/Logout",
 		type:"POST",
 		async: false,
 		cache: false,
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
-				$(location).attr("href","http://localhost:7090/consumer/getLogin");
+				$(location).attr("href","http://localhost:9001/consumer/getLogin");
 			}else{
 				alert(result.msg);
 				return;
@@ -81,7 +81,7 @@ $('#register').click(function (result){
 		"phone_number":$("#phone_number").val()
 	}
 	$.ajax({
-		url:"http://localhost:7090/consumer/Register",
+		url:"http://localhost:9001/consumer/Register",
 		type:"POST",
 		contentType: 'application/json;charset=utf-8',
 		data: JSON.stringify(map),
@@ -91,7 +91,7 @@ $('#register').click(function (result){
 		success:function(result){
 			if(result.status=="1"){
 				alert("注册成功！");
-				$(location).attr("href","http://localhost:7090/consumer/getLogin");
+				$(location).attr("href","http://localhost:9001/consumer/getLogin");
 			}else{
 				alert(result.msg);
 				return;
