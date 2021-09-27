@@ -22,6 +22,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByEmail(String email){
+        return userMapper.getUserByEmail(email);
+    }
+    @Override
     public int deleteById(String userid){
         return userMapper.deleteById(userid);
     }

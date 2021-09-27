@@ -1,19 +1,19 @@
 package com.example.blogsystemmailprovider;
 
-import com.example.blogsystemmailprovider.service.SendMailService;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.blogsystemmailprovider.controller.SendMailController;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
+import javax.annotation.Resource;
 
 @SpringBootTest
 class BlogSystemMailProviderApplicationTests {
-    @Autowired
-    private SendMailService sendMailService;
+    @Resource
+    private SendMailController sendMailController;
 
     @Test
     void contextLoads() {
         try{
-            sendMailService.SendInlineMail();
+            sendMailController.SendInlineMail();
             System.out.println("邮件发送成功！");
         }catch(Exception e){
             e.printStackTrace();

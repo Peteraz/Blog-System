@@ -102,9 +102,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)
-    public String ForgetPWD(@RequestParam("account") String account) {
+    public String ForgetPWD(@RequestParam("email") String email) {
+        User user=new User();
         try {
-            if (userService.getUserByAccountAndPassword(account, null) != null) {
+            user=userService.getUserByEmail(email);
+            if (user != null) {
                 return "1";
             }
             return "0";

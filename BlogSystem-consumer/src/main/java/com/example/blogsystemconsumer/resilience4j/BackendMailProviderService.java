@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BackendMailProviderService implements MailProviderService {
     @Override
-    public String SendMail(Object object){
+    public String SendMail(String email){
         return "发送错误!";
     }
 }

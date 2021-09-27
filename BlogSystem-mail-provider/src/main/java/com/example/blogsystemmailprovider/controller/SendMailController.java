@@ -1,7 +1,7 @@
 package com.example.blogsystemmailprovider.controller;
 
+import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.UUIDUtils;
-import com.example.blogsystem.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -26,7 +27,7 @@ public class SendMailController {
     @Value("${spring.mail.username}")  //读取配置文件中的参数
     private String Sender;            //发送人
     private String receiver="673840304@qq.com";  //收件人
-    private String loaclhost="http://localhost:7040/mail-provider/?token=";
+    private String loaclhost="http://localhost:9001/consumer/SendMail/?token=";
 
     @RequestMapping(value="SendSimpleMail",method= RequestMethod.POST)
     public void SendSimpleMail () throws Exception{
@@ -66,8 +67,7 @@ public class SendMailController {
         mailSender.send(mimeMessage);
     }
     @RequestMapping(value="SendMail",method= RequestMethod.POST)
-    public void SendMail(Object object){
-        User user= (User)object;
+    public String SendMail(@RequestParam("email") String email){
         try{
             MimeMessage mimeMessage=mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,true);
@@ -75,13 +75,15 @@ public class SendMailController {
             mimeMessageHelper.setTo(receiver);
             mimeMessageHelper.setSubject("博客密码修改");
             Context context=new Context();
-            context.setVariable("username",user.getUserName());
+            context.setVariable("username",email);
             context.setVariable("link",loaclhost+ UUIDUtils.getToken());
             String emailContent=templateEngine.process("/mail",context);
             mimeMessageHelper.setText(emailContent,true);
             mailSender.send(mimeMessage);
+            return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
         }catch(Exception e){
             e.printStackTrace();
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
 }

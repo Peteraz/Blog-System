@@ -26,5 +26,5 @@ public interface UserProviderService {
     String Logout(HttpSession session);
 
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//忘记密码
-    String ForgetPWD(@RequestParam("account") String account);
+    String ForgetPWD(@RequestParam("email") String email);
 }

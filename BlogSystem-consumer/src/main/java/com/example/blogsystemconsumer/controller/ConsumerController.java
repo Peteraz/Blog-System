@@ -126,4 +126,22 @@ public class ConsumerController {
         System.out.print(JsonUtils.jsonPrint(0,data));
         return JsonUtils.jsonPrint(0,data);
     }
+
+    @RequestMapping(value="SendMail",method= RequestMethod.POST)//注册
+    public String SendMail(@RequestParam("email") String email){
+        if(email==null || email.length()==0){
+            return JsonUtils.jsonPrint(0,"没有收到用户邮箱!",null);
+        }
+        try{
+            String result=userProviderService.ForgetPWD(email);
+            if(result.equals("1")){
+                mailProviderService.SendMail(email);
+                return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
+            }
+            return JsonUtils.jsonPrint(0,"未知错误!",null);
+        }catch(Exception e){
+            e.printStackTrace();
+            return JsonUtils.jsonPrint(-1,"没有收到用户邮箱!",null);
+        }
+    }
 }

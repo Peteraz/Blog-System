@@ -7,6 +7,8 @@ public interface UserService {
 
     User getUserByAccountAndPassword(String account,String password);
 
+    User getUserByEmail(String email);
+
     int deleteById(String userid);
 
     int insert(User record);

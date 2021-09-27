@@ -25,6 +25,36 @@ const upload=function(resultFiles,insertImgFn){
 			});
 }
 
+$('#register').click(function (result){
+	let map={
+		"account":$("#account").val(),
+		"password":$("#password").val(),
+		"name":$("#user_name").val(),
+		"email":$("#email").val(),
+		"birthday":$("#birthday").val(),
+		"sex":$("input[name='sex']:checked").val(),
+		"phone_number":$("#phone_number").val()
+	}
+	$.ajax({
+		url:"http://localhost:9001/consumer/Register",
+		type:"POST",
+		contentType: 'application/json;charset=utf-8',
+		data: JSON.stringify(map),
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				alert("注册成功！");
+				$(location).attr("href","http://localhost:9001/consumer/getLogin");
+			}else{
+				alert(result.msg);
+				return;
+			}
+		}
+	});
+});
+
 $('#login').click(function (result){
 	let account=$("#account").val();
 	let password=$("#password").val();
@@ -70,28 +100,18 @@ $('#logout').click(function (result){
 	});
 });
 
-$('#register').click(function (result){
-	let map={
-		"account":$("#account").val(),
-		"password":$("#password").val(),
-		"name":$("#user_name").val(),
-		"email":$("#email").val(),
-		"birthday":$("#birthday").val(),
-		"sex":$("input[name='sex']:checked").val(),
-		"phone_number":$("#phone_number").val()
-	}
+$('#reset_password').click(function (result){
+	let email=$("#email").val();
 	$.ajax({
-		url:"http://localhost:9001/consumer/Register",
+		url:"http://localhost:9001/consumer/SendMail",
 		type:"POST",
-		contentType: 'application/json;charset=utf-8',
-		data: JSON.stringify(map),
+		data:{email:email},
 		async: false,
 		cache: false,
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
-				alert("注册成功！");
-				$(location).attr("href","http://localhost:9001/consumer/getLogin");
+				alert(result.msg);
 			}else{
 				alert(result.msg);
 				return;
