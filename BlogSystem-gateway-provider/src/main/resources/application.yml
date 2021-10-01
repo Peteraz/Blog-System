@@ -16,6 +16,8 @@ spring:
           uri: lb://consumer-server          #匹配后提供服务的路由地址
           predicates:
             - Path=/consumer/**, /static/**      #断言，路径相同匹配的进行路由
+          filter:
+            - AddRequestHeader=token,123
 eureka:
   client:
     service-url:
