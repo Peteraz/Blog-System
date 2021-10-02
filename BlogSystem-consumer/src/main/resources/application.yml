@@ -5,13 +5,18 @@ server:
     #定义项目的访问访问路径
     context-path: /consumer
 spring:
-  #  下面是我整合redis使用的配置，你们此处不需要
-  #  redis:
-  #    cluster:
-  #      expire-seconds: 120
-  #      command-timeout: 5000
-  #      nodes:
-  #  namenode22:6379,datanode23:6379,datanode24:6379,datanode25:6379,datanode26:6379,datanode27:6379
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 20000
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
   application:
     #定义应用名称，即服务名称
     name: consumer-server

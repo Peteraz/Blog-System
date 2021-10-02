@@ -5,11 +5,9 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UUIDUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Map;
@@ -20,6 +18,9 @@ import java.util.Map;
 public class UserController {
     @Resource
     private UserService userService;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String Register(@RequestBody Map<String, String> map) {
@@ -75,12 +76,8 @@ public class UserController {
                 user.setLoginCount(user.getLoginCount() + 1);
                 //避免暴露密码
                 user.setPassword("null");
-                HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-                HttpSession session = request.getSession();
-                if(session!=null){
-                    //用session保存用户
-                    session.setAttribute("username", user.getUserName());
-                }
+                stringRedisTemplate.opsForValue().set("userid",user.getUserid());
+                System.out.println(stringRedisTemplate.opsForValue().get("userid"));
                 return "1";
             }
         } catch (Exception e) {

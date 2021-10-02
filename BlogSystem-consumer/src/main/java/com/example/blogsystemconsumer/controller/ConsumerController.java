@@ -5,6 +5,7 @@ import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
@@ -23,6 +24,9 @@ public class ConsumerController {
 
     @Resource
     private MailProviderService mailProviderService;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
@@ -62,7 +66,8 @@ public class ConsumerController {
             System.out.println(result);
             switch (result) {
                 case "1":
-                    return JsonUtils.jsonPrint(1, "登录成功!", null);
+                    String userid=stringRedisTemplate.opsForValue().get("userid");
+                    return JsonUtils.jsonPrint(1, "登录成功!", userid);
                 case "-1":
                     return JsonUtils.jsonPrint(-1, "登录账号错误!", null);
                 case "-2":
