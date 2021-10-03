@@ -8,7 +8,6 @@ import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Map;
 
@@ -87,10 +86,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "Logout", method = RequestMethod.POST)
-    public String Logout(HttpSession session) {
+    public String Logout() {
         //清空用户资料
         try {
-            session.setAttribute("user", null);
+            stringRedisTemplate.delete("userid");
             return "1";
         } catch (Exception e) {
             e.printStackTrace();

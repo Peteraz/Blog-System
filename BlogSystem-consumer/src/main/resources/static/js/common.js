@@ -84,7 +84,7 @@ $('#login').click(function (result){
 
 $('#logout').click(function (result){
 	$.ajax({
-		url:"http://localhost:9001/consumer/Logout",
+		url:"http://localhost:9001/consumer/Logout?token=123",
 		type:"POST",
 		async: false,
 		cache: false,

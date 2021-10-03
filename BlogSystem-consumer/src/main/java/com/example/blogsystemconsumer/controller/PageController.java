@@ -47,9 +47,9 @@ public class PageController {
         return modelAndView;
     }
 
-    @RequestMapping(value="getSettings")
+    @RequestMapping(value="getSetting")
     public ModelAndView getSettings(){
-        ModelAndView modelAndView=new ModelAndView("settings");
+        ModelAndView modelAndView=new ModelAndView("setting");
         modelAndView.addObject("data","Hello World!!!I ma the setting page!");
         return modelAndView;
     }

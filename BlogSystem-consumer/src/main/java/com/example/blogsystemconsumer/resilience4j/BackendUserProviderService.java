@@ -21,7 +21,7 @@ public class BackendUserProviderService implements UserProviderService {
     }
 
     @Override
-    public String Logout(HttpSession session){
+    public String Logout(){
         return "连接超时,请稍后重试!";
     }
 

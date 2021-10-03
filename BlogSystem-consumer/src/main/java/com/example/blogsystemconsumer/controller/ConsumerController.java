@@ -9,7 +9,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -81,9 +80,9 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="Logout",method= RequestMethod.POST)
-    public String Logout(HttpSession session){
+    public String Logout(){
         try{
-            String result=userProviderService.Logout(session);
+            String result=userProviderService.Logout();
             if(result.equals("1")){
                 return JsonUtils.jsonPrint(1,"登出成功!",null);
             }

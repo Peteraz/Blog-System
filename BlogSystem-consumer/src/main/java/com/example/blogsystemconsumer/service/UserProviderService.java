@@ -23,7 +23,7 @@ public interface UserProviderService {
     String Login(@RequestParam("account") String account, @RequestParam("password") String password);
 
     @RequestMapping(value="Logout",method= RequestMethod.POST)//登出
-    String Logout(HttpSession session);
+    String Logout();
 
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//忘记密码
     String ForgetPWD(@RequestParam("email") String email);
