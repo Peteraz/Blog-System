@@ -36,7 +36,7 @@ $('#register').click(function (result){
 		"phone_number":$("#phone_number").val()
 	}
 	$.ajax({
-		url:"http://localhost:9001/consumer/Register",
+		url:"http://localhost:9001/consumer/Register?token=123",
 		type:"POST",
 		contentType: 'application/json;charset=utf-8',
 		data: JSON.stringify(map),
@@ -103,7 +103,7 @@ $('#logout').click(function (result){
 $('#reset_password').click(function (result){
 	let email=$("#email").val();
 	$.ajax({
-		url:"http://localhost:9001/consumer/SendMail",
+		url:"http://localhost:9001/consumer/SendMail?token=123",
 		type:"POST",
 		data:{email:email},
 		async: false,
