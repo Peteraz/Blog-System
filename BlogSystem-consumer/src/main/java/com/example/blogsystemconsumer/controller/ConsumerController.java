@@ -1,11 +1,12 @@
 package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystem.common.FileUploadUtils;
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
@@ -25,7 +26,7 @@ public class ConsumerController {
     private MailProviderService mailProviderService;
 
     @Resource
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
@@ -55,6 +56,7 @@ public class ConsumerController {
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
+        User user=new User();
         if(account.isEmpty()){
             return JsonUtils.jsonPrint(-1,"请输入账号!",null);
         }else if(password.isEmpty()){
@@ -65,14 +67,16 @@ public class ConsumerController {
             System.out.println(result);
             switch (result) {
                 case "1":
-                    String userid=stringRedisTemplate.opsForValue().get("userid");
-                    return JsonUtils.jsonPrint(1, "登录成功!", userid);
+                    String users=redisTemplate.opsForValue().get("user").toString();
+                    System.out.println(users);
+                    user=JsonUtils.UserObject(users);
+                    return JsonUtils.jsonPrint(1, "登录成功!", user);
                 case "-1":
                     return JsonUtils.jsonPrint(-1, "登录账号错误!", null);
                 case "-2":
                     return JsonUtils.jsonPrint(-1, "登录密码错误!", null);
+                default: return JsonUtils.jsonPrint(-3,result,null);
             }
-            return JsonUtils.jsonPrint(-3,result,null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);

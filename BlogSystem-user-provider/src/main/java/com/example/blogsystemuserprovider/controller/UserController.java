@@ -5,7 +5,7 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import com.example.blogsystem.common.SHA256Utils;
 import com.example.blogsystem.common.UUIDUtils;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Date;
@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String Register(@RequestBody Map<String, String> map) {
@@ -75,8 +75,8 @@ public class UserController {
                 user.setLoginCount(user.getLoginCount() + 1);
                 //避免暴露密码
                 user.setPassword("null");
-                stringRedisTemplate.opsForValue().set("userid",user.getUserid());
-                System.out.println(stringRedisTemplate.opsForValue().get("userid"));
+                redisTemplate.opsForValue().set("user",user.toString());
+                System.out.println(redisTemplate.opsForValue().get("user"));
                 return "1";
             }
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class UserController {
     public String Logout() {
         //清空用户资料
         try {
-            stringRedisTemplate.delete("userid");
+            redisTemplate.delete("user");
             return "1";
         } catch (Exception e) {
             e.printStackTrace();

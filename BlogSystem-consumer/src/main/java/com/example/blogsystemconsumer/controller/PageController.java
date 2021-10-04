@@ -1,11 +1,21 @@
 package com.example.blogsystemconsumer.controller;
 
+import com.example.blogsystem.entity.User;
+import com.example.blogsystemconsumer.service.UserProviderService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import javax.annotation.Resource;
 
 @RestController
 public class PageController {
+    @Resource
+    private UserProviderService userProviderService;
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
+
     @RequestMapping(value="getLogin")
     public ModelAndView getLogin(){
         ModelAndView modelAndView=new ModelAndView("login");
@@ -21,8 +31,14 @@ public class PageController {
     }
     @RequestMapping(value="getIndex")
     public ModelAndView getIndex(){
+        User user=new User();
         ModelAndView modelAndView=new ModelAndView("index");
-        modelAndView.addObject("data","Hello World!!!I ma the index page!");
+        try{
+            user=(User)redisTemplate.opsForHash().get("user","1");
+            modelAndView.addObject("user",user);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return modelAndView;
     }
 

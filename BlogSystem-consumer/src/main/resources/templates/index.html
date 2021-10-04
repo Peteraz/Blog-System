@@ -55,7 +55,7 @@
 				</li>
 
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="http://localhost:9001/consumer/getSetting?token=123">
+					<a class="sidebar-link" href="http://localhost:9001/consumer/getSettings?token=123">
 						<i class="align-middle" data-feather="settings"></i>
 						<span class="align-middle">设置</span>
 					</a>
@@ -256,7 +256,8 @@
 						</a>
 
 						<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-							<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+							<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
+							<span class="text-dark" ><p th:text="${user.getUserName()}"></span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end">
 							<a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> 设置与隐私</a>
