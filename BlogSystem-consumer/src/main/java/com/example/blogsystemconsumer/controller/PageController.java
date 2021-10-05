@@ -35,10 +35,14 @@ public class PageController {
         ModelAndView modelAndView=new ModelAndView("index");
         String value=redisTemplate.opsForValue().get("user").toString();
         try{
-            User user= JSONArray.parseObject(value,User.class);
-            //System.out.println(user);
-            modelAndView.addObject("username",user.getUserName());
-            return modelAndView;
+            if(value.length()==0 || value==null){
+                return new ModelAndView("login");
+            }else{
+                User user= JSONArray.parseObject(value,User.class);
+                //System.out.println(user);
+                modelAndView.addObject("username",user.getUserName());
+                return modelAndView;
+            }
         }catch(Exception e){
             e.printStackTrace();
             return modelAndView;

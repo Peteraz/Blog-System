@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
 // 但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
@@ -77,7 +78,8 @@ public class UserController {
                 userService.updateByUserSelective(user);
                 //避免暴露密码
                 user.setPassword("null");
-                redisTemplate.opsForValue().set("user", JSON.toJSONString(user));
+                //redis缓存
+                redisTemplate.opsForValue().set("user", JSON.toJSONString(user),7, TimeUnit.DAYS);
                 System.out.println(redisTemplate.opsForValue().get("user"));
                 return "1";
             }
