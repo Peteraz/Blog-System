@@ -1,5 +1,6 @@
 package com.example.blogsystemuserprovider.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.blogsystem.common.AgeUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
@@ -73,9 +74,10 @@ public class UserController {
                 user.setLoginTime(new Date());
                 //登录次数+1
                 user.setLoginCount(user.getLoginCount() + 1);
+                userService.updateByUserSelective(user);
                 //避免暴露密码
                 user.setPassword("null");
-                redisTemplate.opsForValue().set("user",user.toString());
+                redisTemplate.opsForValue().set("user", JSON.toJSONString(user));
                 System.out.println(redisTemplate.opsForValue().get("user"));
                 return "1";
             }

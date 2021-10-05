@@ -6,6 +6,7 @@ import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,13 +65,10 @@ public class ConsumerController {
         }
         try{
             String result=userProviderService.Login(account,password);
-            System.out.println(result);
+            //System.out.println(result);
             switch (result) {
                 case "1":
-                    String users=redisTemplate.opsForValue().get("user").toString();
-                    System.out.println(users);
-                    user=JsonUtils.UserObject(users);
-                    return JsonUtils.jsonPrint(1, "登录成功!", user);
+                    return JsonUtils.jsonPrint(1, "登录成功!", null);
                 case "-1":
                     return JsonUtils.jsonPrint(-1, "登录账号错误!", null);
                 case "-2":

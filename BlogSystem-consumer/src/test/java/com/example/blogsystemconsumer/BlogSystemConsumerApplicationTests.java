@@ -11,7 +11,7 @@ class BlogSystemConsumerApplicationTests {
     ConsumerController consumerController;
 
     @Test
-    void contextLoads() {
+    void contextLoads(){
         String account="Peter";
         String password="123456";
         String result=consumerController.Login(account,password);

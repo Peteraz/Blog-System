@@ -1,5 +1,6 @@
 package com.example.blogsystemconsumer.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -31,15 +32,17 @@ public class PageController {
     }
     @RequestMapping(value="getIndex")
     public ModelAndView getIndex(){
-        User user=new User();
         ModelAndView modelAndView=new ModelAndView("index");
+        String value=redisTemplate.opsForValue().get("user").toString();
         try{
-            user=(User)redisTemplate.opsForHash().get("user","1");
-            modelAndView.addObject("user",user);
+            User user= JSONArray.parseObject(value,User.class);
+            //System.out.println(user);
+            modelAndView.addObject("username",user.getUserName());
+            return modelAndView;
         }catch(Exception e){
             e.printStackTrace();
+            return modelAndView;
         }
-        return modelAndView;
     }
 
     @RequestMapping(value="getProfile")
