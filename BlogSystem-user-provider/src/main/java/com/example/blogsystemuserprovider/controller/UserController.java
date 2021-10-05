@@ -80,7 +80,7 @@ public class UserController {
                 user.setPassword("null");
                 //redis缓存
                 redisTemplate.opsForValue().set("user", JSON.toJSONString(user),7, TimeUnit.DAYS);
-                System.out.println(redisTemplate.opsForValue().get("user"));
+                //System.out.println(redisTemplate.opsForValue().get("user"));
                 return "1";
             }
         } catch (Exception e) {
