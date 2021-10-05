@@ -35,7 +35,7 @@ public class PageController {
         ModelAndView modelAndView=new ModelAndView("index");
         String value=redisTemplate.opsForValue().get("user").toString();
         try{
-            if(value.length()==0 || value==null){
+            if(value.isEmpty()){
                 return new ModelAndView("login");
             }else{
                 User user= JSONArray.parseObject(value,User.class);
