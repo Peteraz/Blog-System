@@ -26,7 +26,7 @@ const upload=function(resultFiles,insertImgFn){
 }
 
 $('#register').click(function (result){
-	let map={
+	let data={
 		"account":$("#account").val(),
 		"password":$("#password").val(),
 		"name":$("#user_name").val(),
@@ -39,7 +39,7 @@ $('#register').click(function (result){
 		url:"http://localhost:9001/consumer/Register?token=123",
 		type:"POST",
 		contentType: 'application/json;charset=utf-8',
-		data: JSON.stringify(map),
+		data: JSON.stringify(data),
 		async: false,
 		cache: false,
 		dataType: "json",
@@ -114,6 +114,13 @@ const choose=function(){
 		});
 	});
 }
+
+$('#info_submit').click(function(result){
+	let data={
+		"username":$('#inputFirstName').val(),
+
+	}
+});
 
 $('#login').click(function (result){
 	let account=$("#account").val();
