@@ -21,6 +21,12 @@ public class User {
 
     private String birthday;
 
+    private String state;
+
+    private String city;
+
+    private String biography;
+
     private Date createTime;
 
     private Date loginTime;
@@ -103,6 +109,30 @@ public class User {
         this.birthday = birthday == null ? null : birthday.trim();
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography == null ? null : biography.trim();
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -155,6 +185,9 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", birthday='" + birthday + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", biography='" + biography + '\'' +
                 ", createTime=" + createTime +
                 ", loginTime=" + loginTime +
                 ", lastLoginTime=" + lastLoginTime +
