@@ -1,7 +1,6 @@
 package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystem.common.FileUploadUtils;
-import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
@@ -46,8 +45,10 @@ public class ConsumerController {
                 return JsonUtils.jsonPrint(1,"注册成功!",null);
             }else if(result.equals("-1")){
                 return JsonUtils.jsonPrint(-1,"用户名已存在!",null);
+            }else if(result.equals("-2")){
+                return JsonUtils.jsonPrint(-2,"邮箱已使用!",null);
             }
-            return JsonUtils.jsonPrint(-2,"注册失败!",null);
+            return JsonUtils.jsonPrint(-3,"注册失败!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
@@ -56,7 +57,6 @@ public class ConsumerController {
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
-        User user=new User();
         if(account.isEmpty()){
             return JsonUtils.jsonPrint(-1,"请输入账号!",null);
         }else if(password.isEmpty()){

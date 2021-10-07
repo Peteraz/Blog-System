@@ -27,7 +27,7 @@ public class SendMailController {
     @Value("${spring.mail.username}")  //读取配置文件中的参数
     private String Sender;            //发送人
     private String receiver="673840304@qq.com";  //收件人
-    private String loaclhost="http://localhost:9001/consumer/SendMail/?token=";
+    private String loaclhost="http://localhost:9001/consumer/SendMail?token=";
 
     @RequestMapping(value="SendSimpleMail",method= RequestMethod.POST)
     public void SendSimpleMail () throws Exception{

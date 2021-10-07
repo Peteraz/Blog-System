@@ -31,7 +31,9 @@ public class UserController {
         String age="";
         try {
             if (userService.getUserByAccountAndPassword(map.get("account"), null) != null) {
-                return "-1";//账号已存在
+                return "-1"; //账号已存在
+            }else if(userService.getUserByEmail(map.get("email"))!=null){
+                return "-2"; //邮箱已使用
             } else if (!map.isEmpty()) {
                 user.setUserid(UUIDUtils.getUserId());
                 user.setAccount(map.get("account"));
@@ -53,7 +55,7 @@ public class UserController {
                 userService.insertSelective(user);
                 return "1";//注册成功
             } else {
-                return "-2";//注册失败
+                return "-3";//注册失败
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +65,7 @@ public class UserController {
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password) {
-        User user = new User();
+        User user=new User();
         try {
             user = userService.getUserByAccountAndPassword(account, null);
             if (user == null) {

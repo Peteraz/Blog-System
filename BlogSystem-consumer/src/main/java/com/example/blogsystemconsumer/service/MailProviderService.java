@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 //path 为user-provider项目中application.yml配置文件中的context.path;
 @FeignClient(name = "mail-provider-server",path="/mail-provider",fallback = BackendMailProviderService.class)
 public interface MailProviderService {
-    @RequestMapping(value="SendMail",method= RequestMethod.POST)//注册
+    @RequestMapping(value="SendMail",method= RequestMethod.POST)//发送邮件
     String SendMail(@RequestParam("email") String email);
 }
