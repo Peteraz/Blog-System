@@ -182,11 +182,13 @@ public class ConsumerController {
             if(result.equals("1")){
                 mailProviderService.SendMail(email);
                 return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
+            }else if(result.equals("0")){
+                return JsonUtils.jsonPrint(0,"用户不存在!",null);
             }
-            return JsonUtils.jsonPrint(0,"未知错误!",null);
+            return JsonUtils.jsonPrint(-2,"未知错误!",null);
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(-1,"没有收到用户邮箱!",null);
+            return JsonUtils.jsonPrint(-1,e.getMessage(),null);
         }
     }
 }
