@@ -17,6 +17,7 @@
 	<title>Register | Blog System</title>
 
 	<link href="css/app.css" rel="stylesheet">
+	<link href="css/light.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -29,9 +30,6 @@
 
 						<div class="text-center mt-4">
 							<h1 class="h2">注册Blog System账号</h1>
-							<p class="lead">
-								输入以下资料注册你的账号
-							</p>
 						</div>
 
 						<div class="card">
@@ -74,6 +72,18 @@
 										<div class="mb-3">
 											<label class="form-label">电话号码</label>
 											<input id="phone_number" class="form-control form-control-lg" type="text" name="phone_number" placeholder="请输入电话号码" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="inputState">省</label>
+											<select id="inputState" class="form-control" onclick="choose()">
+												<option selected>请选择省份...</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="inputCity">城市</label>
+											<select id="inputCity" class="form-control">
+												<option selected>请选择城市...</option>
+											</select>
 										</div>
 										<div class="text-center mt-3">
 											<a id="register"  class="btn btn-lg btn-primary">注册</a>

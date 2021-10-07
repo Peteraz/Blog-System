@@ -14,6 +14,7 @@
 	<title>Settings | AdminKit Demo</title>
 
 	<link href="css/app.css" rel="stylesheet">
+	<link href="css/light.css" rel="stylesheet">
 </head>
 
 <body>
@@ -300,12 +301,12 @@
 												<div class="row">
 													<div class="col-md-8">
 														<div class="mb-3">
-															<label class="form-label" for="inputUsername">用户名字</label>
-															<input type="text" class="form-control" id="inputUsername" th:value="${user.account}"  readonly="readonly">
+															<label class="form-label" for="inputAccount">账号</label>
+															<input id="inputAccount" type="text" class="form-control"  th:value="${user.account}" readonly="readonly">
 														</div>
 														<div class="mb-3">
-															<label class="form-label" for="inputUsername">个人简介</label>
-															<textarea rows="2" class="form-control" id="inputBio" placeholder="介绍自己"></textarea>
+															<label class="form-label" for="inputBio">个人简介</label>
+															<textarea id="inputBio" rows="2" class="form-control"  th:text="${user.biography}" placeholder="请介绍自己，但不少于150字。"></textarea>
 														</div>
 													</div>
 													<div class="col-md-4">
@@ -318,67 +319,58 @@
 														</div>
 													</div>
 												</div>
-
-												<button type="submit" class="btn btn-primary">保存修改</button>
-											</form>
-
-										</div>
-									</div>
-
-									<div class="card">
-										<div class="card-header">
-
-											<h5 class="card-title mb-0">私人信息</h5>
-										</div>
-										<div class="card-body">
-											<form>
+												<br/>
 												<div class="row">
 													<div class="mb-3 col-md-6">
 														<label class="form-label" for="inputUserName">名字</label>
-														<input type="text" class="form-control" id="inputFirstName"  th:value="${user.userName}"  readonly="readonly">
+														<input id="inputUserName" type="text" class="form-control"   th:value="${user.userName}">
 													</div>
 													<div class="mb-3 col-md-6">
 														<label class="form-label" for="inputSex">性别</label>
-														<input type="text" class="form-control" id="inputSex" th:value="${user.sex}" readonly="readonly">
+														<input id="inputSex" type="text" class="form-control"  th:value="${user.sex}">
 													</div>
 												</div>
 												<div class="row">
 													<div class="mb-3 col-md-6">
 														<label class="form-label" for="inputAge">年龄</label>
-														<input type="text" class="form-control" id="inputAge" th:value="${user.age}" readonly="readonly">
+														<input id="inputAge" type="text" class="form-control"  th:value="${user.age}">
 													</div>
 													<div class="mb-3 col-md-6">
 														<label class="form-label" for="inputBirthday">生日</label>
-														<input type="text" class="form-control" id="inputBirthday" th:value="${user.birthday}" readonly="readonly">
+														<input id="inputBirthday" type="text" class="form-control"  th:value="${user.birthday}">
 													</div>
 												</div>
 												<div class="row">
 													<div class="mb-3 col-md-6">
 														<label class="form-label" for="inputPhoneNumber">电话</label>
-														<input type="text" class="form-control" id="inputPhoneNumber" th:value="${user.phoneNumber}" readonly="readonly">
+														<input id="inputPhoneNumber" type="text" class="form-control"  th:value="${user.phoneNumber}">
 													</div>
 													<div class="mb-3 col-md-6">
 														<label class="form-label" for="inputEmail">邮箱</label>
-														<input type="email" class="form-control" id="inputEmail" th:value="${user.email}" readonly="readonly">
+														<input id="inputEmail" type="email" class="form-control"  th:value="${user.email}">
 													</div>
 												</div>
 												<div class="row">
 													<div class="mb-3 col-md-6">
-														<label class="form-label" for="inputState">省</label>
-														<select id="inputState" class="form-control" onclick="choose()">
-                    										<option selected>请选择省份...</option>
-                  										</select>
+														<label class="form-label" for="state">省</label>
+														<input id="state" type="text" class="form-control"  th:value="${user.state}">
 													</div>
 													<div class="mb-3 col-md-6">
-														<label class="form-label" for="inputCity">城市</label>
-														<select id="inputCity" class="form-control">
-															<option selected>请选择城市...</option>
-														</select>
+														<label class="form-label" for="city">城市</label>
+														<input id="city" type="text" class="form-control"  th:value="${user.city}">
 													</div>
 												</div>
-												<button id="info_submit" type="submit" class="btn btn-primary">保存修改</button>
+												<button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sizedModalMd" >保存修改</button>
 											</form>
-
+											<div class="alert alert-primary alert-outline-coloured alert-dismissible" role="alert">
+												<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+												<div class="alert-icon">
+													<i class="far fa-fw fa-bell"></i>
+												</div>
+												<div class="alert-message">
+													<strong>Hello there!</strong> A simple primary alert—check it out!
+												</div>
+											</div>
 										</div>
 									</div>
 
@@ -404,7 +396,6 @@
 												</div>
 												<button type="submit" class="btn btn-primary">Save changes</button>
 											</form>
-
 										</div>
 									</div>
 								</div>
@@ -449,6 +440,47 @@
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+	<script>
+		// Notyf
+		document.addEventListener("DOMContentLoaded", function() {
+			var currentMessageIndex = -1;
+
+			function getMessage() {
+				var messages = [
+					"My name is Inigo Montoya. You killed my father. Prepare to die!",
+					"Are you the six fingered man?",
+					"Inconceivable!",
+					"I do not think that means what you think it means.",
+					"Have fun storming the castle!",
+				];
+				currentMessageIndex++;
+				if (currentMessageIndex === messages.length) {
+					currentMessageIndex = 0;
+				}
+				return messages[currentMessageIndex];
+			};
+			document.querySelector("#notyf-show").addEventListener("click", function() {
+				var message = document.querySelector("#notyf-message").value || getMessage();
+				var type = document.querySelector("#notyf-type").value;
+				var duration = document.querySelector("#notyf-duration").value;
+				var ripple = document.querySelector("#notyf-ripple").checked;
+				var dismissible = document.querySelector("#notyf-dismissible").checked;
+				var positionX = document.querySelector("input[name=\"notyf-position-x\"]:checked").value;
+				var positionY = document.querySelector("input[name=\"notyf-position-y\"]:checked").value;
+				window.notyf.open({
+					type,
+					message,
+					duration,
+					ripple,
+					dismissible,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

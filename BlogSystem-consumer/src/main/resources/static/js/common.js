@@ -26,6 +26,7 @@ const upload=function(resultFiles,insertImgFn){
 }
 
 $('#register').click(function (result){
+	let state=$("#inputState").val().substr($("#inputState").val().indexOf("-")+1); //截取省份出来
 	let data={
 		"account":$("#account").val(),
 		"password":$("#password").val(),
@@ -33,7 +34,9 @@ $('#register').click(function (result){
 		"email":$("#email").val(),
 		"birthday":$("#birthday").val(),
 		"sex":$("input[name='sex']:checked").val(),
-		"phone_number":$("#phone_number").val()
+		"phone_number":$("#phone_number").val(),
+		"state":state,
+		"city":$("#inputCity").val()
 	}
 	$.ajax({
 		url:"http://localhost:9001/consumer/Register?token=123",
@@ -96,7 +99,7 @@ const choose=function(){
 
 	if(count<1){
 		$(state).each(function(i,v){
-			$('#inputState').append("<option value='"+i+"'>"+v+"</option>");
+			$('#inputState').append("<option value='"+i+"-"+v+"'>"+v+"</option>");
 		});
 	}
     count++;
@@ -107,19 +110,44 @@ const choose=function(){
 		//每次选择省份后要还原
 		$('#inputCity').html("<option selected>请选择城市</option>");
 		//获取省份的索引值
-		let stateIndex=this.value;
+		let stateIndex=this.value.substr(0,this.value.indexOf("-"));
 		//根据省份的索引值遍历城市
 		$(city[stateIndex]).each(function(i,v){
-			$('#inputCity').append("<option value='"+i+"'>"+v+"</option>");
+			$('#inputCity').append("<option value='"+v+"'>"+v+"</option>");
 		});
 	});
 }
 
 $('#info_submit').click(function(result){
 	let data={
-		"username":$('#inputFirstName').val(),
-
+		//"account":$('#inputAccount').val(),
+		"biography":$('#inputBio').val(),
+		"username":$('#inputUserName').val(),
+		"sex":$('#inputSex').val(),
+		"age":$('#inputAge').val(),
+		"birthday":$('#inputBirthday').val(),
+		"phoneNumber":$('#inputPhoneNumber').val(),
+		"email":$('#inputEmail').val(),
+		"state":$('#state').val(),
+		"city":$('#city').val(),
 	}
+	$.ajax({
+		url:"http://localhost:9001/consumer/ResetInfo?token=123",
+		contentType: 'application/json;charset=utf-8',
+		data:JSON.stringify(data),
+		type:"POST",
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				$('#op_result').text(result.msg);
+				location.reload();
+			}else{
+				alert(result.msg);
+			}
+		}
+	});
 });
 
 $('#login').click(function (result){

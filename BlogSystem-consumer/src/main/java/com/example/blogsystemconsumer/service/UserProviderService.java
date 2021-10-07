@@ -25,6 +25,12 @@ public interface UserProviderService {
     @RequestMapping(value="Logout",method= RequestMethod.POST)//登出
     String Logout();
 
+    @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
+    String ResetInfo(@RequestBody Map<String, String> map);
+
+    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
+    String ResetPWD(@RequestParam("password") String password);
+
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//忘记密码
     String ForgetPWD(@RequestParam("email") String email);
 }

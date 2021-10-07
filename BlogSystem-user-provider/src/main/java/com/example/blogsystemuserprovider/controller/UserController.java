@@ -1,6 +1,7 @@
 package com.example.blogsystemuserprovider.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.common.AgeUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
@@ -31,7 +32,7 @@ public class UserController {
         try {
             if (userService.getUserByAccountAndPassword(map.get("account"), null) != null) {
                 return "-1";//账号已存在
-            } else if (map != null) {
+            } else if (!map.isEmpty()) {
                 user.setUserid(UUIDUtils.getUserId());
                 user.setAccount(map.get("account"));
                 user.setPassword(SHA256Utils.getSHA256((String)map.get("password")));
@@ -44,6 +45,8 @@ public class UserController {
                 user.setAge(Integer.valueOf(age));
                 user.setSex(map.get("sex"));
                 user.setPhoneNumber(map.get("phone_number"));
+                user.setState(map.get("state"));
+                user.setCity(map.get("city"));
                 Date time = new Date();
                 user.setCreateTime(time);
                 user.setLoginCount(count);
@@ -96,6 +99,50 @@ public class UserController {
             redisTemplate.delete("user");
             return "1";
         } catch (Exception e) {
+            e.printStackTrace();
+            return "0";
+        }
+    }
+
+    @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
+    public String ResetInfo(@RequestBody Map<String, String> map) {
+        User user=new User();
+        try {
+            user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
+            if(user==null){
+                return "-2";
+            }
+            user=userService.getUserById(user.getUserid());
+            //user.setAccount(map.get("account"));
+            user.setBiography(map.get("biography"));
+            user.setUserName(map.get("username"));
+            user.setSex(map.get("sex"));
+            user.setAge(Integer.valueOf(map.get("age")));
+            user.setBirthday(map.get("birthday"));
+            user.setPhoneNumber(map.get("phoneNumber"));
+            user.setEmail(map.get("email"));
+            user.setState(map.get("state"));
+            user.setCity(map.get("city"));
+            userService.updateByUserSelective(user);
+            user.setPassword("null");
+            //刷新redis缓存
+            redisTemplate.opsForValue().getAndSet("user", JSON.toJSONString(user));
+            return "1";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "-1";
+        }
+    }
+
+    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
+    public String ResetPWD(@RequestParam("password") String password) {
+        User user=new User();
+        try{
+            user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
+            user.setPassword(SHA256Utils.getSHA256(password));
+            userService.updateByUserSelective(user);
+            return "1";
+        }catch(Exception e){
             e.printStackTrace();
             return "-1";
         }

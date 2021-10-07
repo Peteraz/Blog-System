@@ -94,6 +94,46 @@ public class ConsumerController {
         }
     }
 
+    @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
+    public String ResetInfo(@RequestBody Map<String, String> map){
+        if(map.isEmpty()){
+            return JsonUtils.jsonPrint(-3,"接收不到数据!",null);
+        }
+        try{
+            String result=userProviderService.ResetInfo(map);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1,"修改成功!",null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1,"修改失败!",null);
+            }else if(result.equals("-2")){
+                return JsonUtils.jsonPrint(-2,"修改失败!",null);
+            }
+            return JsonUtils.jsonPrint(-3,"未知错误!",null);
+        }catch(Exception e){
+            e.printStackTrace();
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
+    public String ResetPWD(@RequestParam("password") String password){
+        if(password.isEmpty()){
+            return JsonUtils.jsonPrint(-3,"",null);
+        }
+        try{
+            String result=userProviderService.ResetPWD(password);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1,"密码修改成功!",null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1,"密码修改失败!",null);
+            }
+            return JsonUtils.jsonPrint(-2,"未知错误!",null);
+        }catch(Exception e){
+            e.printStackTrace();
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
+        }
+    }
+
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)
     public String ForgetPWD(@RequestParam("account") String account){
         try{
@@ -128,7 +168,7 @@ public class ConsumerController {
                 }
             }
         }
-        System.out.print(JsonUtils.jsonPrint(0,data));
+        //System.out.print(JsonUtils.jsonPrint(0,data));
         return JsonUtils.jsonPrint(0,data);
     }
 
