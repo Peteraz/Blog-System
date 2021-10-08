@@ -360,17 +360,8 @@
 														<input id="city" type="text" class="form-control"  th:value="${user.city}">
 													</div>
 												</div>
-												<button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sizedModalMd" >保存修改</button>
+												<button  id="info_submit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sizedModalMd" >保存修改</button>
 											</form>
-											<div class="alert alert-primary alert-outline-coloured alert-dismissible" role="alert">
-												<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-												<div class="alert-icon">
-													<i class="far fa-fw fa-bell"></i>
-												</div>
-												<div class="alert-message">
-													<strong>Hello there!</strong> A simple primary alert—check it out!
-												</div>
-											</div>
 										</div>
 									</div>
 
@@ -440,47 +431,6 @@
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
-	<script>
-		// Notyf
-		document.addEventListener("DOMContentLoaded", function() {
-			var currentMessageIndex = -1;
-
-			function getMessage() {
-				var messages = [
-					"My name is Inigo Montoya. You killed my father. Prepare to die!",
-					"Are you the six fingered man?",
-					"Inconceivable!",
-					"I do not think that means what you think it means.",
-					"Have fun storming the castle!",
-				];
-				currentMessageIndex++;
-				if (currentMessageIndex === messages.length) {
-					currentMessageIndex = 0;
-				}
-				return messages[currentMessageIndex];
-			};
-			document.querySelector("#notyf-show").addEventListener("click", function() {
-				var message = document.querySelector("#notyf-message").value || getMessage();
-				var type = document.querySelector("#notyf-type").value;
-				var duration = document.querySelector("#notyf-duration").value;
-				var ripple = document.querySelector("#notyf-ripple").checked;
-				var dismissible = document.querySelector("#notyf-dismissible").checked;
-				var positionX = document.querySelector("input[name=\"notyf-position-x\"]:checked").value;
-				var positionY = document.querySelector("input[name=\"notyf-position-y\"]:checked").value;
-				window.notyf.open({
-					type,
-					message,
-					duration,
-					ripple,
-					dismissible,
-					position: {
-						x: positionX,
-						y: positionY
-					}
-				});
-			});
-		});
-	</script>
 </body>
 
 </html>

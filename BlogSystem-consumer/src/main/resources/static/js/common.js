@@ -141,10 +141,44 @@ $('#info_submit').click(function(result){
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
-				$('#op_result').text(result.msg);
-				location.reload();
+				let message = result.msg;
+				let type = "default";
+				let duration = 5000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				//location.reload();
 			}else{
-				alert(result.msg);
+				let message = result.msg;
+				let type = "warning";
+				let duration = 5000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
 			}
 		}
 	});
