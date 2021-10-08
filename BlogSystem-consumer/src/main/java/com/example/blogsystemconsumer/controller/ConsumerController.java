@@ -1,10 +1,12 @@
 package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystem.common.FileUploadUtils;
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,9 +25,6 @@ public class ConsumerController {
 
     @Resource
     private MailProviderService mailProviderService;
-
-    @Resource
-    private RedisTemplate<String,Object> redisTemplate;
 
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
@@ -57,10 +56,10 @@ public class ConsumerController {
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
-        if(account.isEmpty()){
-            return JsonUtils.jsonPrint(-1,"请输入账号!",null);
-        }else if(password.isEmpty()){
-            return JsonUtils.jsonPrint(-1,"请输入密码!",null);
+        if(StringUtils.isBlank(account)){
+            return JsonUtils.jsonPrint(-4,"请输入账号!",null);
+        }else if(StringUtils.isBlank(password)){
+            return JsonUtils.jsonPrint(-5,"请输入密码!",null);
         }
         try{
             String result=userProviderService.Login(account,password);
@@ -71,7 +70,7 @@ public class ConsumerController {
                 case "-1":
                     return JsonUtils.jsonPrint(-1, "登录账号错误!", null);
                 case "-2":
-                    return JsonUtils.jsonPrint(-1, "登录密码错误!", null);
+                    return JsonUtils.jsonPrint(-2, "登录密码错误!", null);
                 default: return JsonUtils.jsonPrint(-3,result,null);
             }
         }catch(Exception e){
@@ -105,10 +104,8 @@ public class ConsumerController {
                 return JsonUtils.jsonPrint(1,"修改成功!",null);
             }else if(result.equals("-1")){
                 return JsonUtils.jsonPrint(-1,"修改失败!",null);
-            }else if(result.equals("-2")){
-                return JsonUtils.jsonPrint(-2,"修改失败!",null);
             }
-            return JsonUtils.jsonPrint(-3,"未知错误!",null);
+            return JsonUtils.jsonPrint(-2,"未知错误!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
@@ -116,18 +113,21 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    public String ResetPWD(@RequestParam("password") String password){
-        if(password.isEmpty()){
-            return JsonUtils.jsonPrint(-3,"",null);
+    public String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2){
+        User user=new User();
+        if(password.isEmpty() || password == null || password1.isEmpty() || password1 == null || password2.isEmpty() || password2 == null){
+            return JsonUtils.jsonPrint(-4,"有密码为空!",null);
         }
         try{
-            String result=userProviderService.ResetPWD(password);
+            String result=userProviderService.ResetPWD(password,password1,password2);
             if(result.equals("1")){
                 return JsonUtils.jsonPrint(1,"密码修改成功!",null);
             }else if(result.equals("-1")){
-                return JsonUtils.jsonPrint(-1,"密码修改失败!",null);
+                return JsonUtils.jsonPrint(-1,"新密码不一致!",null);
+            }else if(result.equals("-2")){
+                return JsonUtils.jsonPrint(-2,"原密码错误!",null);
             }
-            return JsonUtils.jsonPrint(-2,"未知错误!",null);
+            return JsonUtils.jsonPrint(-3,"未知错误!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
@@ -141,10 +141,10 @@ public class ConsumerController {
                 mailProviderService.SendMail(account);
                 return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
             }
-            return JsonUtils.jsonPrint(0,"用户不存在!",null);
+            return JsonUtils.jsonPrint(-1,"用户不存在!",null);
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(-1,e.getMessage(),null);
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
 
@@ -175,20 +175,20 @@ public class ConsumerController {
     @RequestMapping(value="SendMail",method= RequestMethod.POST)//注册
     public String SendMail(@RequestParam("email") String email){
         if(email==null || email.length()==0){
-            return JsonUtils.jsonPrint(0,"没有收到用户邮箱!",null);
+            return JsonUtils.jsonPrint(-3,"没有收到用户邮箱!",null);
         }
         try{
             String result=userProviderService.ForgetPWD(email);
             if(result.equals("1")){
                 mailProviderService.SendMail(email);
                 return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
-            }else if(result.equals("0")){
-                return JsonUtils.jsonPrint(0,"用户不存在!",null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1,"用户不存在!",null);
             }
             return JsonUtils.jsonPrint(-2,"未知错误!",null);
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(-1,e.getMessage(),null);
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
         }
     }
 }

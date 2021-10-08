@@ -29,7 +29,7 @@ public class BackendUserProviderService implements UserProviderService {
     }
 
     @Override
-    public String ResetPWD(@RequestParam("password") String password){
+    public String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2){
         return "连接超时,请稍后重试!";
     }
 

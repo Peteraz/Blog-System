@@ -48,11 +48,44 @@ $('#register').click(function (result){
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
-				alert("注册成功！");
-				$(location).attr("href","http://localhost:9001/consumer/getLogin");
+				let message = result.msg;
+				let type = "default";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				setTimeout("$(location).attr(\"href\",\"http://localhost:9001/consumer/getLogin\")",2000);
 			}else{
-				alert(result.msg);
-				return;
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
 			}
 		}
 	});
@@ -143,7 +176,7 @@ $('#info_submit').click(function(result){
 			if(result.status=="1"){
 				let message = result.msg;
 				let type = "default";
-				let duration = 5000;
+				let duration = 3000;
 				let ripple = "true";
 				let dismissible = "true";
 				let positionX = "center";
@@ -159,11 +192,11 @@ $('#info_submit').click(function(result){
 						y: positionY
 					}
 				});
-				//location.reload();
+				setTimeout("location.reload()",3000);
 			}else{
 				let message = result.msg;
 				let type = "warning";
-				let duration = 5000;
+				let duration = 3000;
 				let ripple = "true";
 				let dismissible = "true";
 				let positionX = "center";
@@ -179,14 +212,78 @@ $('#info_submit').click(function(result){
 						y: positionY
 					}
 				});
+				return;
+			}
+		}
+	});
+});
+
+$('#password_submit').click(function(result){
+	$.ajax({
+		url:"http://localhost:9001/consumer/ResetPWD?token=123",
+		data:{
+			"password":$('#inputPasswordCurrent').val(),
+			"password1":$('#inputPasswordNew1').val(),
+			"password2":$('#inputPasswordNew2').val(),
+		},
+		type:"POST",
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				let message = result.msg;
+				let type = "default";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				setTimeout(function(){
+					//location.reload();
+					$('#inputPasswordCurrent').val("");
+					$('#inputPasswordNew1').val("");
+					$('#inputPasswordNew2').val("");
+				},2000);
+			}else{
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				return;
 			}
 		}
 	});
 });
 
 $('#login').click(function (result){
-	let account=$("#account").val();
-	let password=$("#password").val();
+	let account=$('#account').val();
+	let password=$('#password').val();
 	if(!account){
 		alert("请输入账号！");
 	} else if(!password){
@@ -220,9 +317,44 @@ $('#logout').click(function (result){
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
-				$(location).attr("href","http://localhost:9001/consumer/getLogin");
+				let message = result.msg;
+				let type = "default";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				setTimeout("location.reload()",2000);
 			}else{
-				alert(result.msg);
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
 				return;
 			}
 		}

@@ -112,7 +112,7 @@ public class UserController {
         try {
             user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
             if(user==null){
-                return "-2";
+                return "-1";
             }
             user=userService.getUserById(user.getUserid());
             //user.setAccount(map.get("account"));
@@ -132,21 +132,28 @@ public class UserController {
             return "1";
         } catch (Exception e) {
             e.printStackTrace();
-            return "-1";
+            return "0";
         }
     }
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    public String ResetPWD(@RequestParam("password") String password) {
+    public String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
         User user=new User();
+        if(!password1.equals(password2)) {
+            return "-1"; //两个密码不一样
+        }
         try{
             user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-            user.setPassword(SHA256Utils.getSHA256(password));
+            user=userService.getUserById(user.getUserid());
+            if(!SHA256Utils.getSHA256(password).equals(user.getPassword())){
+                return "-2"; //原密码不对
+            }
+            user.setPassword(SHA256Utils.getSHA256(password1));
             userService.updateByUserSelective(user);
             return "1";
         }catch(Exception e){
             e.printStackTrace();
-            return "-1";
+            return "0";
         }
     }
 
@@ -158,10 +165,10 @@ public class UserController {
             if (user != null) {
                 return "1";
             }
-            return "0";
+            return "-1";
         } catch (Exception e) {
             e.printStackTrace();
-            return "-1";
+            return "0";
         }
     }
 }
