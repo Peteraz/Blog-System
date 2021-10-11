@@ -308,6 +308,31 @@ $('#login').click(function (result){
 	}
 });
 
+$('#article_submit').click(function (result){
+	let artcileName=$('#article_name').val();
+	let editors=editor.txt.html();
+	alert(artcileName);
+	alert(editors);
+	alert(editor.txt.html()); //获取编辑器的内容，带样式
+	alert(editor.txt.text()); //获取编辑器的内容，不带样式，纯文本
+	/*$.ajax({
+		url:"http://localhost:9001/consumer/Login",
+		data:{account:account,password:password},
+		type:"POST",
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				$(location).attr("href","http://localhost:9001/consumer/getIndex");
+			}else{
+				alert(result.msg);
+				return;
+			}
+		}
+	});*/
+});
+
 $('#logout').click(function (result){
 	$.ajax({
 		url:"http://localhost:9001/consumer/Logout?token=123",

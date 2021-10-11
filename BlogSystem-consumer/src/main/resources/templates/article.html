@@ -270,7 +270,7 @@
 											<div id="editor">
 											</div>
 										</div>
-										<button id="submit" type="submit" class="btn btn-primary">提交文章</button>
+										<button id="article_submit" type="submit" class="btn btn-primary">提交文章</button>
 										<button id="clean" type="submit" class="btn btn-primary">清除</button>
 									</form>
 								</div>
@@ -337,7 +337,7 @@
 		editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
 		// 限制一次最多上传 5 张图片
 		editor.config.uploadImgMaxLength = 5;
-		editor.config.uploadImgServer='http://localhost:9001/consumer/FileUpload'
+		editor.config.uploadImgServer='http://localhost:9001/consumer/FileUpload?token=123'
 		editor.config.uploadImgHeaders = {
 			Accept: 'text/x-json',
 			a: 100,
