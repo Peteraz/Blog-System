@@ -31,6 +31,9 @@ public interface UserProviderService {
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
     String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2);
 
+    @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
+    String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2);
+
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//忘记密码
     String ForgetPWD(@RequestParam("email") String email);
 }

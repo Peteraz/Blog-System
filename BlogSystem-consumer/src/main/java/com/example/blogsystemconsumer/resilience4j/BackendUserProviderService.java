@@ -34,6 +34,11 @@ public class BackendUserProviderService implements UserProviderService {
     }
 
     @Override
+    public String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2){
+        return "连接超时,请稍后重试!";
+    }
+
+    @Override
     public String ForgetPWD(@RequestParam("account") String account){
         return "连接超时,请稍后重试!";
     }

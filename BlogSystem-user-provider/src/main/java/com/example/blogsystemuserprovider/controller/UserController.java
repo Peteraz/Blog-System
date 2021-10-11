@@ -10,9 +10,9 @@ import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 import java.util.Date;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
 // 但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
@@ -112,7 +112,7 @@ public class UserController {
         try {
             user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
             if(user==null){
-                return "-1";
+                return "-1";  //用户不存在
             }
             user=userService.getUserById(user.getUserid());
             //user.setAccount(map.get("account"));
@@ -150,6 +150,29 @@ public class UserController {
             }
             user.setPassword(SHA256Utils.getSHA256(password1));
             userService.updateByUserSelective(user);
+            return "1";
+        }catch(Exception e){
+            e.printStackTrace();
+            return "0";
+        }
+    }
+
+    @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
+    public String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
+        User user=new User();
+        if(!password1.equals(password2)) {
+            return "-1";      //两个密码不一样
+        }
+        try{
+            if(redisTemplate.getExpire("resetEmail") == -2){
+                return "-2"; //修改密码的时候已过期
+            }
+            String email=redisTemplate.opsForValue().get("resetEmail").toString();
+            user=userService.getUserByEmail(email);
+            user.setPassword(SHA256Utils.getSHA256(password1));
+            userService.updateByUserSelective(user);
+            redisTemplate.delete("resetPwdToken");
+            redisTemplate.delete("resetEmail");
             return "1";
         }catch(Exception e){
             e.printStackTrace();

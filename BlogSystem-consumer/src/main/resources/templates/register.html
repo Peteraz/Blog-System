@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,6 @@
 	<link href="css/light.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 	<main class="d-flex w-100">
 		<div class="container d-flex flex-column">
@@ -86,8 +84,7 @@
 											</select>
 										</div>
 										<div class="text-center mt-3">
-											<a id="register"  class="btn btn-lg btn-primary">注册</a>
-											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign up</button> -->
+											<Button id="register"  type="button" class="btn btn-lg btn-primary">注册</Button>
 										</div>
 									</form>
 								</div>
@@ -105,5 +102,4 @@
 	<script src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 </body>
-
 </html>

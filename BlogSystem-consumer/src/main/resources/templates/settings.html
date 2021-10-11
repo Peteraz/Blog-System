@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Settings | AdminKit Demo</title>
+	<title>Settings | BlogSystem</title>
 	<!-- Choose your prefered color scheme -->
 	<!-- <link href="css/light.css" rel="stylesheet"> -->
 	<!-- <link href="css/dark.css" rel="stylesheet"> -->
@@ -28,7 +28,6 @@
   data-sidebar-position: left (default), right
   data-sidebar-layout: default (default), compact
 -->
-
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
@@ -64,14 +63,14 @@
 						</a>
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="http://localhost:9001/consumer/getArticle?token=123">
 							<i class="align-middle" data-feather="edit"></i>
 							<span class="align-middle">文章</span>
 						</a>
 					</li>
 
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="http://localhost:9001/consumer/getSettings?token=123">
 							<i class="align-middle" data-feather="settings"></i>
 							<span class="align-middle">设置</span>
@@ -388,7 +387,7 @@
 								<div class="tab-pane fade" id="password" role="tabpanel">
 									<div class="card">
 										<div class="card-body">
-											<h5 class="card-title">密码</h5>
+											<h5 class="card-title">修改密码</h5>
 											<form>
 												<div class="mb-3">
 													<label class="form-label" for="inputPasswordCurrent">原密码</label>
@@ -447,5 +446,4 @@
 <script src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 </body>
-
 </html>

@@ -11,23 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
+import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class SendMailController {
     @Autowired
     private JavaMailSender mailSender;        //邮件发送接口
+
     @Autowired
     private TemplateEngine templateEngine;
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
     @Value("${spring.mail.username}")  //读取配置文件中的参数
     private String Sender;            //发送人
     private String receiver="673840304@qq.com";  //收件人
-    private String loaclhost="http://localhost:9001/consumer/SendMail?token=";
+    private String loaclhost="http://localhost:9001/consumer/getResetPassword?token=";
 
     @RequestMapping(value="SendSimpleMail",method= RequestMethod.POST)
     public void SendSimpleMail () throws Exception{
@@ -72,18 +78,22 @@ public class SendMailController {
             MimeMessage mimeMessage=mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,true);
             mimeMessageHelper.setFrom(Sender);
-            mimeMessageHelper.setTo(receiver);
+            mimeMessageHelper.setTo(email);
             mimeMessageHelper.setSubject("博客密码修改");
             Context context=new Context();
             context.setVariable("username",email);
-            context.setVariable("link",loaclhost+ UUIDUtils.getToken());
+            String token=UUIDUtils.getToken();
+            context.setVariable("link",loaclhost+token);
             String emailContent=templateEngine.process("/mail",context);
             mimeMessageHelper.setText(emailContent,true);
             mailSender.send(mimeMessage);
-            return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
+            redisTemplate.opsForValue().set("resetPwdToken",token,60*60*12,TimeUnit.SECONDS); //token
+            System.out.println(token);
+            redisTemplate.opsForValue().set("resetEmail",email,60*60*12,TimeUnit.SECONDS);    //接收用户
+            return "1";
         }catch(Exception e){
             e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
+            return "0";
         }
     }
 }

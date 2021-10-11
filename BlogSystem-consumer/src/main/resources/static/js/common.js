@@ -317,6 +317,42 @@ $('#logout').click(function (result){
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
+				$(location).attr("href","http://localhost:9001/consumer/getLogin");
+			}else{
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				return;
+			}
+		}
+	});
+});
+
+$('#forget_password').click(function (result){
+	$.ajax({
+		url:"http://localhost:9001/consumer/SendMail?token=123",
+		type:"POST",
+		data:{email:$("#email").val()},
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
 				let message = result.msg;
 				let type = "default";
 				let duration = 2000;
@@ -335,7 +371,6 @@ $('#logout').click(function (result){
 						y: positionY
 					}
 				});
-				setTimeout("location.reload()",2000);
 			}else{
 				let message = result.msg;
 				let type = "warning";
@@ -362,23 +397,90 @@ $('#logout').click(function (result){
 });
 
 $('#reset_password').click(function (result){
-	let email=$("#email").val();
+	if($('#password1').val()!=$('#password2').val()){
+		$('#password1').val("");
+		$('#password2').val("");
+		let message = "两次密码不一样";
+		let type = "default";
+		let duration = 2000;
+		let ripple = "true";
+		let dismissible = "true";
+		let positionX = "center";
+		let positionY = "top";
+		window.notyf.open({
+			type,
+			message,
+			ripple,
+			dismissible,
+			duration,
+			position: {
+				x: positionX,
+				y: positionY
+			}
+		});
+		return;
+	}
 	$.ajax({
-		url:"http://localhost:9001/consumer/SendMail?token=123",
+		url:"http://localhost:9001/consumer/ResetPassword?token=123",
 		type:"POST",
-		data:{email:email},
+		data:{
+			password1:$('#password1').val(),
+			password2:$('#password2').val()
+		},
 		async: false,
 		cache: false,
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
-				alert(result.msg);
+				let message = result.msg;
+				let type = "default";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				setTimeout(function(){
+					$('#password1').val("");
+					$('#password2').val("");
+				},2000);
 			}else{
-				alert(result.msg);
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
 				return;
 			}
 		}
 	});
+});
+
+$('#reset_login').click(function (result){
+	$(location).attr("href","http://localhost:9001/consumer/getLogin");
 });
 
 $('#birthday').click(function () {

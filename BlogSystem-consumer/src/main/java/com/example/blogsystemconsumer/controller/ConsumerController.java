@@ -7,7 +7,6 @@ import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
@@ -28,8 +27,8 @@ public class ConsumerController {
 
     @RequestMapping(value="getConsumer")
     public String getConsumer(){
-        String str=productService.getService();
-        return str;
+        String result=productService.getService();
+        return result;
     }
 
     @RequestMapping(value="Register",method = RequestMethod.POST)
@@ -103,9 +102,9 @@ public class ConsumerController {
             if(result.equals("1")){
                 return JsonUtils.jsonPrint(1,"修改成功!",null);
             }else if(result.equals("-1")){
-                return JsonUtils.jsonPrint(-1,"修改失败!",null);
+                return JsonUtils.jsonPrint(-1,"用户不存在!",null);
             }
-            return JsonUtils.jsonPrint(-2,"未知错误!",null);
+            return JsonUtils.jsonPrint(-2,"修改失败!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
@@ -127,10 +126,31 @@ public class ConsumerController {
             }else if(result.equals("-2")){
                 return JsonUtils.jsonPrint(-2,"原密码错误!",null);
             }
-            return JsonUtils.jsonPrint(-3,"未知错误!",null);
+            return JsonUtils.jsonPrint(-3,"密码修改失败!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
+    public String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
+        if(password1.isEmpty() || password1==null || password2.isEmpty() || password2==null){
+            return JsonUtils.jsonPrint(-3,"密码不能空!",null);
+        }
+        try{
+            String result=userProviderService.ResetPassword(password1,password2);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1,"密码修改成功!",null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1,"密码不一样!",null);
+            }else if(result.equals("-2")){
+                return JsonUtils.jsonPrint(-2,"修改密码过期了!",null);
+            }
+            return JsonUtils.jsonPrint(-3,"密码修改失败!",null);
+        }catch(Exception e){
+            e.printStackTrace();
+            return "0";
         }
     }
 
@@ -175,17 +195,21 @@ public class ConsumerController {
     @RequestMapping(value="SendMail",method= RequestMethod.POST)//注册
     public String SendMail(@RequestParam("email") String email){
         if(email==null || email.length()==0){
-            return JsonUtils.jsonPrint(-3,"没有收到用户邮箱!",null);
+            return JsonUtils.jsonPrint(-4,"没有收到用户邮箱!",null);
         }
         try{
             String result=userProviderService.ForgetPWD(email);
             if(result.equals("1")){
-                mailProviderService.SendMail(email);
-                return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
+                String mailResult=mailProviderService.SendMail(email);
+                if(mailResult.equals("1")){
+                    return JsonUtils.jsonPrint(1,"邮件发送成功!",null);
+                }else{
+                    return JsonUtils.jsonPrint(-1,"邮件发送失败!",null);
+                }
             }else if(result.equals("-1")){
-                return JsonUtils.jsonPrint(-1,"用户不存在!",null);
+                return JsonUtils.jsonPrint(-2,"用户不存在!",null);
             }
-            return JsonUtils.jsonPrint(-2,"未知错误!",null);
+            return JsonUtils.jsonPrint(-3,"邮件发送失败!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);
