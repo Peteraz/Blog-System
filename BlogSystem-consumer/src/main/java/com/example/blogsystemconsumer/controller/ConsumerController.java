@@ -2,6 +2,7 @@ package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystem.entity.User;
+import com.example.blogsystemconsumer.service.ArticleProviderService;
 import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
@@ -21,6 +22,9 @@ public class ConsumerController {
 
     @Resource
     private UserProviderService userProviderService;
+
+    @Resource
+    private ArticleProviderService articleProviderService;
 
     @Resource
     private MailProviderService mailProviderService;
@@ -72,6 +76,23 @@ public class ConsumerController {
                     return JsonUtils.jsonPrint(-2, "登录密码错误!", null);
                 default: return JsonUtils.jsonPrint(-3,result,null);
             }
+        }catch(Exception e){
+            e.printStackTrace();
+            return JsonUtils.jsonPrint(0,e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value="createArticle")
+    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("articleContents") String articleContents){
+        if(articleName.isEmpty() || articleName == null || articleContents.isEmpty() || articleContents == null){
+            return JsonUtils.jsonPrint(-1,"没收到数据!",null);
+        }
+        try{
+            String result=articleProviderService.createArticle(articleName,articleContents);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1,"文章发表成功!",null);
+            }
+            return JsonUtils.jsonPrint(-2,"文章发表失败!",null);
         }catch(Exception e){
             e.printStackTrace();
             return JsonUtils.jsonPrint(0,e.getMessage(),null);

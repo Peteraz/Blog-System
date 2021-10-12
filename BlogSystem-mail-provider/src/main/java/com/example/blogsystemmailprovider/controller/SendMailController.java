@@ -1,6 +1,7 @@
 package com.example.blogsystemmailprovider.controller;
 
-import com.example.blogsystem.common.JsonUtils;
+import java.io.File;
+import javax.annotation.Resource;
 import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import javax.annotation.Resource;
-import javax.mail.internet.MimeMessage;
-import java.io.File;
 import java.util.concurrent.TimeUnit;
+import javax.mail.internet.MimeMessage;
 
 @RestController
 public class SendMailController {

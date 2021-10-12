@@ -10,10 +10,14 @@ public class FileUploadUtils {
     public static String Upload( MultipartFile file){
         //文件名字
         String fileName = file.getOriginalFilename();
+        //中文正则表达式
+        String REGEX_CHINESE="[\u4e00-\u9fa5]";
         //副档名
         //String suffixName = fileName.substring(fileName.lastIndexOf("."));
         //上传后的路径
         String filePath = realpath;
+        //去掉中文
+        fileName=fileName.replaceAll(REGEX_CHINESE,"");
         //新文件名字
         fileName = UUID.randomUUID().toString().replace("-", "") + fileName;
         File dest = new File(filePath, fileName);

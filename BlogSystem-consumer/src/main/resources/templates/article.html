@@ -270,7 +270,7 @@
 											<div id="editor">
 											</div>
 										</div>
-										<button id="submit" type="submit" class="btn btn-primary">提交文章</button>
+										<button id="article_submit" type="submit" class="btn btn-primary">提交文章</button>
 										<button id="clean" type="submit" class="btn btn-primary">清除</button>
 									</form>
 								</div>
@@ -334,10 +334,10 @@
 		// 3M
 		editor.config.uploadImgMaxSize=5*1024*1024;
 		//照片格式
-		editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
+		editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
 		// 限制一次最多上传 5 张图片
 		editor.config.uploadImgMaxLength = 5;
-		editor.config.uploadImgServer='http://localhost:9001/consumer/FileUpload'
+		editor.config.uploadImgServer='http://localhost:9001/consumer/FileUpload?token=123'
 		editor.config.uploadImgHeaders = {
 			Accept: 'text/x-json',
 			a: 100,
@@ -346,7 +346,24 @@
 			fail:function(xhr, editor, result){
 				// 图片上传并返回结果，但图片插入错误时触发
 				// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-				alert(result)
+				let message =result;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
 			}
 		}
 		editor.config.customUploadImg=function(resultFiles,insertImgFn){
@@ -355,7 +372,7 @@
 				file.append("file",resultFiles[i]);
 			}
 			$.ajax({
-				url:'http://localhost:9001/consumer/FileUpload',
+				url:'http://localhost:9001/consumer/FileUpload?token=123',
 				type: "POST",
 				data: file,
 				async: false,
@@ -369,7 +386,24 @@
 							insertImgFn(result.data[j],"picture"+j);
 						}
 					}else{
-						alert("error!");
+						let message = "error!";
+						let type = "warning";
+						let duration = 2000;
+						let ripple = "true";
+						let dismissible = "true";
+						let positionX = "center";
+						let positionY = "top";
+						window.notyf.open({
+							type,
+							message,
+							ripple,
+							dismissible,
+							duration,
+							position: {
+								x: positionX,
+								y: positionY
+							}
+						});
 						return;
 					}
 				}

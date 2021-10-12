@@ -11,8 +11,8 @@ public class UUIDUtils {
 
     public static String getId(){
         //产生UUID
-        String userid=UUID.randomUUID().toString().replace("-", "");
-        return userid;
+        String id=UUID.randomUUID().toString().replace("-", "");
+        return id;
     }
 
     public static String getToken(){

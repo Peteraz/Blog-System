@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 //@Component:把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>，它的作用就是实现bean的注入
@@ -25,13 +24,13 @@ public interface UserProviderService {
     @RequestMapping(value="Logout",method= RequestMethod.POST)//登出
     String Logout();
 
-    @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)//修改用户信息
     String ResetInfo(@RequestBody Map<String, String> map);
 
-    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
+    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)//修改密码
     String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2);
 
-    @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
+    @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)//重置密码
     String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2);
 
     @RequestMapping(value="ForgetPWD",method= RequestMethod.POST)//忘记密码
