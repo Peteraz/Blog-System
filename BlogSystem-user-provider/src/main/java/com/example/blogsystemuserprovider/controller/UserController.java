@@ -75,16 +75,11 @@ public class UserController {
                 if (user.getLoginTime() != null) {
                     user.setLastLoginTime(user.getLoginTime());
                 }
-                //当前登录时间
-                user.setLoginTime(new Date());
-                //登录次数+1
-                user.setLoginCount(user.getLoginCount() + 1);
+                user.setLoginTime(new Date());  //当前登录时间
+                user.setLoginCount(user.getLoginCount() + 1);  //登录次数+1
                 userService.updateByUserSelective(user);
-                //避免暴露密码
-                user.setPassword("null");
-                //redis缓存
-                redisTemplate.opsForValue().set("user", JSON.toJSONString(user),7, TimeUnit.DAYS);
-                //System.out.println(redisTemplate.opsForValue().get("user"));
+                user.setPassword("null");   //避免暴露密码
+                redisTemplate.opsForValue().set("user", JSON.toJSONString(user),7, TimeUnit.DAYS);  //redis缓存
                 return "1";
             }
         } catch (Exception e) {
@@ -160,7 +155,7 @@ public class UserController {
     public String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
         User user=new User();
         if(!password1.equals(password2)) {
-            return "-1";      //两个密码不一样
+            return "-1";     //两个密码不一样
         }
         try{
             if(redisTemplate.getExpire("resetEmail") == -2){
