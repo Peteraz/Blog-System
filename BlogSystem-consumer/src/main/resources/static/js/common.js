@@ -308,6 +308,64 @@ $('#login').click(function (result){
 	}
 });
 
+$('#article_submit').click(function (result){
+	let articleName=$('#article_name').val();
+	let articleContents=editor.txt.html();
+	$.ajax({
+		url:"http://localhost:9001/consumer/createArticle?token=123",
+		type:"POST",
+		data:{ articleName:articleName,articleContents:articleContents },
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				let message = result.msg;
+				let type = "default";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				setTimeout(function(){
+					location.reload();
+				},2000);
+			}else{
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				return;
+			}
+		}
+	});
+});
+
 $('#logout').click(function (result){
 	$.ajax({
 		url:"http://localhost:9001/consumer/Logout?token=123",
