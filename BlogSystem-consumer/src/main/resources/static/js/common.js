@@ -300,7 +300,24 @@ $('#login').click(function (result){
 				if(result.status=="1"){
 					$(location).attr("href","http://localhost:9001/consumer/getIndex");
 				}else{
-					alert(result.msg);
+					let message = result.msg;
+					let type = "warning";
+					let duration = 2000;
+					let ripple = "true";
+					let dismissible = "true";
+					let positionX = "center";
+					let positionY = "top";
+					window.notyf.open({
+						type,
+						message,
+						ripple,
+						dismissible,
+						duration,
+						position: {
+							x: positionX,
+							y: positionY
+						}
+					});
 					return;
 				}
 			}

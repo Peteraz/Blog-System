@@ -49,8 +49,7 @@ public class UserController {
                 user.setPhoneNumber(map.get("phone_number"));
                 user.setState(map.get("state"));
                 user.setCity(map.get("city"));
-                Date time = new Date();
-                user.setCreateTime(time);
+                user.setCreateTime(new Date());
                 user.setLoginCount(count);
                 userService.insertSelective(user);
                 return "1";//注册成功

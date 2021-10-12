@@ -31,7 +31,7 @@ public class ArticleController {
             article.setArticleName(articleName);         //文章标题
             article.setArticleContents(articleContents); //文章内容
             article.setPublishTime(new Date());          //文章发表时间
-            articleService.insertSelective(article);
+            articleService.insert(article);
             return "1";
         }catch(Exception e){
             e.printStackTrace();
