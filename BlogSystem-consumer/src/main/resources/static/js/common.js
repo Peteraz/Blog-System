@@ -353,18 +353,18 @@ $('#reset').click(function(){
 });
 
 $('#commit').click(function(){  //裁剪
-	let casp=$('#image').cropper('getCroppedCanvas',{
+	let caspiture=$('#image').cropper('getCroppedCanvas',{
 		height:128,
 		width:128,
 		minHeight:128,
 		minWidth:128
 	});  //获取被裁剪的canvas
-	let base64=casp.toDataURL('img/jpeg');  //转换为base64
+	let base64=caspiture.toDataURL('img/jpeg');  //转换为base64
 	console.log(encodeURIComponent(base64));  //输出对特殊字符进行编码后的结果
 	$('#preview').prop('src',base64);  //预览裁剪后的图片
 });
 
-$('#article_submit').click(function (result){
+$('#article_submit').click(function (result){ //提交文章
 	let articleName=$('#article_name').val();
 	let articleContents=editor.txt.html();
 	$.ajax({

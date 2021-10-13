@@ -477,7 +477,7 @@
 <script type="text/javascript">
 	let $image=$('#image');
 	$image.cropper({
-		aspectRatio:1/1, //设置剪裁容器的比例。
+		aspectRatio:1, //设置剪裁容器的比例。
 		crop:function(event){
 			console.log(event.detail.x);
 			console.log(event.detail.y);
@@ -489,11 +489,13 @@
 		}
 	});
 	let options={
-		autoCropArea:0.5,
-		viewMode:3,
-		movable: false,  //是否允许移动后面的照片
+		dragMode:'move',  //拖拽图片模式,move为图片可移动
+		autoCropArea:0.5, //自动调整裁剪图片
+		viewMode:3,  //视图模式3,裁剪框最大只能和圖片一樣大
+		//movable: false,  //是否允许移动后面的照片
 		resizable:false, //是否允许改变剪裁框的大小。
-		mouseWheelZoom:false
+		mouseWheelZoom:false,  //是否允许通过鼠标滚轮来缩放图片。
+		cropBoxResizable:false //静止裁剪区缩放
 	}
 	$image.cropper(options);
 </script>
