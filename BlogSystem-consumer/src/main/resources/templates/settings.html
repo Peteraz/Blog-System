@@ -19,7 +19,13 @@
 
 	<!-- BEGIN SETTINGS -->
 	<!-- Remove this after purchasing -->
+	<link class="js-stylesheet" href="css/cropper.css" rel="stylesheet">
 	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
+	<style>
+		img {
+			max-width: 100%; /* This rule is very important, please do not ignore this! */
+		}
+	</style>
 </head>
 <!--
   HOW TO USE:
@@ -330,11 +336,34 @@
 													</div>
 													<div class="col-md-4">
 														<div class="text-center">
-															<img alt="Charles Hall" src="img/avatars/avatar.jpg" class="rounded-circle img-responsive mt-2" width="128" height="128" />
+															<img id="preview" alt="Charles Hall" src="img/avatars/avatar.jpg" class="avatar-large img-fluid rounded me-1" width="128" height="128" />
 															<div class="mt-2">
-																<span class="btn btn-primary"><i class="fas fa-upload"></i> 上传</span>
+																<Button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary"><i class="fas fa-upload"></i> 上传</Button>
 															</div>
 															<small>请使用128px左右的jpg格式的图片</small>
+														</div>
+														<div class="modal fade" id="defaultModalPrimary" tabindex="-1" style="display: none;" aria-hidden="true">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title align-items-center">头像</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body m-7">
+																		<div class="mb-0">
+																			<input id="choosePicture" type="file" accept=".jpg,.jpeg,.png,.bmp,.webp" hidden>
+																			<img id="image" src="img/photos/img.png" alt="test">
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button id="chooseP" type="button" class="btn btn-primary">选择照片</button>
+																		<button id="rotate" type="button" class="btn btn-primary">旋转</button>
+																		<button id="reset" type="button" class="btn btn-primary">还原</button>
+																		<button id="commit" type="button" class="btn btn-primary">裁剪</button>
+																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">关闭</button>
+																	</div>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -378,7 +407,6 @@
 														<input id="city" type="text" class="form-control"  th:value="${user.city}">
 													</div>
 												</div>
-
 												<button id="info_submit" type="button" class="btn btn-primary">保存</button>
 											</form>
 										</div>
@@ -443,7 +471,31 @@
 	</div>
 <script src="js/app.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
+<script src="js/cropper.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	let $image=$('#image');
+	$image.cropper({
+		aspectRatio:1/1, //设置剪裁容器的比例。
+		crop:function(event){
+			console.log(event.detail.x);
+			console.log(event.detail.y);
+			console.log(event.detail.width);
+			console.log(event.detail.height);
+			console.log(event.detail.rotate);
+			console.log(event.detail.scaleX);
+			console.log(event.detail.scaleY);
+		}
+	});
+	let options={
+		autoCropArea:0.5,
+		viewMode:3,
+		movable: false,  //是否允许移动后面的照片
+		resizable:false, //是否允许改变剪裁框的大小。
+		mouseWheelZoom:false
+	}
+	$image.cropper(options);
+</script>
 </body>
 </html>

@@ -129,4 +129,10 @@ public class PageController {
             return modelAndView;
         }
     }
+
+    @RequestMapping(value="getTest")
+    public ModelAndView getTest(){
+        ModelAndView modelAndView=new ModelAndView("test");
+        return modelAndView;
+    }
 }

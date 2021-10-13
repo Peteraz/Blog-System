@@ -91,6 +91,50 @@ $('#register').click(function (result){
 	});
 });
 
+$('#login').click(function (result){
+	let account=$('#account').val();
+	let password=$('#password').val();
+	if(!account){
+		alert("请输入账号！");
+	} else if(!password){
+		alert("请输入密码！");
+	}else{
+		$.ajax({
+			url:"http://localhost:9001/consumer/Login",
+			data:{account:account,password:password},
+			type:"POST",
+			async: false,
+			cache: false,
+			dataType: "json",
+			success:function(result){
+				if(result.status=="1"){
+					$(location).attr("href","http://localhost:9001/consumer/getIndex");
+				}else{
+					let message = result.msg;
+					let type = "warning";
+					let duration = 2000;
+					let ripple = "true";
+					let dismissible = "true";
+					let positionX = "center";
+					let positionY = "top";
+					window.notyf.open({
+						type,
+						message,
+						ripple,
+						dismissible,
+						duration,
+						position: {
+							x: positionX,
+							y: positionY
+						}
+					});
+					return;
+				}
+			}
+		});
+	}
+});
+
 //判断是否第一次选择
 let count=0;
 const choose=function(){
@@ -281,48 +325,43 @@ $('#password_submit').click(function(result){
 	});
 });
 
-$('#login').click(function (result){
-	let account=$('#account').val();
-	let password=$('#password').val();
-	if(!account){
-		alert("请输入账号！");
-	} else if(!password){
-		alert("请输入密码！");
-	}else{
-		$.ajax({
-			url:"http://localhost:9001/consumer/Login",
-			data:{account:account,password:password},
-			type:"POST",
-			async: false,
-			cache: false,
-			dataType: "json",
-			success:function(result){
-				if(result.status=="1"){
-					$(location).attr("href","http://localhost:9001/consumer/getIndex");
-				}else{
-					let message = result.msg;
-					let type = "warning";
-					let duration = 2000;
-					let ripple = "true";
-					let dismissible = "true";
-					let positionX = "center";
-					let positionY = "top";
-					window.notyf.open({
-						type,
-						message,
-						ripple,
-						dismissible,
-						duration,
-						position: {
-							x: positionX,
-							y: positionY
-						}
-					});
-					return;
-				}
-			}
-		});
+$('#chooseP').click(function(){   //选择照片
+	$('#choosePicture').click();
+});
+
+$('#choosePicture').on('change',function(e){  //获取图片
+	//获取用户选择的文件
+	let filelist=e.target.files;
+	//检查是否选择了文件
+	if(filelist.length === 0){
+		return alert("请选择照片");
 	}
+	//拿到用户选择的文件
+	let file=e.target.files[0];
+	//通过文件获取到路径
+	let imgURL=URL.createObjectURL(file);
+	//重新初始化裁剪区域
+	$image.cropper('destroy').attr('src',imgURL).cropper(options)
+});
+
+$('#rotate').click(function(){  //旋转
+	$('#image').cropper('rotate',30);  //旋转图片
+});
+
+$('#reset').click(function(){
+	$('#image').cropper('reset');  //旋转图片
+});
+
+$('#commit').click(function(){  //裁剪
+	let casp=$('#image').cropper('getCroppedCanvas',{
+		height:128,
+		width:128,
+		minHeight:128,
+		minWidth:128
+	});  //获取被裁剪的canvas
+	let base64=casp.toDataURL('img/jpeg');  //转换为base64
+	console.log(encodeURIComponent(base64));  //输出对特殊字符进行编码后的结果
+	$('#preview').prop('src',base64);  //预览裁剪后的图片
 });
 
 $('#article_submit').click(function (result){

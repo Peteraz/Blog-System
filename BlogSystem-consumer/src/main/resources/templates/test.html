@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            user-select:none; /*禁止用户选中*/
+        }
+        .wrap{
+            width:300px;
+            height: 40px;
+            background-color:#e8e8e8;
+            margin:100px auto;
+            text-align: center;
+            line-height: 40px;   /*border-radius: 7px;*/
+            position:relative;
+        }
+        .rect{
+            position:relative;
+            width:300px;
+            height:100%;
+        }
+        .rec{
+            position:absolute;
+            top:0;
+            left:0;
+            width:0;
+            height:100%;
+            background: #00b894;
+        }
+        .silde{
+            position:absolute;
+            top:0;
+            left:0;
+            z-index: 11;   /*在这里面，当设置长宽为40px时在加上边框1px就会超出 40px。 可以使用怪异盒模型，怪异盒模型会使盒子的宽高包括边框，操持40px；*/
+            box-sizing:border-box;
+            width:40px;
+            height:40px;
+            background: #fff;
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class='wrap'>
+    <div class='rec'>
+        <div class='rect'>滑块拖拽验证
+            <div class='silde'>
+                <img src="hkkkk.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //获取事件
+    var silde = document.querySelector('.silde');
+    var rec = document.querySelector('.rec');
+    var rect= document.querySelector('.rect');
+    var img= document.querySelector('img');
+    var minusX;  //保存变化的 X坐标（全局变量）
+    //注册事件
+    silde.onmousedown = function(e) {
+        //鼠标点击事件，点击之后执行函数，获得点击位置的X坐标
+        var initX = e.clientX;
+        //保存初始按下位置的 X坐标；
+        console.log(11,e);
+        //用以测试
+        document.onmousemove = function(e) {
+            //鼠标移动事件
+            var moveX = e.clientX;
+            // var minusX = moveX - initX;
+            //变化的坐标（要注意作用域的问题，在这里面定义变量，在这个函数之外的函数就没法使用，所以要将minusX变成全局变量）
+            minusX = moveX - initX;                 //这里注意一下，获得的minusX只是一个差值，没有单位想让 滑块的位置改变还需要加上 单位px
+            //这个时候滑块会跟随鼠标整个页面一行的跑，价格条件判段，限制 滑块移动的区域不可以超过边框，保持left<=0。
+            if(minusX < 0) {
+                // silde.style.left = '0';
+                minusX = 0;
+            }
+            if(minusX > 260) { //判断最大值
+                // silde.style.left = '251';
+                // 这里面的距离用边框长度减去 滑块的长度 300-49
+                minusX = 260;
+                console.log('我到头了');
+            }
+            silde.style.left = minusX + 'px';
+            rec.style.width = minusX + 'px';
+            if(minusX >= 260) {
+                rect.style.color = 'white';
+                img.src = 'sure.png';
+                document.onmousemove = null;
+                silde.onmousedown = null;                     // rect.innerHTML = '验证成功';
+            }
+            // console.log(222,e,minusX);    //用以测试
+        }
+    }
+    document.onmouseup = function () {    //鼠标抬起事件
+        // document.onmousemove = null;    //不允许鼠标移动事件发生
+        // console.log(111);
+        // if(minusX < 260) { //如果没有到头
+                // img.src = 'hkkkk.png';
+                // silde.style.left = 0;    //设置一个 left值
+                // rec.style.width = 0;    //绿色背景层设置宽度
+        // }
+    }
+</script>
+</body>
+</html>
