@@ -13,6 +13,8 @@ public class User {
 
     private String userName;
 
+    private String userIcon;
+
     private Integer age;
 
     private String sex;
@@ -75,6 +77,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getUserIcon() {
+        return userIcon;
+    }
+
+    public void setUserIcon(String userIcon) {
+        this.userIcon = userIcon == null ? null : userIcon.trim();
     }
 
     public Integer getAge() {
@@ -171,28 +181,5 @@ public class User {
 
     public void setIdentity(String identity) {
         this.identity = identity == null ? null : identity.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userid='" + userid + '\'' +
-                ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", state='" + state + '\'' +
-                ", city='" + city + '\'' +
-                ", biography='" + biography + '\'' +
-                ", createTime=" + createTime +
-                ", loginTime=" + loginTime +
-                ", lastLoginTime=" + lastLoginTime +
-                ", loginCount=" + loginCount +
-                ", identity='" + identity + '\'' +
-                '}';
     }
 }

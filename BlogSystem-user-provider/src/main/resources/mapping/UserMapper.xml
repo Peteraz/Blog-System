@@ -7,6 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_icon" jdbcType="VARCHAR" property="userIcon" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
@@ -21,8 +22,8 @@
     <result column="identity" jdbcType="VARCHAR" property="identity" />
   </resultMap>
   <sql id="Base_Column_List">
-    userid, account, password, email, user_name, age, sex, phone_number, birthday, state, 
-    city, biography, create_time, login_time, last_login_time, login_count, identity
+    userid, account, password, email, user_name, user_icon, age, sex, phone_number, birthday, 
+    state, city, biography, create_time, login_time, last_login_time, login_count, identity
   </sql>
   <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -44,23 +45,25 @@
     from user
     where email = #{email,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteById" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.blogsystem.entity.User">
     insert into user (userid, account, password, 
-      email, user_name, age, 
-      sex, phone_number, birthday, 
-      state, city, biography, 
-      create_time, login_time, last_login_time, 
-      login_count, identity)
+      email, user_name, user_icon, 
+      age, sex, phone_number, 
+      birthday, state, city, 
+      biography, create_time, login_time, 
+      last_login_time, login_count, identity
+      )
     values (#{userid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{sex,jdbcType=CHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{biography,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
-      #{loginCount,jdbcType=BIGINT}, #{identity,jdbcType=VARCHAR})
+      #{email,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userIcon,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{sex,jdbcType=CHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{biography,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{loginCount,jdbcType=BIGINT}, #{identity,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.blogsystem.entity.User">
     insert into user
@@ -79,6 +82,9 @@
       </if>
       <if test="userName != null">
         user_name,
+      </if>
+      <if test="userIcon != null">
+        user_icon,
       </if>
       <if test="age != null">
         age,
@@ -133,6 +139,9 @@
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
+      <if test="userIcon != null">
+        #{userIcon,jdbcType=VARCHAR},
+      </if>
       <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
@@ -171,7 +180,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByUserSelective" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.User">
     update user
     <set>
       <if test="account != null">
@@ -185,6 +194,9 @@
       </if>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIcon != null">
+        user_icon = #{userIcon,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
@@ -225,12 +237,13 @@
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateById" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.User">
     update user
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
+      user_icon = #{userIcon,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
       sex = #{sex,jdbcType=CHAR},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},

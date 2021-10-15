@@ -26,7 +26,7 @@ public class FileUploadUtils {
             dest.getParentFile().mkdirs();
         }
         try {
-            file.transferTo(dest);
+            file.transferTo(dest);  //上传图片
         } catch (Exception e) {
             e.printStackTrace();
         }

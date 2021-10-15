@@ -266,13 +266,13 @@ $('#password_submit').click(function(result){
 	$.ajax({
 		url:"http://localhost:9001/consumer/ResetPWD?token=123",
 		data:{
-			"password":$('#inputPasswordCurrent').val(),
-			"password1":$('#inputPasswordNew1').val(),
-			"password2":$('#inputPasswordNew2').val(),
+			file
 		},
 		type:"POST",
 		async: false,
 		cache: false,
+		processData: false,
+		contentType: false,
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
@@ -341,28 +341,111 @@ $('#choosePicture').on('change',function(e){  //获取图片
 	//通过文件获取到路径
 	let imgURL=URL.createObjectURL(file);
 	//重新初始化裁剪区域
-	$image.cropper('destroy').attr('src',imgURL).cropper(options)
+	image.cropper('destroy').attr('src',imgURL).cropper(options)
 });
 
 $('#rotate').click(function(){  //旋转
-	$('#image').cropper('rotate',30);  //旋转图片
+	image.cropper('rotate',30);  //旋转图片
 });
 
-$('#reset').click(function(){
-	$('#image').cropper('reset');  //旋转图片
+$('#reset').click(function(){  //还原
+	image.cropper('reset');
 });
 
-$('#commit').click(function(){  //裁剪
-	let caspiture=$('#image').cropper('getCroppedCanvas',{
+$('#commit').click(function(){  //获取裁剪的图片
+	let caspiture=image.cropper('getCroppedCanvas',{  //获取被裁剪的canvas
 		height:128,
 		width:128,
 		minHeight:128,
-		minWidth:128
-	});  //获取被裁剪的canvas
+		minWidth:128,
+	});
 	let base64=caspiture.toDataURL('img/jpeg');  //转换为base64
 	console.log(encodeURIComponent(base64));  //输出对特殊字符进行编码后的结果
 	$('#preview').prop('src',base64);  //预览裁剪后的图片
 });
+
+$('#icon_upload').click(function(){  //上传图片
+	let caspiture=image.cropper('getCroppedCanvas',{  //获取被裁剪的canvas
+		height:128,
+		width:128,
+		minHeight:128,
+		minWidth:128,
+	});
+	let file=caspiture.toDataURL('img/jpeg');  ///转换为base64
+	let name=new Date()+".jpeg";
+	let type="image/jpeg";
+	let blob=processData(dataURL);
+	let files=new FormData();
+	file.append("image",blob);
+	$.ajax({
+		url:"http://localhost:9001/consumer/ResetPWD?token=123",
+		data: file,
+		type:"POST",
+		async: false,
+		cache: false,
+		dataType: "json",
+		success:function(result){
+			if(result.status=="1"){
+				let message = result.msg;
+				let type = "default";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				setTimeout(function(){
+					//location.reload();
+					$('#inputPasswordCurrent').val("");
+					$('#inputPasswordNew1').val("");
+					$('#inputPasswordNew2').val("");
+				},2000);
+			}else{
+				let message = result.msg;
+				let type = "warning";
+				let duration = 2000;
+				let ripple = "true";
+				let dismissible = "true";
+				let positionX = "center";
+				let positionY = "top";
+				window.notyf.open({
+					type,
+					message,
+					ripple,
+					dismissible,
+					duration,
+					position: {
+						x: positionX,
+						y: positionY
+					}
+				});
+				return;
+			}
+		}
+	});
+});
+
+const processData=function(dataURL,type){
+	let bstr=atob(dataURL,type);
+	let n=bstr.length;
+	let u8arr=new Uint8Array(N);
+	while(n--){
+		u8arr[n]=bstr.charCodeAt(n);
+	}
+	return new Blob([u8rr],{
+		type,
+	})
+}
 
 $('#article_submit').click(function (result){ //提交文章
 	let articleName=$('#article_name').val();
