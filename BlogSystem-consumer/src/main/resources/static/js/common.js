@@ -374,7 +374,7 @@ $('#icon_upload').click(function(){  //上传图片
 	let file=caspiture.toDataURL('img/jpeg');  ///转换为base64
 	let name=new Date()+".jpeg";
 	let type="image/jpeg";
-	let blob=processData(dataURL);
+	let blob=processData(dataURL,type);
 	let files=new FormData();
 	file.append("image",blob);
 	$.ajax({
@@ -443,7 +443,7 @@ const processData=function(dataURL,type){
 		u8arr[n]=bstr.charCodeAt(n);
 	}
 	return new Blob([u8rr],{
-		type,
+		type
 	})
 }
 

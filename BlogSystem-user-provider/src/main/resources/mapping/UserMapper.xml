@@ -45,7 +45,7 @@
     from user
     where email = #{email,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteById" parameterType="java.lang.String">
     delete from user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
@@ -180,7 +180,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateByUserSelective" parameterType="com.example.blogsystem.entity.User">
     update user
     <set>
       <if test="account != null">
@@ -237,7 +237,7 @@
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.User">
+  <update id="updateById" parameterType="com.example.blogsystem.entity.User">
     update user
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
