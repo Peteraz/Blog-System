@@ -2,6 +2,7 @@ package com.example.blogsystem.common;
 
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 public class FileUploadUtils {
@@ -26,8 +27,8 @@ public class FileUploadUtils {
             dest.getParentFile().mkdirs();
         }
         try {
-            file.transferTo(dest);  //上传图片
-        } catch (Exception e) {
+            file.transferTo(dest);  //把内存图片写入磁盘中
+        } catch (IOException e) {
             e.printStackTrace();
         }
         String filename=virtualpath+fileName;

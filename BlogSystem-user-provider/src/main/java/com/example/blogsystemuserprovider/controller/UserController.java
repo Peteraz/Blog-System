@@ -2,14 +2,15 @@ package com.example.blogsystemuserprovider.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.example.blogsystem.common.AgeUtils;
+import com.example.blogsystem.common.*;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
-import com.example.blogsystem.common.SHA256Utils;
-import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
 import java.util.Map;
@@ -172,6 +173,30 @@ public class UserController {
             e.printStackTrace();
             return "0";
         }
+    }
+
+    @RequestMapping(value="IconUpload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String IconUpload(@RequestPart("file") MultipartFile[] file) {
+        User user=new User();
+        ArrayList data=new ArrayList();
+        for(int i=0;i<file.length;i++){
+            if(FileUploadUtils.IsImg(file[i]).equals("yes")){
+                try{
+                    String url=FileUploadUtils.Upload(file[i]);
+                    if(!url.equals("error")){
+                        user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
+                        user=userService.getUserById(user.getUserid());
+                        user.setUserIcon(url);
+                        userService.updateByUserSelective(user);
+                        return "1";
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                    return "0";
+                }
+            }
+        }
+        return "-1";
     }
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)

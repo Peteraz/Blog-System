@@ -1,6 +1,6 @@
 server:
   #定义端口号
-  port: 7090
+  port: 7099
   servlet:
     #定义项目的访问访问路径
     context-path: /consumer
@@ -63,9 +63,9 @@ feign:
     config:
       default:
         #指的是建立连接后从服务器读取到可用资源所用的时间
-        read-timeout: 7000
+        read-timeout: 15000
         #指的是建立连接所用的时间
-        connect-timeout: 7000
+        connect-timeout: 15000
         loggerLevel: full
   #替换掉JDK默认HttpURLConnection实现的Http Client
   httpclient:

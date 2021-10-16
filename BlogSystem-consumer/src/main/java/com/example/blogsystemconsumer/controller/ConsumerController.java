@@ -8,6 +8,7 @@ import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
@@ -192,7 +193,7 @@ public class ConsumerController {
     @RequestMapping(value="FileUpload")
     public String FileUpload(@RequestParam("file") MultipartFile[] file) {
         ArrayList data=new ArrayList();
-        System.out.println(file.toString());
+        //System.out.println(file.toString());
         if (file==null || file.length==0) {
             return JsonUtils.jsonPrint(1, null);
         }
@@ -211,6 +212,25 @@ public class ConsumerController {
         }
         //System.out.print(JsonUtils.jsonPrint(0,data));
         return JsonUtils.jsonPrint(0,data);
+    }
+
+    @RequestMapping(value="IconUpload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String IconUpload(@RequestPart("file") MultipartFile[] file) {
+        if (file==null || file.length==0) {
+            return JsonUtils.jsonPrint(-2, "没有选择照片!",null);
+        }
+        try{
+            String result=userProviderService.IconUpload(file);
+            if(result.equals("1")){
+                return JsonUtils.jsonPrint(1, "头像上传成功!",null);
+            }else if(result.equals("-1")){
+                return JsonUtils.jsonPrint(-1, "头像上传失败!",null);
+            }
+            return JsonUtils.jsonPrint(-3, "头像上传失败!",null);
+        }catch(Exception e){
+            e.printStackTrace();
+            return JsonUtils.jsonPrint(0, e.getMessage(),null);
+        }
     }
 
     @RequestMapping(value="SendMail",method= RequestMethod.POST)//注册

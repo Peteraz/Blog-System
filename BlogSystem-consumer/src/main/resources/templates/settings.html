@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -272,7 +271,7 @@
 								<i class="align-middle" data-feather="settings"></i>
 							</a>
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-								<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
+								<img th:src="${user.userIcon}" class="avatar img-fluid rounded me-1" th:alt="${user.userName}" />
 								<span class="text-dark" th:text="${user.userName}"></span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
@@ -336,7 +335,7 @@
 													</div>
 													<div class="col-md-4">
 														<div class="text-center">
-															<img id="preview" alt="Charles Hall" src="img/avatars/avatar.jpg" class="avatar-large img-fluid rounded me-1" width="128" height="128" />
+															<img id="preview" alt="Charles Hall" th:src="${user.userIcon}" class="avatar-large img-fluid rounded me-1" width="128" height="128" />
 															<div class="mt-2">
 																<Button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary"><i class="fas fa-file-image"></i> 图片</Button>
 																<Button id="icon_upload"type="button" class="btn btn-primary"><i class="fas fa-upload"></i> 上传</Button>

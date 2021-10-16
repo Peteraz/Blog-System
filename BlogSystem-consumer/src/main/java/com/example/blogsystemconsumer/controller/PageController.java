@@ -37,7 +37,7 @@ public class PageController {
             }else{
                 User user= JSONArray.parseObject(value,User.class);
                 //System.out.println(user);
-                modelAndView.addObject("username",user.getUserName());
+                modelAndView.addObject("user",user);
                 return modelAndView;
             }
         }catch(Exception e){
@@ -102,7 +102,7 @@ public class PageController {
             }else{
                 User user= JSONArray.parseObject(value,User.class);
                 //System.out.println(user);
-                modelAndView.addObject("username",user.getUserName());
+                modelAndView.addObject("user",user);
                 return modelAndView;
             }
         }catch(Exception e){

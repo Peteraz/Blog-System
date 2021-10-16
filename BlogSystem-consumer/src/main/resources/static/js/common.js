@@ -371,18 +371,21 @@ $('#icon_upload').click(function(){  //上传图片
 		minHeight:128,
 		minWidth:128,
 	});
-	let file=caspiture.toDataURL('img/jpeg');  ///转换为base64
-	let name=new Date()+".jpeg";
+	let photo=caspiture.toDataURL('img/jpeg');  ///转换为base64
+	let time=new Date();
+	let name=time.getFullYear().toString()+time.getMonth().toString()+time.getDay().toString()+time.getHours().toString()+time.getMinutes().toString()+Math.random().toString()+".jpeg";
 	let type="image/jpeg";
-	let blob=processData(dataURL,type);
-	let files=new FormData();
-	file.append("image",blob);
+	let files=processData(photo,name,type);
+	let file=new FormData();
+	file.append("file",files);
 	$.ajax({
-		url:"http://localhost:9001/consumer/ResetPWD?token=123",
+		url:"http://localhost:9001/consumer/IconUpload?token=123",
 		data: file,
 		type:"POST",
 		async: false,
 		cache: false,
+		processData: false, //置为false,因为data值是FormData对象，不需要对数据做处理。
+		contentType: false, //设置为false，不设置contentType值，因为是由<form>表单构造的FormData对象
 		dataType: "json",
 		success:function(result){
 			if(result.status=="1"){
@@ -404,12 +407,6 @@ $('#icon_upload').click(function(){  //上传图片
 						y: positionY
 					}
 				});
-				setTimeout(function(){
-					//location.reload();
-					$('#inputPasswordCurrent').val("");
-					$('#inputPasswordNew1').val("");
-					$('#inputPasswordNew2').val("");
-				},2000);
 			}else{
 				let message = result.msg;
 				let type = "warning";
@@ -435,15 +432,16 @@ $('#icon_upload').click(function(){  //上传图片
 	});
 });
 
-const processData=function(dataURL,type){
-	let bstr=atob(dataURL,type);
+const processData=function(dataURL,filename,type){
+	let arr=dataURL.split(",");
+	let bstr=atob(arr[1]);
 	let n=bstr.length;
-	let u8arr=new Uint8Array(N);
+	let u8arr=new Uint8Array(n);
 	while(n--){
 		u8arr[n]=bstr.charCodeAt(n);
 	}
-	return new Blob([u8rr],{
-		type
+	return new File([u8arr],filename,{
+		type:type
 	})
 }
 

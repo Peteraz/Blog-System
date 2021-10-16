@@ -2,11 +2,10 @@ package com.example.blogsystemconsumer.service;
 
 import com.example.blogsystemconsumer.resilience4j.BackendUserProviderService;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 //@Component:把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>，它的作用就是实现bean的注入
@@ -26,6 +25,9 @@ public interface UserProviderService {
 
     @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)//修改用户信息
     String ResetInfo(@RequestBody Map<String, String> map);
+
+    @RequestMapping(value="IconUpload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)//上传头像
+    String IconUpload(@RequestPart("file") MultipartFile[] file);
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)//修改密码
     String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2);
