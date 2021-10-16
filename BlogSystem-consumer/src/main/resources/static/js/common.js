@@ -373,7 +373,7 @@ $('#icon_upload').click(function(){  //上传图片
 	});
 	let photo=caspiture.toDataURL('img/jpeg');  ///转换为base64
 	let time=new Date();
-	let name=time.getFullYear().toString()+time.getMonth().toString()+time.getDay().toString()+time.getHours().toString()+time.getMinutes().toString()+Math.random().toString()+".jpeg";
+	let name=time.getFullYear().toString()+time.getMonth().toString()+time.getDay().toString()+time.getHours().toString()+time.getMinutes().toString()+".jpeg";
 	let type="image/jpeg";
 	let files=processData(photo,name,type);
 	let file=new FormData();
@@ -447,11 +447,12 @@ const processData=function(dataURL,filename,type){
 
 $('#article_submit').click(function (result){ //提交文章
 	let articleName=$('#article_name').val();
+	let category=$("input[name='category_name']:checked").val();
 	let articleContents=editor.txt.html();
 	$.ajax({
 		url:"http://localhost:9001/consumer/createArticle?token=123",
 		type:"POST",
-		data:{ articleName:articleName,articleContents:articleContents },
+		data:{ articleName:articleName,category:category,articleContents:articleContents },
 		async: false,
 		cache: false,
 		dataType: "json",

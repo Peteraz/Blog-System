@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 //path 为user-provider项目中application.yml配置文件中的context.path;
 @FeignClient(name = "article-provider-server",path="/article-provider",fallback = BackendArticleProviderService.class)
 public interface ArticleProviderService {
-    @RequestMapping(value="createArticle")//创建文章
-    String createArticle(@RequestParam("articleName") String articleName, @RequestParam("articleContents") String articleContents);
+    @RequestMapping(value="createArticle")
+    String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category,@RequestParam("articleContents") String articleContents);
 }

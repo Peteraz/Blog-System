@@ -21,7 +21,7 @@ public class ArticleController {
     private RedisTemplate<String,Object> redisTemplate;
 
     @RequestMapping(value="createArticle")
-    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("articleContents") String articleContents){
+    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category,@RequestParam("articleContents") String articleContents){
         Article article=new Article();
         User user=new User();
         try{
@@ -29,6 +29,7 @@ public class ArticleController {
             article.setArticleid(UUIDUtils.getId());     //文章id
             article.setUserid(user.getUserid());         //用户id
             article.setArticleName(articleName);         //文章标题
+            article.setCategoryName(category);           //文章分类
             article.setArticleContents(articleContents); //文章内容
             article.setPublishTime(new Date());          //文章发表时间
             articleService.insert(article);

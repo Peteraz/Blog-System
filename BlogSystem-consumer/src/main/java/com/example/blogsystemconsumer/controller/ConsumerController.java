@@ -84,12 +84,12 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="createArticle")
-    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("articleContents") String articleContents){
-        if(articleName.isEmpty() || articleName == null || articleContents.isEmpty() || articleContents == null){
+    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category,@RequestParam("articleContents") String articleContents){
+        if(articleName.isEmpty() || articleName == null || category.isEmpty() || category == null || articleContents.isEmpty() || articleContents == null) {
             return JsonUtils.jsonPrint(-1,"没收到数据!",null);
         }
         try{
-            String result=articleProviderService.createArticle(articleName,articleContents);
+            String result=articleProviderService.createArticle(articleName,category,articleContents);
             if(result.equals("1")){
                 return JsonUtils.jsonPrint(1,"文章发表成功!",null);
             }
@@ -193,7 +193,6 @@ public class ConsumerController {
     @RequestMapping(value="FileUpload")
     public String FileUpload(@RequestParam("file") MultipartFile[] file) {
         ArrayList data=new ArrayList();
-        //System.out.println(file.toString());
         if (file==null || file.length==0) {
             return JsonUtils.jsonPrint(1, null);
         }
@@ -210,7 +209,6 @@ public class ConsumerController {
                 }
             }
         }
-        //System.out.print(JsonUtils.jsonPrint(0,data));
         return JsonUtils.jsonPrint(0,data);
     }
 

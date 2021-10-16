@@ -9,6 +9,8 @@ public class Article {
 
     private String articleName;
 
+    private String categoryName;
+
     private Date publishTime;
 
     private Date editTime;
@@ -37,6 +39,14 @@ public class Article {
 
     public void setArticleName(String articleName) {
         this.articleName = articleName == null ? null : articleName.trim();
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
     public Date getPublishTime() {

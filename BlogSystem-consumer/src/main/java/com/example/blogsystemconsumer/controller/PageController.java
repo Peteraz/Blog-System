@@ -65,6 +65,25 @@ public class PageController {
         }
     }
 
+    @RequestMapping(value="getArticleShow")
+    public ModelAndView getArticleShow(){
+        ModelAndView modelAndView=new ModelAndView("article-show");
+        String value=redisTemplate.opsForValue().get("user").toString();
+        try{
+            if(value.isEmpty()){
+                return new ModelAndView("login");
+            }else{
+                User user= JSONArray.parseObject(value,User.class);
+                //System.out.println(user);
+                modelAndView.addObject("user",user);
+                return modelAndView;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return modelAndView;
+        }
+    }
+
     @RequestMapping(value="getForgetPassword")
     public ModelAndView getForgetPassword(){
         ModelAndView modelAndView=new ModelAndView("forget-password");

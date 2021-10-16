@@ -13,7 +13,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-profile.html" />
 
-	<title>Profile | Blog System</title>
+	<title>BlogSystem | Profile</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="css/light.css" rel="stylesheet">
@@ -49,9 +49,17 @@
 				<li class="sidebar-item">
 					<a class="sidebar-link" href="http://localhost:9001/consumer/getArticle?token=123">
 						<i class="align-middle" data-feather="edit"></i>
-						<span class="align-middle">文章</span>
+						<span class="align-middle">写文章</span>
 					</a>
 				</li>
+
+				<li class="sidebar-item">
+					<a class="sidebar-link" href="http://localhost:9001/consumer/getArticleShow?token=123">
+						<i class="align-middle" data-feather="book-open"></i>
+						<span class="align-middle">查看文章</span>
+					</a>
+				</li>
+
 
 				<li class="sidebar-item">
 					<a class="sidebar-link" href="http://localhost:9001/consumer/getSettings?token=123">
@@ -269,7 +277,7 @@
 								<h5 class="card-title mb-0">详细资料</h5>
 							</div>
 							<div class="card-body text-center">
-								<img src="img/avatars/avatar-4.jpg" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+								<img th:src="${user.userIcon}" th:alt="${user.userName}" class="img-fluid rounded-circle mb-2" width="128" height="128" />
 								<h5 class="card-title mb-0"><label th:text="${user.userName}"></label></h5>
 								<div class="text-muted mb-2">Lead Developer</div>
 

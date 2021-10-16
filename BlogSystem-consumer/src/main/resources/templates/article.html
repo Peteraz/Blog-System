@@ -11,7 +11,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Article | Blog System</title>
+	<title>BlogSystem | Article</title>
 
 	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
 	<link href="css/app.css" rel="stylesheet">
@@ -46,7 +46,14 @@
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="http://localhost:9001/consumer/getArticle?token=123">
 							<i class="align-middle" data-feather="edit"></i>
-							<span class="align-middle">文章</span>
+							<span class="align-middle">写文章</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="http://localhost:9001/consumer/getArticleShow?token=123">
+							<i class="align-middle" data-feather="book-open"></i>
+							<span class="align-middle">查看文章</span>
 						</a>
 					</li>
 
@@ -264,7 +271,30 @@
 									<form>
 										<div class="mb-3">
 											<label class="form-label">文章标题</label>
-											<input id="article_name" type="article_name" class="form-control" placeholder="请输入">
+											<input id="article_name" type="text" class="form-control" placeholder="请输入">
+										</div>
+										<div class="mb-3">
+											<label class="form-label">文章类型</label>
+											<div>
+												<label class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="category_name" value="原创">
+													<span class="form-check-label">
+														原创
+													</span>
+												</label>
+												<label class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="category_name" value="转载">
+													<span class="form-check-label">
+														转载
+													</span>
+												</label>
+												<label class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="category_name" value="翻译">
+													<span class="form-check-label">
+														翻译
+													</span>
+												</label>
+											</div>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">文章内容</label>

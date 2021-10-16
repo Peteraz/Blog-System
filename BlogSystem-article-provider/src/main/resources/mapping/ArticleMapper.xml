@@ -5,6 +5,7 @@
     <id column="articleid" jdbcType="VARCHAR" property="articleid" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="article_name" jdbcType="VARCHAR" property="articleName" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
   </resultMap>
@@ -12,7 +13,7 @@
     <result column="article_contents" jdbcType="LONGVARCHAR" property="articleContents" />
   </resultMap>
   <sql id="Base_Column_List">
-    articleid, userid, article_name, publish_time, edit_time
+    articleid, userid, article_name, category_name, publish_time, edit_time
   </sql>
   <sql id="Blob_Column_List">
     article_contents
@@ -31,11 +32,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.blogsystem.entity.Article">
     insert into article (articleid, userid, article_name, 
-      publish_time, edit_time, article_contents
-      )
+      category_name, publish_time, edit_time, 
+      article_contents)
     values (#{articleid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{articleName,jdbcType=VARCHAR}, 
-      #{publishTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, #{articleContents,jdbcType=LONGVARCHAR}
-      )
+      #{categoryName,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{articleContents,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.blogsystem.entity.Article">
     insert into article
@@ -48,6 +49,9 @@
       </if>
       <if test="articleName != null">
         article_name,
+      </if>
+      <if test="categoryName != null">
+        category_name,
       </if>
       <if test="publishTime != null">
         publish_time,
@@ -69,6 +73,9 @@
       <if test="articleName != null">
         #{articleName,jdbcType=VARCHAR},
       </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
       <if test="publishTime != null">
         #{publishTime,jdbcType=TIMESTAMP},
       </if>
@@ -89,6 +96,9 @@
       <if test="articleName != null">
         article_name = #{articleName,jdbcType=VARCHAR},
       </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
       <if test="publishTime != null">
         publish_time = #{publishTime,jdbcType=TIMESTAMP},
       </if>
@@ -105,6 +115,7 @@
     update article
     set userid = #{userid,jdbcType=VARCHAR},
       article_name = #{articleName,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       edit_time = #{editTime,jdbcType=TIMESTAMP},
       article_contents = #{articleContents,jdbcType=LONGVARCHAR}
@@ -114,6 +125,7 @@
     update article
     set userid = #{userid,jdbcType=VARCHAR},
       article_name = #{articleName,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       edit_time = #{editTime,jdbcType=TIMESTAMP}
     where articleid = #{articleid,jdbcType=VARCHAR}
