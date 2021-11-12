@@ -5,6 +5,8 @@ import com.example.blogsystem.entity.Article;
 public interface ArticleService {
     Article selectByPrimaryKey(String articleid);
 
+    Article selectByUserId(String userid);
+
     int deleteByPrimaryKey(String articleid);
 
     int insert(Article record);

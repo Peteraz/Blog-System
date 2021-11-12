@@ -1,5 +1,6 @@
 package com.example.blogsystemconsumer.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.ArticleProviderService;
@@ -8,9 +9,12 @@ import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import com.example.blogsystem.common.JsonUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Map;
@@ -29,6 +33,9 @@ public class ConsumerController {
 
     @Resource
     private MailProviderService mailProviderService;
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
     @RequestMapping(value="getConsumer")
     public String getConsumer(){

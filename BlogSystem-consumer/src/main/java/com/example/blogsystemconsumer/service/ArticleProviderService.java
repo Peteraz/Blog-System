@@ -1,5 +1,6 @@
 package com.example.blogsystemconsumer.service;
 
+import com.example.blogsystem.entity.Article;
 import com.example.blogsystemconsumer.resilience4j.BackendArticleProviderService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -15,4 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ArticleProviderService {
     @RequestMapping(value="createArticle")
     String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category,@RequestParam("articleContents") String articleContents);
+
+    @RequestMapping(value="getArticle")
+    Article getArticle(@RequestParam("userid") String userid);
 }

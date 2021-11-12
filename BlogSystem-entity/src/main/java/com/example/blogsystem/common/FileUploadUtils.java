@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class FileUploadUtils {
-    private static String realpath="H://Repository//SpringCloud//BlogSystem//BlogSystem-consumer//src//main//resources//static//img//photos//";
+    private static String realpath="D://Repository//SpringCloud//BlogSystem//BlogSystem-consumer//src//main//resources//static//img//photos//";
     private static String virtualpath="/consumer/static/img/photos/";
     public static String Upload( MultipartFile file){
         //文件名字

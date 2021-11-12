@@ -13,6 +13,8 @@ public interface ArticleMapper {
 
     Article selectByPrimaryKey(String articleid);
 
+    Article selectByUserId(String userid);
+
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKeyWithBLOBs(Article record);

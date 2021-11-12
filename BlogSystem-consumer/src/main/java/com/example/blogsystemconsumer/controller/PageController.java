@@ -2,6 +2,7 @@ package com.example.blogsystemconsumer.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.entity.User;
+import com.example.blogsystemconsumer.service.ArticleProviderService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,9 @@ import javax.annotation.Resource;
 
 @RestController
 public class PageController {
+    @Resource
+    private ArticleProviderService articleProviderService;
+
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
 
@@ -75,7 +79,7 @@ public class PageController {
             }else{
                 User user= JSONArray.parseObject(value,User.class);
                 //System.out.println(user);
-                modelAndView.addObject("user",user);
+                modelAndView.addObject("user",user).addObject("article",articleProviderService.getArticle(user.getUserid()));
                 return modelAndView;
             }
         }catch(Exception e){

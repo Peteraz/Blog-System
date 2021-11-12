@@ -17,6 +17,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article selectByUserId(String userid){
+        return articleMapper.selectByUserId(userid);
+    }
+
+    @Override
     public int deleteByPrimaryKey(String articleid){
         return  articleMapper.deleteByPrimaryKey(articleid);
     }

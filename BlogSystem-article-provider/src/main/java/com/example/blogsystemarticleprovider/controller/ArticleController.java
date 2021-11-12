@@ -39,4 +39,19 @@ public class ArticleController {
             return "0";
         }
     }
+
+    @RequestMapping(value="getArticle")
+    public Article getArticle(@RequestParam("userid") String userid){
+        try{
+            Article article=articleService.selectByUserId(userid);
+            if(article==null){
+                return null;
+            }else{
+                return article;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
