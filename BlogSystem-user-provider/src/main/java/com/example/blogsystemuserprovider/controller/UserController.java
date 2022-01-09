@@ -6,6 +6,8 @@ import com.example.blogsystem.common.*;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,8 @@ public class UserController {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String Register(@RequestBody Map<String, String> map) {
         User user = new User();
@@ -44,7 +48,7 @@ public class UserController {
                 user.setEmail(map.get("email"));
                 user.setBirthday(map.get("birthday"));
                 age = AgeUtils.getAgeDetail(map.get("birthday"));
-                System.out.println(age);
+                logger.info(age);
                 age = age.substring(0, age.indexOf("岁"));
                 user.setAge(Integer.valueOf(age));
                 user.setSex(map.get("sex"));
@@ -136,7 +140,7 @@ public class UserController {
     public String ResetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
         User user = new User();
         if (!password1.equals(password2)) {
-            return "-1"; //两个密码不一样
+            return JsonUtils.jsonPrint(-1, "两个新密码不一致!", null); //两个密码不一致
         }
         try {
             if (StringUtils.isNotBlank(String.valueOf(redisTemplate.opsForValue().get("user")))) {
@@ -144,14 +148,14 @@ public class UserController {
                 user = userService.getUserById(user.getUserid());
             }
             if (!SHA256Utils.getSHA256(password).equals(user.getPassword())) {
-                return "-2"; //原密码不对
+                return JsonUtils.jsonPrint(-2, "原密码错误!", null); //原密码不对
             }
             user.setPassword(SHA256Utils.getSHA256(password1));
             userService.updateByUserSelective(user);
-            return "1";
+            return JsonUtils.jsonPrint(1, "密码修改成功!", null);
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);
         }
     }
 
@@ -159,11 +163,11 @@ public class UserController {
     public String ResetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
         User user = null;
         if (!password1.equals(password2)) {
-            return "-1";     //两个密码不一样
+            return JsonUtils.jsonPrint(-1, "两个密码不一样!", null);     //两个密码不一样
         }
         try {
             if (redisTemplate.getExpire("resetEmail") == -2) {
-                return "-2"; //修改密码的时候已过期
+                return JsonUtils.jsonPrint(-2, "修改密码过期了!", null); //修改密码的时候已过期
             }
             String email = String.valueOf(redisTemplate.opsForValue().get("resetEmail"));
             user = userService.getUserByEmail(email);
@@ -171,10 +175,10 @@ public class UserController {
             userService.updateByUserSelective(user);
             redisTemplate.delete("resetPwdToken");
             redisTemplate.delete("resetEmail");
-            return "1";
+            return JsonUtils.jsonPrint(1, "密码修改成功!", null);
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);
         }
     }
 
@@ -190,15 +194,16 @@ public class UserController {
                         user = userService.getUserById(user.getUserid());
                         user.setUserIcon(url);
                         userService.updateByUserSelective(user);
-                        return "1";
+                        return JsonUtils.jsonPrint(1, "头像上传成功!", null);
                     }
+                    return JsonUtils.jsonPrint(-1, "头像上传失败!", null);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return "0";
+                    return JsonUtils.jsonPrint(0, e.getMessage(), null);
                 }
             }
         }
-        return "-1";
+        return JsonUtils.jsonPrint(0, "发生错误!", null);
     }
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)
@@ -207,12 +212,12 @@ public class UserController {
         try {
             user = userService.getUserByEmail(email);
             if (user != null) {
-                return "1";
+                return JsonUtils.jsonPrint(1, "邮件发送成功!", null);
             }
-            return "-1";
+            return JsonUtils.jsonPrint(-1, "邮件发送失败!", null);
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);
         }
     }
 }

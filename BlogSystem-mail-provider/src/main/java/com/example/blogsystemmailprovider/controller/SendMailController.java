@@ -2,6 +2,8 @@ package com.example.blogsystemmailprovider.controller;
 
 import java.io.File;
 import javax.annotation.Resource;
+
+import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -89,10 +91,10 @@ public class SendMailController {
             redisTemplate.opsForValue().set("resetPwdToken",token,60*60*12,TimeUnit.SECONDS); //token
             System.out.println(token);
             redisTemplate.opsForValue().set("resetEmail",email,60*60*12,TimeUnit.SECONDS);    //接收用户
-            return "1";
+            return JsonUtils.jsonPrint(1, "邮件发送成功!", null);
         }catch(Exception e){
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);
         }
     }
 }
