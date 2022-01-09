@@ -41,8 +41,7 @@ public class ConsumerController {
 
     @RequestMapping(value = "getConsumer")
     public String getConsumer() {
-        String result = productService.getService();
-        return result;
+       return productService.getService();
     }
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)

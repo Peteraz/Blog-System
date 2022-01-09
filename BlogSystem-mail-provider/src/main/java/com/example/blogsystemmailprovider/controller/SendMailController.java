@@ -46,8 +46,8 @@ public class SendMailController {
         mailSender.send(mailMessage);
     }
 
-    @RequestMapping(value="SendAttchmentsMail",method= RequestMethod.POST)
-    public void SendAttchmentsMail() throws Exception{
+    @RequestMapping(value="SendAttChmentsMail",method= RequestMethod.POST)
+    public void SendAttChmentsMail() throws Exception{
         MimeMessage mimeMailMessage=mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMailMessage,true);
         mimeMessageHelper.setFrom(Sender);

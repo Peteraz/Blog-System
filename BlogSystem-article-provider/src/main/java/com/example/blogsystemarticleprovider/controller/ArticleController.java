@@ -1,6 +1,7 @@
 package com.example.blogsystemarticleprovider.controller;
 
 import java.util.Date;
+import java.util.List;
 import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONArray;
@@ -9,11 +10,13 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystem.entity.Article;
 import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.blogsystemarticleprovider.service.ArticleService;
+import java.util.Collections;
 
 @RestController
 public class ArticleController {
@@ -61,4 +64,20 @@ public class ArticleController {
             return null;
         }
     }
+
+    @RequestMapping(value = "getArticleListById")
+    public List<Article> getArticleListById(@RequestParam("userid") String userid) {
+        try {
+            List<Article> articleList = articleService.getArticleListById(userid);
+            if (CollectionUtils.isEmpty(articleList)) {
+                return Collections.emptyList();
+            } else {
+                return articleList;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 //@Component:把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>,也就是配置类
 //@Componet注解最好加上，不加idea会显示有错误，但是不影响系统运行；
 @Component
@@ -19,4 +21,7 @@ public interface ArticleProviderService {
 
     @RequestMapping(value="getArticle")
     Article getArticle(@RequestParam("userid") String userid);
+
+    @RequestMapping(value="getArticleListById")
+    List<Article> getArticleListById(@RequestParam("userid") String userid);
 }

@@ -115,7 +115,6 @@ public class UserController {
                 return JsonUtils.jsonPrint(-1, "用户不存在!", null);  //用户不存在
             }
             user = userService.getUserById(user.getUserid());
-            //user.setAccount(map.get("account"));
             user.setBiography(map.get("biography"));
             user.setUserName(map.get("username"));
             user.setSex(map.get("sex"));
@@ -166,7 +165,7 @@ public class UserController {
             return JsonUtils.jsonPrint(-1, "两个密码不一样!", null);     //两个密码不一样
         }
         try {
-            if (redisTemplate.getExpire("resetEmail") == -2) {
+            if (redisTemplate.getExpire("resetEmail") != 0 && redisTemplate.getExpire("resetEmail") == -2) {
                 return JsonUtils.jsonPrint(-2, "修改密码过期了!", null); //修改密码的时候已过期
             }
             String email = String.valueOf(redisTemplate.opsForValue().get("resetEmail"));

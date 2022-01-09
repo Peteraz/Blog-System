@@ -5,6 +5,7 @@ import com.example.blogsystemarticleprovider.dao.ArticleMapper;
 import com.example.blogsystemarticleprovider.service.ArticleService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -19,6 +20,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article selectByUserId(String userid){
         return articleMapper.selectByUserId(userid);
+    }
+
+    @Override
+    public List<Article> getArticleListById(String userid){
+        return articleMapper.getArticleListById(userid);
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.example.blogsystemarticleprovider.dao;
 import com.example.blogsystem.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ArticleMapper {
     int deleteByPrimaryKey(String articleid);
@@ -14,6 +16,8 @@ public interface ArticleMapper {
     Article selectByPrimaryKey(String articleid);
 
     Article selectByUserId(String userid);
+
+    List<Article> getArticleListById(String userid);
 
     int updateByPrimaryKeySelective(Article record);
 
