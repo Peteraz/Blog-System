@@ -1,6 +1,5 @@
 package com.example.blogsystemconsumer.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.ArticleProviderService;
@@ -13,8 +12,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Map;
@@ -44,50 +41,21 @@ public class ConsumerController {
     }
 
     @RequestMapping(value="Register",method = RequestMethod.POST)
-    public String Register(@RequestBody Map<String, String> map){
+    public String Register(@RequestBody Map<String, String> map){  //注册
         if(map.isEmpty()) {
             return JsonUtils.jsonPrint(-3,"收不到注册信息!",null);
         }
-        try{
-            String result=userProviderService.Register(map);
-            System.out.println(result);
-            if(result.equals("1")){
-                return JsonUtils.jsonPrint(1,"注册成功!",null);
-            }else if(result.equals("-1")){
-                return JsonUtils.jsonPrint(-1,"用户名已存在!",null);
-            }else if(result.equals("-2")){
-                return JsonUtils.jsonPrint(-2,"邮箱已使用!",null);
-            }
-            return JsonUtils.jsonPrint(-3,"注册失败!",null);
-        }catch(Exception e){
-            e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
-        }
+        return userProviderService.Register(map);  //返回调用结果
     }
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
-    public String Login(@RequestParam("account") String account, @RequestParam("password") String password){
+    public String Login(@RequestParam("account") String account, @RequestParam("password") String password){  //登录
         if(StringUtils.isBlank(account)){
             return JsonUtils.jsonPrint(-4,"请输入账号!",null);
         }else if(StringUtils.isBlank(password)){
             return JsonUtils.jsonPrint(-5,"请输入密码!",null);
         }
-        try{
-            String result=userProviderService.Login(account,password);
-            //System.out.println(result);
-            switch (result) {
-                case "1":
-                    return JsonUtils.jsonPrint(1, "登录成功!", null);
-                case "-1":
-                    return JsonUtils.jsonPrint(-1, "登录账号错误!", null);
-                case "-2":
-                    return JsonUtils.jsonPrint(-2, "登录密码错误!", null);
-                default: return JsonUtils.jsonPrint(-3,result,null);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
-        }
+        return userProviderService.Login(account,password);  //返回调用结果
     }
 
     @RequestMapping(value="createArticle")
@@ -95,30 +63,12 @@ public class ConsumerController {
         if(articleName.isEmpty() || articleName == null || category.isEmpty() || category == null || articleContents.isEmpty() || articleContents == null) {
             return JsonUtils.jsonPrint(-1,"没收到数据!",null);
         }
-        try{
-            String result=articleProviderService.createArticle(articleName,category,articleContents);
-            if(result.equals("1")){
-                return JsonUtils.jsonPrint(1,"文章发表成功!",null);
-            }
-            return JsonUtils.jsonPrint(-2,"文章发表失败!",null);
-        }catch(Exception e){
-            e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
-        }
+        return articleProviderService.createArticle(articleName,category,articleContents);
     }
 
     @RequestMapping(value="Logout",method= RequestMethod.POST)
-    public String Logout(){
-        try{
-            String result=userProviderService.Logout();
-            if(result.equals("1")){
-                return JsonUtils.jsonPrint(1,"登出成功!",null);
-            }
-            return JsonUtils.jsonPrint(-1,"登出发生错了!",null);
-        }catch(Exception e){
-            e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
-        }
+    public String Logout(){  //登出
+        return userProviderService.Logout();  //返回调用结果
     }
 
     @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
@@ -126,18 +76,7 @@ public class ConsumerController {
         if(map.isEmpty()){
             return JsonUtils.jsonPrint(-3,"接收不到数据!",null);
         }
-        try{
-            String result=userProviderService.ResetInfo(map);
-            if(result.equals("1")){
-                return JsonUtils.jsonPrint(1,"修改成功!",null);
-            }else if(result.equals("-1")){
-                return JsonUtils.jsonPrint(-1,"用户不存在!",null);
-            }
-            return JsonUtils.jsonPrint(-2,"修改失败!",null);
-        }catch(Exception e){
-            e.printStackTrace();
-            return JsonUtils.jsonPrint(0,e.getMessage(),null);
-        }
+        return userProviderService.ResetInfo(map); //返回调用结果
     }
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)

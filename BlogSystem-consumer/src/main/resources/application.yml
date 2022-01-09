@@ -33,7 +33,7 @@ eureka:
   client:
     service-url:
       #server端配置的contextPath内容加到client端的defaultZone的访问路径端口号后面，所以client端的defaultZone:要加一个/eureka。
-      defaultZone: http://localhost:8080/eureka/eureka
+      defaultZone: http://localhost:8081/eureka/eureka
   instance:
     #微服务的ID,也是唯一的ID,用来被server发现
     instance-id: consumer-server
@@ -42,21 +42,14 @@ eureka:
 #actuator配置
 management:
   endpoints:
-    #禁用其他端点
-    enabled-by-default: false
     web:
       #暴露端点
       exposure:
         include: info
-  endpoint:
     #开启info端点
-    info:
+  info:
+    java:
       enabled: true
-info:
-  app.name: BlogSystem
-  company.name: www.BlogSystem.com
-  build.artifactId: @project.artifactId@
-  build.version: @project.version@
 #openfeign配置
 feign:
   client:
@@ -76,6 +69,7 @@ logging:
       example:
         blogsystemconsumer:
           service: debug
+  config: classpath:logback-spring.xml
 resilience4j.circuitbreaker:
   instances:
       backendA:

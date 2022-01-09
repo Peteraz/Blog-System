@@ -1,6 +1,6 @@
 server:
   #定义端口号
-  port: 8080
+  port: 8081
   servlet:
     #定义项目的访问访问路径
     context-path: /eureka

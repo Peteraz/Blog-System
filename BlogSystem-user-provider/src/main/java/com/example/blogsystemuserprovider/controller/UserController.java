@@ -5,12 +5,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.common.*;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
 import java.util.Map;
@@ -23,28 +24,28 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String Register(@RequestBody Map<String, String> map) {
         User user = new User();
         long count = 0;
-        String age="";
+        String age = "";
         try {
             if (userService.getUserByAccountAndPassword(map.get("account"), null) != null) {
-                return "-1"; //账号已存在
-            }else if(userService.getUserByEmail(map.get("email"))!=null){
-                return "-2"; //邮箱已使用
+                return JsonUtils.jsonPrint(-1, "账号已存在!", null); //账号已存在
+            } else if (userService.getUserByEmail(map.get("email")) != null) {
+                return JsonUtils.jsonPrint(-2, "邮箱已使用!", null); //邮箱已使用
             } else if (!map.isEmpty()) {
                 user.setUserid(UUIDUtils.getUserId());
                 user.setAccount(map.get("account"));
-                user.setPassword(SHA256Utils.getSHA256((String)map.get("password")));
+                user.setPassword(SHA256Utils.getSHA256(map.get("password")));
                 user.setUserName(map.get("name"));
                 user.setEmail(map.get("email"));
                 user.setBirthday(map.get("birthday"));
-                age= AgeUtils.getAgeDetail(map.get("birthday"));
+                age = AgeUtils.getAgeDetail(map.get("birthday"));
                 System.out.println(age);
-                age=age.substring(0,age.indexOf("岁"));
+                age = age.substring(0, age.indexOf("岁"));
                 user.setAge(Integer.valueOf(age));
                 user.setSex(map.get("sex"));
                 user.setPhoneNumber(map.get("phone_number"));
@@ -53,25 +54,25 @@ public class UserController {
                 user.setCreateTime(new Date());
                 user.setLoginCount(count);
                 userService.insertSelective(user);
-                return "1";//注册成功
+                return JsonUtils.jsonPrint(1, "注册成功!", null); //注册成功
             } else {
-                return "-3";//注册失败
+                return JsonUtils.jsonPrint(-3, "注册失败!", null); //注册失败
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";//注册失败
+            return JsonUtils.jsonPrint(0, e.getMessage(), null); //注册失败
         }
     }
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password) {
-        User user=new User();
+        User user = new User();
         try {
             user = userService.getUserByAccountAndPassword(account, null);
             if (user == null) {
-                return "-1";
+                return JsonUtils.jsonPrint(-1, "登录账号错误!", null); //登录账号错误
             } else if (!user.getPassword().equals(SHA256Utils.getSHA256(password))) {
-                return "-2";
+                return JsonUtils.jsonPrint(-2, "登录密码错误!", null); //登录密码错误
             } else {
                 if (user.getLoginTime() != null) {
                     user.setLastLoginTime(user.getLoginTime());
@@ -80,12 +81,12 @@ public class UserController {
                 user.setLoginCount(user.getLoginCount() + 1);  //登录次数+1
                 userService.updateByUserSelective(user);
                 user.setPassword("null");   //避免暴露密码
-                redisTemplate.opsForValue().set("user", JSON.toJSONString(user),7, TimeUnit.DAYS);  //redis缓存
-                return "1";
+                redisTemplate.opsForValue().set("user", JSON.toJSONString(user), 7, TimeUnit.DAYS); //redis缓存
+                return JsonUtils.jsonPrint(1, "登录成功!", null); //登录成功
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);  //登录失败
         }
     }
 
@@ -94,22 +95,22 @@ public class UserController {
         //清空用户资料
         try {
             redisTemplate.delete("user");
-            return "1";
+            return JsonUtils.jsonPrint(1, "登出成功!", null); //登出成功
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null); //登出出错
         }
     }
 
     @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
     public String ResetInfo(@RequestBody Map<String, String> map) {
-        User user=new User();
+        User user = new User();
         try {
-            user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-            if(user==null){
-                return "-1";  //用户不存在
+            user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            if (user == null) {
+                return JsonUtils.jsonPrint(-1, "用户不存在!", null);  //用户不存在
             }
-            user=userService.getUserById(user.getUserid());
+            user = userService.getUserById(user.getUserid());
             //user.setAccount(map.get("account"));
             user.setBiography(map.get("biography"));
             user.setUserName(map.get("username"));
@@ -124,6 +125,29 @@ public class UserController {
             user.setPassword("null");
             //刷新redis缓存
             redisTemplate.opsForValue().getAndSet("user", JSON.toJSONString(user));
+            return JsonUtils.jsonPrint(1, "修改成功!", null); //修改成功
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);  //修改发生错误
+        }
+    }
+
+    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
+    public String ResetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+        User user = new User();
+        if (!password1.equals(password2)) {
+            return "-1"; //两个密码不一样
+        }
+        try {
+            if (StringUtils.isNotBlank(String.valueOf(redisTemplate.opsForValue().get("user")))) {
+                user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                user = userService.getUserById(user.getUserid());
+            }
+            if (!SHA256Utils.getSHA256(password).equals(user.getPassword())) {
+                return "-2"; //原密码不对
+            }
+            user.setPassword(SHA256Utils.getSHA256(password1));
+            userService.updateByUserSelective(user);
             return "1";
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,66 +155,44 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    public String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
-        User user=new User();
-        if(!password1.equals(password2)) {
-            return "-1"; //两个密码不一样
-        }
-        try{
-            user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-            user=userService.getUserById(user.getUserid());
-            if(!SHA256Utils.getSHA256(password).equals(user.getPassword())){
-                return "-2"; //原密码不对
-            }
-            user.setPassword(SHA256Utils.getSHA256(password1));
-            userService.updateByUserSelective(user);
-            return "1";
-        }catch(Exception e){
-            e.printStackTrace();
-            return "0";
-        }
-    }
-
     @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
-    public String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
-        User user=new User();
-        if(!password1.equals(password2)) {
+    public String ResetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+        User user = null;
+        if (!password1.equals(password2)) {
             return "-1";     //两个密码不一样
         }
-        try{
-            if(redisTemplate.getExpire("resetEmail") == -2){
+        try {
+            if (redisTemplate.getExpire("resetEmail") == -2) {
                 return "-2"; //修改密码的时候已过期
             }
-            String email=redisTemplate.opsForValue().get("resetEmail").toString();
-            user=userService.getUserByEmail(email);
+            String email = String.valueOf(redisTemplate.opsForValue().get("resetEmail"));
+            user = userService.getUserByEmail(email);
             user.setPassword(SHA256Utils.getSHA256(password1));
             userService.updateByUserSelective(user);
             redisTemplate.delete("resetPwdToken");
             redisTemplate.delete("resetEmail");
             return "1";
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "0";
         }
     }
 
-    @RequestMapping(value="IconUpload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String IconUpload(@RequestPart("file") MultipartFile[] file) {
-        User user=new User();
-        ArrayList data=new ArrayList();
-        for(int i=0;i<file.length;i++){
-            if(FileUploadUtils.IsImg(file[i]).equals("yes")){
-                try{
-                    String url=FileUploadUtils.Upload(file[i]);
-                    if(!url.equals("error")){
-                        user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-                        user=userService.getUserById(user.getUserid());
+        User user = null;
+        for (int i = 0; i < file.length; i++) {
+            if (FileUploadUtils.IsImg(file[i]).equals("yes")) {
+                try {
+                    String url = FileUploadUtils.Upload(file[i]);
+                    if (!url.equals("error")) {
+                        user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                        user = userService.getUserById(user.getUserid());
                         user.setUserIcon(url);
                         userService.updateByUserSelective(user);
                         return "1";
                     }
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     return "0";
                 }
@@ -201,9 +203,9 @@ public class UserController {
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)
     public String ForgetPWD(@RequestParam("email") String email) {
-        User user=new User();
+        User user = new User();
         try {
-            user=userService.getUserByEmail(email);
+            user = userService.getUserByEmail(email);
             if (user != null) {
                 return "1";
             }
