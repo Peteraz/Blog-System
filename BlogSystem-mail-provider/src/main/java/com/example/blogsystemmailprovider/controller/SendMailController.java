@@ -1,5 +1,6 @@
 package com.example.blogsystemmailprovider.controller;
 
+import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +33,9 @@ public class SendMailController {
 
     @Value("${spring.mail.username}")  //读取配置文件中的参数
     private String Sender;            //发送人
+
     private String receiver = "673840304@qq.com";  //收件人
+
     private String loaclhost = "http://localhost:9001/consumer/getResetPassword?token=";
 
     @RequestMapping(value = "SendSimpleMail", method = RequestMethod.POST)
@@ -45,8 +48,8 @@ public class SendMailController {
         mailSender.send(mailMessage);
     }
 
-    @RequestMapping(value = "SendAttchmentsMail", method = RequestMethod.POST)
-    public void SendAttchmentsMail() throws Exception {
+    @RequestMapping(value = "SendAttChmentsMail", method = RequestMethod.POST)
+    public void SendAttChmentsMail() throws Exception {
         MimeMessage mimeMailMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
         mimeMessageHelper.setFrom(Sender);
@@ -91,10 +94,10 @@ public class SendMailController {
             redisTemplate.opsForValue().set("resetPwdToken", token, 60 * 60 * 12, TimeUnit.SECONDS); //token
             System.out.println(token);
             redisTemplate.opsForValue().set("resetEmail", email, 60 * 60 * 12, TimeUnit.SECONDS);    //接收用户
-            return "1";
+            return JsonUtils.jsonPrint(1, "邮件发送成功!", null);
         } catch (Exception e) {
             e.printStackTrace();
-            return "0";
+            return JsonUtils.jsonPrint(0, e.getMessage(), null);
         }
     }
 }

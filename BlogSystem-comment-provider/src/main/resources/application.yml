@@ -31,7 +31,7 @@ eureka:
       #实际上属性应该是service-url,这个属性是个map（key-value）格式；当key是defaultZone的时候才能被解析；所以这里没有提示，
       #但是自己还需要写一个defaultZone；
       #server端配置的contextPath内容加到client端的defaultZone的访问路径端口号后面，所以client端的defaultZone:要加一个/eureka。
-      defaultZone: http://localhost:8080/eureka/eureka/
+      defaultZone: http://localhost:8081/eureka/eureka/
   instance:
     #微服务的ID,也是唯一的ID,用来被server发现
     instance-id: comment-provider-server
@@ -40,21 +40,14 @@ eureka:
 #actuator配置
 management:
   endpoints:
-    #禁用其他端点
-    enabled-by-default: false
     web:
       #暴露端点
       exposure:
         include: info
-  endpoint:
-    #开启info端点
-    info:
+  #开启info端点
+  info:
+    java:
       enabled: true
-info:
-  app.name: BlogSystem
-  company.name: www.BlogSystem.com
-  build.artifactId: @project.artifactId@
-  build.version: @project.version@
 #feign配置
 feign:
   client:

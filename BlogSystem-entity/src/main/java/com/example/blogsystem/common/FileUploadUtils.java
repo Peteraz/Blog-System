@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class FileUploadUtils {
-
-    private static String realpath = "H://Repository//SpringCloud//BlogSystem//BlogSystem-consumer//src//main//resources//static//img//photos//";
+    private static String realpath = "D://Repository//BlogSystem//BlogSystem-consumer//src//main//resources//static//img//photos//";
 
     private static String virtualpath = "/consumer/static/img/photos/";
 
@@ -21,22 +20,26 @@ public class FileUploadUtils {
         //String suffixName = fileName.substring(fileName.lastIndexOf("."));
         //上传后的路径
         String filePath = realpath;
-        //去掉中文
-        fileName = fileName.replaceAll(REGEX_CHINESE, "");
-        //新文件名字
-        fileName = UUID.randomUUID().toString().replace("-", "") + fileName;
-        File dest = new File(filePath, fileName);
-        //不存的话在创建一个文件夹
-        if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdirs();
+        if (null != fileName && !fileName.isEmpty()) {
+            //去掉中文
+            fileName = fileName.replaceAll(REGEX_CHINESE, "");
+            //新文件名字
+            fileName = UUID.randomUUID().toString().replace("-", "") + fileName;
+            File dest = new File(filePath, fileName);
+            //不存的话在创建一个文件夹
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdirs();
+            }
+            try {
+                file.transferTo(dest);  //把内存图片写入磁盘中
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String filename = virtualpath + fileName;
+            return filename;
+        } else {
+            return null;
         }
-        try {
-            file.transferTo(dest);  //把内存图片写入磁盘中
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String filename = virtualpath + fileName;
-        return filename;
     }
 
     public static String IsImg(MultipartFile file) {
@@ -48,14 +51,16 @@ public class FileUploadUtils {
         if (file.getSize() > 5 * 1024 * 1024) {
             return "too big";
         } else {
-            String fileType = file.getContentType();
-            ;
-            if (fileType.equals("image/jpeg") || fileType.equals("image/jpg") || fileType.equals("image/png") || fileType.equals("image/bmp") || fileType.equals("image/gif") || fileType.equals("image/raw")) {
-                return "yes";
-            } else {
-                return "no";
+            String fileType = null;
+            if (null != file.getContentType()) {
+                fileType = file.getContentType();
+                if (fileType.equals("image/jpeg") || fileType.equals("image/jpg") || fileType.equals("image/png") || fileType.equals("image/bmp") || fileType.equals("image/gif") || fileType.equals("image/raw")) {
+                    return "yes";
+                } else {
+                    return "no";
+                }
             }
         }
-
+        return null;
     }
 }

@@ -128,7 +128,6 @@ $('#login').click(function (result){
 							y: positionY
 						}
 					});
-					return;
 				}
 			}
 		});

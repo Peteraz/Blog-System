@@ -297,12 +297,15 @@
         <h1 class="h3 mb-3">文章</h1>
         <div class="row">
           <div class="col-12 col-lg-12">
-            <div class="card">
+            <div th:each="article : ${articleList}" class="card">
               <div class="card-header align-content-lg-center">
-                <h1>Headings</h1>
+                <h1 th:if="${article.articleName}"></h1>
+              </div>
+              <div class="card-header align-content-lg-center">
+                文章类型:<h3 th:if="${article.categoryName}"></h3>
               </div>
               <div class="card-body">
-                <h1>This is a heading h1</h1>
+                <h1 th:utext="${article.articleContents}"></h1>
               </div>
             </div>
           </div>

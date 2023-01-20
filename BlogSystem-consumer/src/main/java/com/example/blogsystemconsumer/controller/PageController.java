@@ -2,7 +2,10 @@ package com.example.blogsystemconsumer.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.blogsystem.entity.User;
+import com.example.blogsystemconsumer.service.ArticleProviderService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,31 +17,37 @@ import javax.annotation.Resource;
 @RestController
 public class PageController {
     @Resource
+    private ArticleProviderService articleProviderService;
+
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
+
+    private static final String LOGIN = "login";
+
+    private static final String ERROR = "error";
+    Logger logger = LoggerFactory.getLogger(PageController.class);
 
     @RequestMapping(value = "getLogin")
     public ModelAndView getLogin() {
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView(LOGIN);
         modelAndView.addObject("data", "Hello World!!!I ma the Login page!");
         return modelAndView;
     }
 
     @RequestMapping(value = "getRegister")
     public ModelAndView getRegister() {
-        ModelAndView modelAndView = new ModelAndView("register");
-        return modelAndView;
+        return new ModelAndView("register");
     }
 
     @RequestMapping(value = "getIndex")
     public ModelAndView getIndex() {
         ModelAndView modelAndView = new ModelAndView("index");
-        String value = redisTemplate.opsForValue().get("user").toString();
         try {
-            if (value.isEmpty()) {
-                return new ModelAndView("login");
+            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+                return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(value, User.class);
-                //System.out.println(user);
+                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                logger.info(user.getUserid());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -51,13 +60,12 @@ public class PageController {
     @RequestMapping(value = "getProfile")
     public ModelAndView getProfile() {
         ModelAndView modelAndView = new ModelAndView("profile");
-        String value = redisTemplate.opsForValue().get("user").toString();
         try {
-            if (value.isEmpty()) {
-                return new ModelAndView("login");
+            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+                return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(value, User.class);
-                //System.out.println(user);
+                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                logger.info(user.getUserid());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -70,14 +78,13 @@ public class PageController {
     @RequestMapping(value = "getArticleShow")
     public ModelAndView getArticleShow() {
         ModelAndView modelAndView = new ModelAndView("article-show");
-        String value = redisTemplate.opsForValue().get("user").toString();
         try {
-            if (value.isEmpty()) {
-                return new ModelAndView("login");
+            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+                return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(value, User.class);
-                //System.out.println(user);
-                modelAndView.addObject("user", user);
+                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                logger.info(user.getUserid());
+                modelAndView.addObject("user", user).addObject("articleList", articleProviderService.getArticleListById(user.getUserid()));
                 return modelAndView;
             }
         } catch (Exception e) {
@@ -88,27 +95,26 @@ public class PageController {
 
     @RequestMapping(value = "getForgetPassword")
     public ModelAndView getForgetPassword() {
-        ModelAndView modelAndView = new ModelAndView("forget-password");
-        return modelAndView;
+        return new ModelAndView("forget-password");
     }
 
     @RequestMapping(value = "getResetPassword")
     public ModelAndView getResetPassword(@RequestParam("token") String token) {
         if (StringUtils.isBlank(token)) {
-            return new ModelAndView("error").addObject("message", "不合法访问!");
+            return new ModelAndView(ERROR).addObject("message", "不合法访问!");
         }
         try {
             if (redisTemplate.getExpire("resetPwdToken") == -2) {
-                return new ModelAndView("error").addObject("message", "修改时间已经过了!");
+                return new ModelAndView(ERROR).addObject("message", "修改时间已经过了!");
             }
-            String resetPwdToken = redisTemplate.opsForValue().get("resetPwdToken").toString();
+            String resetPwdToken = String.valueOf(redisTemplate.opsForValue().get("resetPwdToken"));
             if (!token.equals(resetPwdToken)) {
-                return new ModelAndView("error").addObject("message", "修改码不正确!");
+                return new ModelAndView(ERROR).addObject("message", "修改码不正确!");
             }
             return new ModelAndView("reset-password");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ModelAndView("error").addObject("message", e.getMessage());
+            return new ModelAndView(ERROR).addObject("message", e.getMessage());
         }
     }
 
@@ -116,13 +122,12 @@ public class PageController {
     @RequestMapping(value = "getArticle")
     public ModelAndView getArticle() {
         ModelAndView modelAndView = new ModelAndView("article");
-        String value = redisTemplate.opsForValue().get("user").toString();
         try {
-            if (value.isEmpty()) {
-                return new ModelAndView("login");
+            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+                return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(value, User.class);
-                //System.out.println(user);
+                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                logger.info(user.getUserid());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -135,13 +140,12 @@ public class PageController {
     @RequestMapping(value = "getSettings")
     public ModelAndView getSettings() {
         ModelAndView modelAndView = new ModelAndView("settings");
-        String value = redisTemplate.opsForValue().get("user").toString();
         try {
-            if (value.isEmpty()) {
-                return new ModelAndView("login");
+            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+                return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(value, User.class);
-                //System.out.println(user);
+                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                logger.info(user.getUserid());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -153,7 +157,6 @@ public class PageController {
 
     @RequestMapping(value = "getTest")
     public ModelAndView getTest() {
-        ModelAndView modelAndView = new ModelAndView("test");
-        return modelAndView;
+        return new ModelAndView("test");
     }
 }
