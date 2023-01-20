@@ -2,18 +2,22 @@ package com.example.blogsystemuserprovider.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.example.blogsystem.common.*;
+import com.example.blogsystem.common.AgeUtils;
+import com.example.blogsystem.common.FileUploadUtils;
+import com.example.blogsystem.common.SHA256Utils;
+import com.example.blogsystem.common.UUIDUtils;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 //@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，
 // 但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
@@ -23,28 +27,28 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String Register(@RequestBody Map<String, String> map) {
         User user = new User();
         long count = 0;
-        String age="";
+        String age = "";
         try {
             if (userService.getUserByAccountAndPassword(map.get("account"), null) != null) {
                 return "-1"; //账号已存在
-            }else if(userService.getUserByEmail(map.get("email"))!=null){
+            } else if (userService.getUserByEmail(map.get("email")) != null) {
                 return "-2"; //邮箱已使用
             } else if (!map.isEmpty()) {
                 user.setUserid(UUIDUtils.getUserId());
                 user.setAccount(map.get("account"));
-                user.setPassword(SHA256Utils.getSHA256((String)map.get("password")));
+                user.setPassword(SHA256Utils.getSHA256((String) map.get("password")));
                 user.setUserName(map.get("name"));
                 user.setEmail(map.get("email"));
                 user.setBirthday(map.get("birthday"));
-                age= AgeUtils.getAgeDetail(map.get("birthday"));
+                age = AgeUtils.getAgeDetail(map.get("birthday"));
                 System.out.println(age);
-                age=age.substring(0,age.indexOf("岁"));
+                age = age.substring(0, age.indexOf("岁"));
                 user.setAge(Integer.valueOf(age));
                 user.setSex(map.get("sex"));
                 user.setPhoneNumber(map.get("phone_number"));
@@ -65,7 +69,7 @@ public class UserController {
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)
     public String Login(@RequestParam("account") String account, @RequestParam("password") String password) {
-        User user=new User();
+        User user = new User();
         try {
             user = userService.getUserByAccountAndPassword(account, null);
             if (user == null) {
@@ -80,7 +84,7 @@ public class UserController {
                 user.setLoginCount(user.getLoginCount() + 1);  //登录次数+1
                 userService.updateByUserSelective(user);
                 user.setPassword("null");   //避免暴露密码
-                redisTemplate.opsForValue().set("user", JSON.toJSONString(user),7, TimeUnit.DAYS);  //redis缓存
+                redisTemplate.opsForValue().set("user", JSON.toJSONString(user), 7, TimeUnit.DAYS);  //redis缓存
                 return "1";
             }
         } catch (Exception e) {
@@ -103,13 +107,13 @@ public class UserController {
 
     @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
     public String ResetInfo(@RequestBody Map<String, String> map) {
-        User user=new User();
+        User user = new User();
         try {
-            user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-            if(user==null){
+            user = JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(), User.class);
+            if (user == null) {
                 return "-1";  //用户不存在
             }
-            user=userService.getUserById(user.getUserid());
+            user = userService.getUserById(user.getUserid());
             //user.setAccount(map.get("account"));
             user.setBiography(map.get("biography"));
             user.setUserName(map.get("username"));
@@ -132,65 +136,65 @@ public class UserController {
     }
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    public String ResetPWD(@RequestParam("password") String password,@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
-        User user=new User();
-        if(!password1.equals(password2)) {
+    public String ResetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+        User user = new User();
+        if (!password1.equals(password2)) {
             return "-1"; //两个密码不一样
         }
-        try{
-            user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-            user=userService.getUserById(user.getUserid());
-            if(!SHA256Utils.getSHA256(password).equals(user.getPassword())){
+        try {
+            user = JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(), User.class);
+            user = userService.getUserById(user.getUserid());
+            if (!SHA256Utils.getSHA256(password).equals(user.getPassword())) {
                 return "-2"; //原密码不对
             }
             user.setPassword(SHA256Utils.getSHA256(password1));
             userService.updateByUserSelective(user);
             return "1";
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "0";
         }
     }
 
     @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
-    public String ResetPassword(@RequestParam("password1") String password1,@RequestParam("password2") String password2) {
-        User user=new User();
-        if(!password1.equals(password2)) {
+    public String ResetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+        User user = new User();
+        if (!password1.equals(password2)) {
             return "-1";     //两个密码不一样
         }
-        try{
-            if(redisTemplate.getExpire("resetEmail") == -2){
+        try {
+            if (redisTemplate.getExpire("resetEmail") == -2) {
                 return "-2"; //修改密码的时候已过期
             }
-            String email=redisTemplate.opsForValue().get("resetEmail").toString();
-            user=userService.getUserByEmail(email);
+            String email = redisTemplate.opsForValue().get("resetEmail").toString();
+            user = userService.getUserByEmail(email);
             user.setPassword(SHA256Utils.getSHA256(password1));
             userService.updateByUserSelective(user);
             redisTemplate.delete("resetPwdToken");
             redisTemplate.delete("resetEmail");
             return "1";
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "0";
         }
     }
 
-    @RequestMapping(value="IconUpload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String IconUpload(@RequestPart("file") MultipartFile[] file) {
-        User user=new User();
-        ArrayList data=new ArrayList();
-        for(int i=0;i<file.length;i++){
-            if(FileUploadUtils.IsImg(file[i]).equals("yes")){
-                try{
-                    String url=FileUploadUtils.Upload(file[i]);
-                    if(!url.equals("error")){
-                        user=JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-                        user=userService.getUserById(user.getUserid());
+        User user = new User();
+        ArrayList data = new ArrayList();
+        for (int i = 0; i < file.length; i++) {
+            if (FileUploadUtils.IsImg(file[i]).equals("yes")) {
+                try {
+                    String url = FileUploadUtils.Upload(file[i]);
+                    if (!url.equals("error")) {
+                        user = JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(), User.class);
+                        user = userService.getUserById(user.getUserid());
                         user.setUserIcon(url);
                         userService.updateByUserSelective(user);
                         return "1";
                     }
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     return "0";
                 }
@@ -201,9 +205,9 @@ public class UserController {
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)
     public String ForgetPWD(@RequestParam("email") String email) {
-        User user=new User();
+        User user = new User();
         try {
-            user=userService.getUserByEmail(email);
+            user = userService.getUserByEmail(email);
             if (user != null) {
                 return "1";
             }

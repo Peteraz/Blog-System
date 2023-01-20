@@ -37,7 +37,7 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency><!--spring cloud oepnfegin依赖，product项目即可以作为生产者，又可以作为消费者-->
+        <dependency><!--spring cloud openfeign依赖，product项目即可以作为生产者，又可以作为消费者-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.0.3</version>

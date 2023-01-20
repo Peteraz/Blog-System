@@ -5,13 +5,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ArticleMapper {
-    int deleteByPrimaryKey(String articleid);
+    int deleteByPrimaryKey(String articleId);
 
     int insert(Article record);
 
     int insertSelective(Article record);
 
-    Article selectByPrimaryKey(String articleid);
+    Article selectByPrimaryKey(String articleId);
 
     int updateByPrimaryKeySelective(Article record);
 

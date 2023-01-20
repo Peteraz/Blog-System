@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 // 但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
 @RestController
 public class ProductsController {
-    @RequestMapping(value="getService")
+    @RequestMapping(value = "getService")
     public String getService() {
-        String serverport="这是8002服务提供者,当你看到些字时候就是没问题了！";
-        return serverport;
+        String serverPort = "这是8002服务提供者,当你看到些字时候就是没问题了！";
+        return serverPort;
     }
 }

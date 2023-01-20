@@ -3,7 +3,7 @@ package com.example.blogsystem.entity;
 import java.util.Date;
 
 public class Comment {
-    private String commentid;
+    private String commentId;
 
     private String userid;
 
@@ -11,14 +11,14 @@ public class Comment {
 
     private String commentContents;
 
-    private Date commentTimne;
+    private Date commentTime;
 
-    public String getCommentid() {
-        return commentid;
+    public String getCommentId() {
+        return commentId;
     }
 
-    public void setCommentid(String commentid) {
-        this.commentid = commentid == null ? null : commentid.trim();
+    public void setCommentId(String commentId) {
+        this.commentId = commentId == null ? null : commentId.trim();
     }
 
     public String getUserid() {
@@ -45,22 +45,22 @@ public class Comment {
         this.commentContents = commentContents == null ? null : commentContents.trim();
     }
 
-    public Date getCommentTimne() {
-        return commentTimne;
+    public Date getCommentTime() {
+        return commentTime;
     }
 
-    public void setCommentTimne(Date commentTimne) {
-        this.commentTimne = commentTimne;
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
     }
 
     @Override
     public String toString() {
         return "Comment{" +
-                "commentid='" + commentid + '\'' +
+                "commentId='" + commentId + '\'' +
                 ", userid='" + userid + '\'' +
                 ", commentName='" + commentName + '\'' +
                 ", commentContents='" + commentContents + '\'' +
-                ", commentTimne=" + commentTimne +
+                ", commentTime=" + commentTime +
                 '}';
     }
 }

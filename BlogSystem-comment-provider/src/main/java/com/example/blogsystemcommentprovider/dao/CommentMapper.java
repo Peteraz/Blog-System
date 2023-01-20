@@ -3,13 +3,13 @@ package com.example.blogsystemcommentprovider.dao;
 import com.example.blogsystem.entity.Comment;
 
 public interface CommentMapper {
-    int deleteByPrimaryKey(String commentid);
+    int deleteByPrimaryKey(String commentId);
 
     int insert(Comment record);
 
     int insertSelective(Comment record);
 
-    Comment selectByPrimaryKey(String commentid);
+    Comment selectByPrimaryKey(String commentId);
 
     int updateByPrimaryKeySelective(Comment record);
 

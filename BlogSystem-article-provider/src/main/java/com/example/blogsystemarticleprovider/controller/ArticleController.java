@@ -1,16 +1,17 @@
 package com.example.blogsystemarticleprovider.controller;
 
-import java.util.Date;
-import javax.annotation.Resource;
 import com.alibaba.fastjson.JSONArray;
-import com.example.blogsystem.entity.User;
-import com.example.blogsystem.entity.Article;
 import com.example.blogsystem.common.UUIDUtils;
+import com.example.blogsystem.entity.Article;
+import com.example.blogsystem.entity.User;
+import com.example.blogsystemarticleprovider.service.ArticleService;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.example.blogsystemarticleprovider.service.ArticleService;
+
+import javax.annotation.Resource;
+import java.util.Date;
 
 @RestController
 public class ArticleController {
@@ -18,15 +19,15 @@ public class ArticleController {
     private ArticleService articleService;
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
-    @RequestMapping(value="createArticle")
-    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category,@RequestParam("articleContents") String articleContents){
-        Article article=new Article();
-        User user=new User();
-        try{
-            user= JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(),User.class);
-            article.setArticleid(UUIDUtils.getId());     //文章id
+    @RequestMapping(value = "createArticle")
+    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
+        Article article = new Article();
+        User user = new User();
+        try {
+            user = JSONArray.parseObject(redisTemplate.opsForValue().get("user").toString(), User.class);
+            article.setArticleId(UUIDUtils.getId());     //文章id
             article.setUserid(user.getUserid());         //用户id
             article.setArticleName(articleName);         //文章标题
             article.setCategoryName(category);           //文章分类
@@ -34,7 +35,7 @@ public class ArticleController {
             article.setPublishTime(new Date());          //文章发表时间
             articleService.insert(article);
             return "1";
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "0";
         }

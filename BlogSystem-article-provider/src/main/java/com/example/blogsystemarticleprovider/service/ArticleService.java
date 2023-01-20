@@ -3,9 +3,9 @@ package com.example.blogsystemarticleprovider.service;
 import com.example.blogsystem.entity.Article;
 
 public interface ArticleService {
-    Article selectByPrimaryKey(String articleid);
+    Article selectByPrimaryKey(String articleId);
 
-    int deleteByPrimaryKey(String articleid);
+    int deleteByPrimaryKey(String articleId);
 
     int insert(Article record);
 

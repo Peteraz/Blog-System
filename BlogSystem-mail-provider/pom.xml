@@ -72,7 +72,7 @@
             <version>5.8.0-M1</version>
             <scope>test</scope>
         </dependency>
-        <dependency><!--spring cloud oepnfegin依赖-->
+        <dependency><!--spring cloud openfeign依赖-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.0.3</version>

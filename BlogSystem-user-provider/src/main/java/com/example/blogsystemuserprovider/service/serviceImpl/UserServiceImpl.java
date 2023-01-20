@@ -4,6 +4,7 @@ import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.dao.UserMapper;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 
 @Service
@@ -12,41 +13,42 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User getUserById(String userid){
-        return userMapper. getUserById(userid);
+    public User getUserById(String userid) {
+        return userMapper.getUserById(userid);
     }
 
     @Override
-    public User getUserByAccountAndPassword(String account,String password){
-        return userMapper. getUserByAccountAndPassword(account,password);
+    public User getUserByAccountAndPassword(String account, String password) {
+        return userMapper.getUserByAccountAndPassword(account, password);
     }
 
     @Override
-    public User getUserByEmail(String email){
+    public User getUserByEmail(String email) {
         return userMapper.getUserByEmail(email);
     }
+
     @Override
-    public int deleteById(String userid){
+    public int deleteById(String userid) {
         return userMapper.deleteById(userid);
     }
 
     @Override
-    public int insert(User record){
+    public int insert(User record) {
         return userMapper.insert(record);
     }
 
     @Override
-    public int insertSelective(User record){
+    public int insertSelective(User record) {
         return userMapper.insertSelective(record);
     }
 
     @Override
-    public int updateByUserSelective(User record){
+    public int updateByUserSelective(User record) {
         return userMapper.updateByUserSelective(record);
     }
 
     @Override
-    public int updateById(User record){
+    public int updateById(User record) {
         return userMapper.updateById(record);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 //相同点：都能让注册中心Eureka发现，并将该服务注册到注册中心上；
 //不同点：@EnableEurekaClient只适用于Eureka作为注册中心，而@EnableDiscoveryClient可以是其他注册中心；
 @EnableEurekaClient
-//表示开启Fegin客户端
+//表示开启Feign客户端
 @EnableFeignClients
 @EnableRedisHttpSession
 public class BlogSystemUserProviderApplication {

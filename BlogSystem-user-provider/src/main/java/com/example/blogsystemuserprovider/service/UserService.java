@@ -3,13 +3,13 @@ package com.example.blogsystemuserprovider.service;
 import com.example.blogsystem.entity.User;
 
 public interface UserService {
-    User getUserById(String userid);
+    User getUserById(String userId);
 
     User getUserByAccountAndPassword(String account,String password);
 
     User getUserByEmail(String email);
 
-    int deleteById(String userid);
+    int deleteById(String userId);
 
     int insert(User record);
 

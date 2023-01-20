@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blogsystemuserprovider.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.example.blogsystem.entity.User">
-    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -22,14 +22,14 @@
     <result column="identity" jdbcType="VARCHAR" property="identity" />
   </resultMap>
   <sql id="Base_Column_List">
-    userid, account, password, email, user_name, user_icon, age, sex, phone_number, birthday, 
+    user_id, account, password, email, user_name, user_icon, age, sex, phone_number, birthday,
     state, city, biography, create_time, login_time, last_login_time, login_count, identity
   </sql>
   <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
-    where userid = #{userid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </select>
   <select id="getUserByAccountAndPassword" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -47,17 +47,17 @@
   </select>
   <delete id="deleteById" parameterType="java.lang.String">
     delete from user
-    where userid = #{userid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.blogsystem.entity.User">
-    insert into user (userid, account, password, 
+    insert into user (user_id, account, password,
       email, user_name, user_icon, 
       age, sex, phone_number, 
       birthday, state, city, 
       biography, create_time, login_time, 
       last_login_time, login_count, identity
       )
-    values (#{userid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userIcon,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER}, #{sex,jdbcType=CHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
       #{birthday,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
@@ -68,8 +68,8 @@
   <insert id="insertSelective" parameterType="com.example.blogsystem.entity.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userid,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="account != null">
         account,
@@ -124,8 +124,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="account != null">
         #{account,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
         identity = #{identity,jdbcType=VARCHAR},
       </if>
     </set>
-    where userid = #{userid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <update id="updateById" parameterType="com.example.blogsystem.entity.User">
     update user
@@ -256,6 +256,6 @@
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       login_count = #{loginCount,jdbcType=BIGINT},
       identity = #{identity,jdbcType=VARCHAR}
-    where userid = #{userid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

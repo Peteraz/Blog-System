@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blogsystemarticleprovider.dao.ArticleMapper">
   <resultMap id="BaseResultMap" type="com.example.blogsystem.entity.Article">
-    <id column="articleid" jdbcType="VARCHAR" property="articleid" />
-    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <id column="article_id" jdbcType="VARCHAR" property="articleId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="article_name" jdbcType="VARCHAR" property="articleName" />
     <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
@@ -13,7 +13,7 @@
     <result column="article_contents" jdbcType="LONGVARCHAR" property="articleContents" />
   </resultMap>
   <sql id="Base_Column_List">
-    articleid, userid, article_name, category_name, publish_time, edit_time
+    article_id, user_id, article_name, category_name, publish_time, edit_time
   </sql>
   <sql id="Blob_Column_List">
     article_contents
@@ -24,28 +24,28 @@
     ,
     <include refid="Blob_Column_List" />
     from article
-    where articleid = #{articleid,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from article
-    where articleid = #{articleid,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.blogsystem.entity.Article">
-    insert into article (articleid, userid, article_name, 
+    insert into article (article_id, user_id, article_name,
       category_name, publish_time, edit_time, 
       article_contents)
-    values (#{articleid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{articleName,jdbcType=VARCHAR}, 
+    values (#{articleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{articleName,jdbcType=VARCHAR},
       #{categoryName,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, 
       #{articleContents,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.blogsystem.entity.Article">
     insert into article
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="articleid != null">
-        articleid,
+      <if test="articleId != null">
+        article_id,
       </if>
-      <if test="userid != null">
-        userid,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="articleName != null">
         article_name,
@@ -64,11 +64,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="articleid != null">
-        #{articleid,jdbcType=VARCHAR},
+      <if test="articleId != null">
+        #{articleId,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="articleName != null">
         #{articleName,jdbcType=VARCHAR},
@@ -90,8 +90,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.example.blogsystem.entity.Article">
     update article
     <set>
-      <if test="userid != null">
-        userid = #{userid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="articleName != null">
         article_name = #{articleName,jdbcType=VARCHAR},
@@ -109,25 +109,25 @@
         article_contents = #{articleContents,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where articleid = #{articleid,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.blogsystem.entity.Article">
     update article
-    set userid = #{userid,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=VARCHAR},
       article_name = #{articleName,jdbcType=VARCHAR},
       category_name = #{categoryName,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       edit_time = #{editTime,jdbcType=TIMESTAMP},
       article_contents = #{articleContents,jdbcType=LONGVARCHAR}
-    where articleid = #{articleid,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.blogsystem.entity.Article">
     update article
-    set userid = #{userid,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=VARCHAR},
       article_name = #{articleName,jdbcType=VARCHAR},
       category_name = #{categoryName,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       edit_time = #{editTime,jdbcType=TIMESTAMP}
-    where articleid = #{articleid,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
 </mapper>
