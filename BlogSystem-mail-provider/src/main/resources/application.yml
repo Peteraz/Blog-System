@@ -32,9 +32,9 @@ spring:
     #编码集
     default-encoding: UTF-8
     #用户名
-    username: changepasword@163.com
+    username: xxx@xxx.com
     #设置授权密码
-    password: HWNFIRRADWMBEVIX
+    password: xxxxxxx
     properties:
       mail:
         smtp:
