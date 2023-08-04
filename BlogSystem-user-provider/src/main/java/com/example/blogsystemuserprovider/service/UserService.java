@@ -1,21 +1,25 @@
 package com.example.blogsystemuserprovider.service;
 
-import com.example.blogsystem.entity.User;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 public interface UserService {
-    User getUserById(String userId);
 
-    User getUserByAccountAndPassword(String account,String password);
+    String register(Map<String, String> map);
 
-    User getUserByEmail(String email);
+    String login(String account, String password);
 
-    int deleteById(String userId);
+    String logout();
 
-    int insert(User record);
+    String resetInfo(Map<String, String> map);
 
-    int insertSelective(User record);
+    String resetPWD(String password, String password1, String password2);
 
-    int updateByUserSelective(User record);
+    String resetPassword(String password1, String password2);
 
-    int updateById(User record);
+    String iconUpload(MultipartFile[] file);
+
+    String forgetPWD(String email);
+
 }

@@ -1,11 +1,13 @@
 package com.example.blogsystemmailprovider.service;
 
+import javax.mail.MessagingException;
+
 public interface SendMailService {
-    public void SendSimpleMail ();
+    public void sendSimpleMail();
 
-    public void SendAttachmentsMail();
+    public void sendAttachmentsMail() throws MessagingException;
 
-    public void SendInlineMail();
+    public void sendInlineMail() throws MessagingException;
 
-    public void SendMail(String email);
+    public String sendMail(String email);
 }
