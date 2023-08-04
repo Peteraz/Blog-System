@@ -47,7 +47,7 @@ public class PageController {
                 return new ModelAndView(LOGIN);
             } else {
                 User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserid());
+                logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -65,7 +65,7 @@ public class PageController {
                 return new ModelAndView(LOGIN);
             } else {
                 User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserid());
+                logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -83,8 +83,8 @@ public class PageController {
                 return new ModelAndView(LOGIN);
             } else {
                 User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserid());
-                modelAndView.addObject("user", user).addObject("articleList", articleProviderService.getArticleListById(user.getUserid()));
+                logger.info(user.getUserId());
+                modelAndView.addObject("user", user).addObject("articleList", articleProviderService.getArticleListById(user.getUserId()));
                 return modelAndView;
             }
         } catch (Exception e) {
@@ -127,7 +127,7 @@ public class PageController {
                 return new ModelAndView(LOGIN);
             } else {
                 User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserid());
+                logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }
@@ -145,7 +145,7 @@ public class PageController {
                 return new ModelAndView(LOGIN);
             } else {
                 User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserid());
+                logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
             }

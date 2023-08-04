@@ -2,6 +2,8 @@ package com.example.blogsystemmailprovider.controller;
 
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.UUIDUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -32,27 +34,29 @@ public class SendMailController {
     private RedisTemplate<String, Object> redisTemplate;
 
     @Value("${spring.mail.username}")  //读取配置文件中的参数
-    private String Sender;            //发送人
+    private String sender;            //发送人
 
     private String receiver = "673840304@qq.com";  //收件人
 
     private String loaclhost = "http://localhost:9001/consumer/getResetPassword?token=";
 
+    Logger logger = LoggerFactory.getLogger(SendMailController.class);
+
     @RequestMapping(value = "SendSimpleMail", method = RequestMethod.POST)
-    public void SendSimpleMail() throws Exception {
+    public void SendSimpleMail() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(Sender);
+        mailMessage.setFrom(sender);
         mailMessage.setTo(receiver);
         mailMessage.setSubject("这是一封简单的邮件！");
         mailMessage.setText("Hello World!今天天气真好！");
         mailSender.send(mailMessage);
     }
 
-    @RequestMapping(value = "SendAttChmentsMail", method = RequestMethod.POST)
-    public void SendAttChmentsMail() throws Exception {
+    @RequestMapping(value = "SendAttachmentsMail", method = RequestMethod.POST)
+    public void SendAttachmentsMail() throws Exception {
         MimeMessage mimeMailMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
-        mimeMessageHelper.setFrom(Sender);
+        mimeMessageHelper.setFrom(sender);
         mimeMessageHelper.setTo(receiver);
         mimeMessageHelper.setSubject("这是一封有附件的邮件");
         mimeMessageHelper.setText("附件就是两张图片，请你看看:");
@@ -67,7 +71,7 @@ public class SendMailController {
     public void SendInlineMail() throws Exception {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-        mimeMessageHelper.setFrom(Sender);
+        mimeMessageHelper.setFrom(sender);
         mimeMessageHelper.setTo(receiver);
         mimeMessageHelper.setSubject("这是一封有附件的邮件，请你仔细看看！");
         mimeMessageHelper.setText("<html><body><img src=\"cid:forest\"></body></html>", true);
@@ -81,7 +85,7 @@ public class SendMailController {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-            mimeMessageHelper.setFrom(Sender);
+            mimeMessageHelper.setFrom(sender);
             mimeMessageHelper.setTo(email);
             mimeMessageHelper.setSubject("博客密码修改");
             Context context = new Context();
@@ -92,7 +96,7 @@ public class SendMailController {
             mimeMessageHelper.setText(emailContent, true);
             mailSender.send(mimeMessage);
             redisTemplate.opsForValue().set("resetPwdToken", token, 60 * 60 * 12, TimeUnit.SECONDS); //token
-            System.out.println(token);
+            logger.info(token);
             redisTemplate.opsForValue().set("resetEmail", email, 60 * 60 * 12, TimeUnit.SECONDS);    //接收用户
             return JsonUtils.jsonPrint(1, "邮件发送成功!", null);
         } catch (Exception e) {

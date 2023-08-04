@@ -41,7 +41,7 @@ public class UserController {
             } else if (userService.getUserByEmail(map.get("email")) != null) {
                 return JsonUtils.jsonPrint(-2, "邮箱已使用!", null); //邮箱已使用
             } else if (!map.isEmpty()) {
-                user.setUserid(UUIDUtils.getUserId());
+                user.setUserId(UUIDUtils.getUserId());
                 user.setAccount(map.get("account"));
                 user.setPassword(SHA256Utils.getSHA256(map.get("password")));
                 user.setUserName(map.get("name"));
@@ -114,7 +114,7 @@ public class UserController {
             if (user == null) {
                 return JsonUtils.jsonPrint(-1, "用户不存在!", null);  //用户不存在
             }
-            user = userService.getUserById(user.getUserid());
+            user = userService.getUserById(user.getUserId());
             user.setBiography(map.get("biography"));
             user.setUserName(map.get("username"));
             user.setSex(map.get("sex"));
@@ -144,7 +144,7 @@ public class UserController {
         try {
             if (StringUtils.isNotBlank(String.valueOf(redisTemplate.opsForValue().get("user")))) {
                 user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                user = userService.getUserById(user.getUserid());
+                user = userService.getUserById(user.getUserId());
             }
             if (!SHA256Utils.getSHA256(password).equals(user.getPassword())) {
                 return JsonUtils.jsonPrint(-2, "原密码错误!", null); //原密码不对
@@ -190,7 +190,7 @@ public class UserController {
                     String url = FileUploadUtils.Upload(file[i]);
                     if (!url.equals("error")) {
                         user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                        user = userService.getUserById(user.getUserid());
+                        user = userService.getUserById(user.getUserId());
                         user.setUserIcon(url);
                         userService.updateByUserSelective(user);
                         return JsonUtils.jsonPrint(1, "头像上传成功!", null);

@@ -17,7 +17,7 @@ public interface ArticleMapper {
 
     Article selectByUserId(String userid);
 
-    List<Article> getArticleListById(String userid);
+    List<Article> getArticleListById(String userId);
 
     int updateByPrimaryKeySelective(Article record);
 

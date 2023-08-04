@@ -3,7 +3,7 @@ package com.example.blogsystem.entity;
 import java.util.Date;
 
 public class User {
-    private String userid;
+    private String userId;
 
     private String account;
 
@@ -39,12 +39,12 @@ public class User {
 
     private String identity;
 
-    public String getUserid() {
-        return userid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public String getAccount() {

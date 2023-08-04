@@ -3,7 +3,7 @@ package com.example.blogsystemmailprovider.service;
 public interface SendMailService {
     public void SendSimpleMail ();
 
-    public void SendAttchmentsMail();
+    public void SendAttachmentsMail();
 
     public void SendInlineMail();
 

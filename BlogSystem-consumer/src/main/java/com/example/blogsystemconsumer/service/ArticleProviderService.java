@@ -20,8 +20,8 @@ public interface ArticleProviderService {
     String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents);
 
     @RequestMapping(value = "getArticle")
-    Article getArticle(@RequestParam("userid") String userid);
+    Article getArticle(@RequestParam("userId") String userId);
 
     @RequestMapping(value = "getArticleListById")
-    List<Article> getArticleListById(@RequestParam("userid") String userid);
+    List<Article> getArticleListById(@RequestParam("userId") String userId);
 }
