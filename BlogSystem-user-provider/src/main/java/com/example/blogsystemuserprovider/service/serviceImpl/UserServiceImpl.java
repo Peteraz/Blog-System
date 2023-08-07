@@ -1,7 +1,7 @@
 package com.example.blogsystemuserprovider.service.serviceImpl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.example.blogsystem.common.*;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.dao.UserMapper;
@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
     public String resetInfo(@RequestBody Map<String, String> map) {
         User user = new User();
         try {
-            user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
             if (user == null) {
                 return JsonUtils.jsonPrint(-1, "用户不存在!", null);  //用户不存在
             }
@@ -144,7 +144,7 @@ public class UserServiceImpl implements UserService {
         }
         try {
             if (StringUtils.isNotBlank(String.valueOf(redisTemplate.opsForValue().get("user")))) {
-                user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 user = userMapper.getUserById(user.getUserId());
             }
             if (!SHA256Utils.getSHA256(password).equals(user.getPassword())) {
@@ -185,11 +185,11 @@ public class UserServiceImpl implements UserService {
     public String iconUpload(@RequestPart("file") MultipartFile[] file) {
         User user;
         for (int i = 0; i < file.length; i++) {
-            if (FileUploadUtils.IsImg(file[i]).equals("yes")) {
+            if (FileUploadUtils.isImg(file[i]).equals("yes")) {
                 try {
-                    String url = FileUploadUtils.Upload(file[i]);
+                    String url = FileUploadUtils.upload(file[i]);
                     if (!url.equals("error")) {
-                        user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                        user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                         user = userMapper.getUserById(user.getUserId());
                         user.setUserIcon(url);
                         userMapper.updateByUserSelective(user);

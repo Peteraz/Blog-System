@@ -1,6 +1,6 @@
 package com.example.blogsystemconsumer.controller;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.ArticleProviderService;
 import org.apache.commons.lang.StringUtils;
@@ -46,7 +46,7 @@ public class PageController {
             if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
                 return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
@@ -64,7 +64,7 @@ public class PageController {
             if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
                 return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
@@ -82,7 +82,7 @@ public class PageController {
             if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
                 return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 logger.info(user.getUserId());
                 modelAndView.addObject("user", user).addObject("articleList", articleProviderService.getArticleListById(user.getUserId()));
                 return modelAndView;
@@ -126,7 +126,7 @@ public class PageController {
             if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
                 return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;
@@ -144,7 +144,7 @@ public class PageController {
             if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
                 return new ModelAndView(LOGIN);
             } else {
-                User user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 logger.info(user.getUserId());
                 modelAndView.addObject("user", user);
                 return modelAndView;

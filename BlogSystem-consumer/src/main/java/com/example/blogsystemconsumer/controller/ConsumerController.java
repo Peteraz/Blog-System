@@ -4,7 +4,6 @@ import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystemconsumer.service.ArticleProviderService;
 import com.example.blogsystemconsumer.service.MailProviderService;
-import com.example.blogsystemconsumer.service.ProductService;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -22,8 +21,6 @@ import java.util.Map;
 @RestController
 public class ConsumerController {
     //@Resource默认按byName自动注入,有两个重要属性分别是name和type
-    @Resource
-    private ProductService productService;
 
     @Resource
     private UserProviderService userProviderService;
@@ -39,11 +36,10 @@ public class ConsumerController {
 
     Logger logger = LoggerFactory.getLogger(ConsumerController.class);
 
-    @RequestMapping(value = "getConsumer")
-    public String getConsumer() {
-        return productService.getService();
-    }
 
+    /**
+     * 注册
+     */
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String Register(@RequestBody Map<String, String> map) {  //注册
         if (map.isEmpty()) {
@@ -104,7 +100,7 @@ public class ConsumerController {
     public String ForgetPWD(@RequestParam("account") String account) {
         try {
             if (userProviderService.ForgetPWD(account).equals("1")) {
-                return mailProviderService.SendMail(account);
+                return mailProviderService.sendMail(account);
             }
             return JsonUtils.jsonPrint(-1, "用户不存在!", null);
         } catch (Exception e) {
@@ -121,14 +117,14 @@ public class ConsumerController {
             return JsonUtils.jsonPrint(1, null);
         }
         for (int i = 0; i < file.length; i++) {
-            if (FileUploadUtils.IsImg(file[i]).equals("yes")) {
+            if (FileUploadUtils.isImg(file[i]).equals("yes")) {
                 try {
-                    String url = FileUploadUtils.Upload(file[i]);
+                    String url = FileUploadUtils.upload(file[i]);
                     if (!url.equals("error")) {
                         data.add(url);
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error("upload file error: ", e);
                     return JsonUtils.jsonPrint(1, null);
                 }
             }

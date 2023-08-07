@@ -1,11 +1,10 @@
 package com.example.blogsystemarticleprovider.service.serviceImpl;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.example.blogsystem.common.JsonUtils;
 import com.example.blogsystem.common.UUIDUtils;
 import com.example.blogsystem.entity.Article;
 import com.example.blogsystem.entity.User;
-import com.example.blogsystemarticleprovider.controller.ArticleController;
 import com.example.blogsystemarticleprovider.dao.ArticleMapper;
 import com.example.blogsystemarticleprovider.service.ArticleService;
 import org.slf4j.Logger;
@@ -27,7 +26,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    Logger logger = LoggerFactory.getLogger(ArticleController.class);
+    Logger logger = LoggerFactory.getLogger(ArticleServiceImpl.class);
 
     @Override
     public Article getArticle(String userId) {
@@ -48,7 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticleListById(String userId) {
         try {
             List<Article> articleList = articleMapper.getArticleListById(userId);
-            logger.info("query article list size: ", articleList.size());
+            logger.info("query article list size: {}", articleList.size());
             return articleList;
         } catch (Exception e) {
             logger.info("query article list error: ", e);
@@ -63,7 +62,7 @@ public class ArticleServiceImpl implements ArticleService {
         User user = new User();
         try {
             if (!ObjectUtils.isEmpty(redisTemplate.opsForValue().get("user"))) {
-                user = JSONArray.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+                user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 article.setArticleId(UUIDUtils.getId());     //文章id
                 article.setUserid(user.getUserId());         //用户id
                 article.setArticleName(articleName);         //文章标题

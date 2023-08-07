@@ -37,7 +37,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!--指定数据库表，要和数据库中进行对应，否则将会出错-->
-        <!--<table tableName="tb_hotel"  domainObjectName="Hotel"></table>-->
+        <!--tableName="tb_hotel"  domainObjectName="Hotel"-->
         <table tableName="article"  domainObjectName="Article" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <columnOverride column="article_contents" jdbcType="LONGVARCHAR"></columnOverride>
         </table>

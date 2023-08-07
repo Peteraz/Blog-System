@@ -5,9 +5,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>BlogSystem-entity</module>
+        <module>Blog-System-common</module>
         <module>BlogSystem-eureka</module>
-        <module>BlogSystem-product</module>
-        <module>BlogSystem-products</module>
         <module>BlogSystem-consumer</module>
         <module>BlogSystem-user-provider</module>
         <module>BlogSystem-article-provider</module>
@@ -15,12 +14,6 @@
         <module>BlogSystem-mail-provider</module>
         <module>BlogSystem-gateway-provider</module>
     </modules>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
-    </dependencies>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -34,20 +27,71 @@
     <description>BlogSystem</description>
     <properties>
         <java.version>1.8</java.version>
+        <spring-boot.version>2.6.1</spring-boot.version>
+        <spring-web.version>5.3.13</spring-web.version>
+        <lombok.version>1.18.26</lombok.version>
+        <fastjson.version>2.0.10</fastjson.version>
+        <jackson.version>2.14.2</jackson.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <slf4j-api.version>1.7.32</slf4j-api.version>
     </properties>
     <dependencyManagement><!--通过它元素来管理jar包的版本，让子项目中引用一个依赖而不用显示的列出版本号-->
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>2.6.1-SNAPSHOT</version>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
-                <version>2.6.1-SNAPSHOT</version>
+                <version>${spring-boot.version}</version>
                 <scope>test</scope><!--依赖作用范围-->
+            </dependency>
+            <dependency><!--MultipartFile需要这个包-->
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency><!--定义了低级的流式API，包括了JSON处理细节-->
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency><!--包含了Jackson的注解-->
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency><!--实现了对象和JSON之间的转换，这个包依赖上面两个包-->
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
