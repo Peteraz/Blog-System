@@ -22,20 +22,30 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency><!--单元测试-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency><!--spring cloud actuator，应用监控与管理-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency><!--eureka client端-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
-        <dependency><!--将entity依赖添加到product工程中-->
+        <dependency><!--将entity依赖添加到consumer工程中-->
             <groupId>com.example</groupId>
             <artifactId>BlogSystem-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency><!--spring cloud actuator，应用监控与管理-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+        <dependency>
+            <groupId>groupId</groupId>
+            <artifactId>Blog-System-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency><!--spring cloud openfeign依赖-->
             <groupId>org.springframework.cloud</groupId>
@@ -55,48 +65,22 @@
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-spring-cloud2</artifactId>
         </dependency>
-        <dependency><!--让resilience4j和hystix一样调用-->
+        <dependency><!--让resilience4j和hystrix一样调用-->
             <groupId>cn.ocoop.framework</groupId>
             <artifactId>spring-cloud-resilience4j-over-openfeign</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency><!--用到Spring AOP-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <version>2.5.5</version>
-        </dependency>
-        <dependency><!--单元测试-->
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.0-M1</version>
-            <scope>test</scope>
-        </dependency>
         <dependency><!--redis依赖-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>2.5.5</version>
         </dependency>
         <dependency><!--共享session-->
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
-            <version>2.5.2</version>
         </dependency>
         <dependency><!--Thymeleaf是面向Web和独立环境的现代服务器端Java模板引擎-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>2.6.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>groupId</groupId>
-            <artifactId>Blog-System-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
     <dependencyManagement>

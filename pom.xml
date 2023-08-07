@@ -14,6 +14,12 @@
         <module>BlogSystem-mail-provider</module>
         <module>BlogSystem-gateway-provider</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+    </dependencies>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -34,23 +40,37 @@
         <jackson.version>2.14.2</jackson.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <slf4j-api.version>1.7.32</slf4j-api.version>
+        <eureka-client.version>3.1.1</eureka-client.version>
+        <data-redis.version>2.5.5</data-redis.version>
+        <thymeleaf.version>2.6.1</thymeleaf.version>
     </properties>
     <dependencyManagement><!--通过它元素来管理jar包的版本，让子项目中引用一个依赖而不用显示的列出版本号-->
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
-                <version>2.6.1-SNAPSHOT</version>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency><!--微服务间通信要用基于Http的Restful，所以要添加web依赖-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring-boot.version}</version>
                 <scope>test</scope><!--依赖作用范围-->
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency><!--eureka client端-->
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                <version>${eureka-client.version}</version>
             </dependency>
             <dependency><!--MultipartFile需要这个包-->
                 <groupId>org.springframework</groupId>
@@ -92,6 +112,21 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j-api.version}</version>
+            </dependency>
+            <dependency><!--高速缓存，共享session-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${data-redis.version}</version>
+            </dependency>
+            <dependency><!--共享session-->
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>${data-redis.version}</version>
+            </dependency>
+            <dependency><!--Thymeleaf是面向Web和独立环境的现代服务器端Java模板引擎-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>${thymeleaf.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

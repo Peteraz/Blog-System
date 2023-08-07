@@ -27,7 +27,7 @@ public class SendMailServiceImpl implements SendMailService {
     @Autowired
     private JavaMailSender mailSender;  //邮件发送接口
 
-    @Autowired
+    @Resource
     private TemplateEngine templateEngine;
 
     @Resource
@@ -36,7 +36,7 @@ public class SendMailServiceImpl implements SendMailService {
     @Value("${spring.mail.username}")       //读取配置文件中的参数
     private String sender;                //发送人
 
-    private String receiver = "673840304@qq.com";  //收件人
+    private String receiver = "xxxxxx@qq.com";  //收件人
 
     private String localHost = "http://localhost:9001/consumer/getResetPassword?token=";
 
