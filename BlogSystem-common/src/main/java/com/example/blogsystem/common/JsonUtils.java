@@ -1,6 +1,6 @@
 package com.example.blogsystem.common;
 
-import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSON;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +17,8 @@ public class JsonUtils {
         map.put("status", status);
         map.put("msg", msg);
         map.put("data", data);
-        //System.out.println(JSONArray.of(map).toString());
-        return JSONArray.of(map).toString();
+        //System.out.println(JSON.toJSONString(map));
+        return JSON.toJSONString(map);
     }
 
     //map转换成Json字符串传回前端
@@ -26,7 +26,8 @@ public class JsonUtils {
         Map<String, Object> map = new HashMap<>();
         map.put("errno", errno);
         map.put("data", data);
-        //System.out.println(JSONArray.of(map).toString());
-        return JSONArray.of(map).toString();
+        JSON.toJSON(map);
+        //System.out.println(JSON.toJSONString(map));
+        return JSON.toJSONString(map);
     }
 }

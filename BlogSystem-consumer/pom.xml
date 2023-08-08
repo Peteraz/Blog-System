@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>Blog-System-common</artifactId>
+            <artifactId>BlogSystem-common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

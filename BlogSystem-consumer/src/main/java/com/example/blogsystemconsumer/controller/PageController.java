@@ -25,6 +25,7 @@ public class PageController {
     private static final String LOGIN = "login";
 
     private static final String ERROR = "error";
+
     Logger logger = LoggerFactory.getLogger(PageController.class);
 
     @RequestMapping(value = "getLogin")
@@ -42,17 +43,12 @@ public class PageController {
     @RequestMapping(value = "getIndex")
     public ModelAndView getIndex() {
         ModelAndView modelAndView = new ModelAndView("index");
-        try {
-            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
-                return new ModelAndView(LOGIN);
-            } else {
-                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserId());
-                modelAndView.addObject("user", user);
-                return modelAndView;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+            return new ModelAndView(LOGIN);
+        } else {
+            User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            logger.info(user.getUserId());
+            modelAndView.addObject("user", user);
             return modelAndView;
         }
     }
@@ -60,17 +56,12 @@ public class PageController {
     @RequestMapping(value = "getProfile")
     public ModelAndView getProfile() {
         ModelAndView modelAndView = new ModelAndView("profile");
-        try {
-            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
-                return new ModelAndView(LOGIN);
-            } else {
-                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserId());
-                modelAndView.addObject("user", user);
-                return modelAndView;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+            return new ModelAndView(LOGIN);
+        } else {
+            User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            logger.info(user.getUserId());
+            modelAndView.addObject("user", user);
             return modelAndView;
         }
     }
@@ -78,17 +69,12 @@ public class PageController {
     @RequestMapping(value = "getArticleShow")
     public ModelAndView getArticleShow() {
         ModelAndView modelAndView = new ModelAndView("article-show");
-        try {
-            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
-                return new ModelAndView(LOGIN);
-            } else {
-                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserId());
-                modelAndView.addObject("user", user).addObject("articleList", articleProviderService.getArticleListById(user.getUserId()));
-                return modelAndView;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+            return new ModelAndView(LOGIN);
+        } else {
+            User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            logger.info(user.getUserId());
+            modelAndView.addObject("user", user).addObject("articleList", articleProviderService.getArticleListById(user.getUserId()));
             return modelAndView;
         }
     }
@@ -103,36 +89,26 @@ public class PageController {
         if (StringUtils.isBlank(token)) {
             return new ModelAndView(ERROR).addObject("message", "不合法访问!");
         }
-        try {
-            if (redisTemplate.getExpire("resetPwdToken") == -2) {
-                return new ModelAndView(ERROR).addObject("message", "修改时间已经过了!");
-            }
-            String resetPwdToken = String.valueOf(redisTemplate.opsForValue().get("resetPwdToken"));
-            if (!token.equals(resetPwdToken)) {
-                return new ModelAndView(ERROR).addObject("message", "修改码不正确!");
-            }
-            return new ModelAndView("reset-password");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ModelAndView(ERROR).addObject("message", e.getMessage());
+        if (redisTemplate.getExpire("resetPwdToken") == -2) {
+            return new ModelAndView(ERROR).addObject("message", "修改时间已经过了!");
         }
+        String resetPwdToken = String.valueOf(redisTemplate.opsForValue().get("resetPwdToken"));
+        if (!token.equals(resetPwdToken)) {
+            return new ModelAndView(ERROR).addObject("message", "修改码不正确!");
+        }
+        return new ModelAndView("reset-password");
     }
 
 
     @RequestMapping(value = "getArticle")
     public ModelAndView getArticle() {
         ModelAndView modelAndView = new ModelAndView("article");
-        try {
-            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
-                return new ModelAndView(LOGIN);
-            } else {
-                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserId());
-                modelAndView.addObject("user", user);
-                return modelAndView;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+            return new ModelAndView(LOGIN);
+        } else {
+            User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            logger.info(user.getUserId());
+            modelAndView.addObject("user", user);
             return modelAndView;
         }
     }
@@ -140,17 +116,12 @@ public class PageController {
     @RequestMapping(value = "getSettings")
     public ModelAndView getSettings() {
         ModelAndView modelAndView = new ModelAndView("settings");
-        try {
-            if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
-                return new ModelAndView(LOGIN);
-            } else {
-                User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
-                logger.info(user.getUserId());
-                modelAndView.addObject("user", user);
-                return modelAndView;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (String.valueOf(redisTemplate.opsForValue().get("user")).isEmpty()) {
+            return new ModelAndView(LOGIN);
+        } else {
+            User user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
+            logger.info(user.getUserId());
+            modelAndView.addObject("user", user);
             return modelAndView;
         }
     }

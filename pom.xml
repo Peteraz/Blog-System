@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>BlogSystem-entity</module>
-        <module>Blog-System-common</module>
+        <module>BlogSystem-common</module>
         <module>BlogSystem-eureka</module>
         <module>BlogSystem-consumer</module>
         <module>BlogSystem-user-provider</module>

@@ -32,10 +32,10 @@ spring:
     # 数据源名称
     name: userDataSource
     # 数据库连接地址
-    url: jdbc:mysql://localhost:3306/blog_user?serverTimezone=GMT%2B8
+    url: jdbc:mysql://144.202.89.94:3306/blog_user?serverTimezone=GMT%2B8
     # 数据库用户名&密码：
     username: root
-    password: 123
+    password: Peter@123456
 eureka:
   client:
     service-url:

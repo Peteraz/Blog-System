@@ -91,6 +91,20 @@ $('#register').click(function (result) {
     });
 });
 
+$('#toRegister').click(function (result) {
+    $.ajax({
+        url: 'http://localhost:9001/consumer/getRegister',
+        type: "POST",
+        async: false,
+        cache: false,
+        dataType: "json",
+        //提交完就执行
+        complete: function (result) {
+            $(location).attr("href", "http://localhost:9001/consumer/getRegister");
+        },
+    });
+});
+
 $('#login').click(function (result) {
     let account = $('#account').val();
     let password = $('#password').val();
@@ -132,6 +146,20 @@ $('#login').click(function (result) {
             }
         });
     }
+});
+
+$('#toLogin').click(function (result) {
+    $.ajax({
+        url: 'http://localhost:9001/consumer/getLogin',
+        type: "POST",
+        async: false,
+        cache: false,
+        dataType: "json",
+        //提交完就执行
+        complete: function (result) {
+            $(location).attr("href", "http://localhost:9001/consumer/getLogin");
+        },
+    });
 });
 
 //判断是否第一次选择
