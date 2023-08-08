@@ -36,20 +36,22 @@ public class ConsumerController {
 
     Logger logger = LoggerFactory.getLogger(ConsumerController.class);
 
-
     /**
      * 注册
      */
     @RequestMapping(value = "Register", method = RequestMethod.POST)
-    public String Register(@RequestBody Map<String, String> map) {  //注册
+    public String register(@RequestBody Map<String, String> map) {  //注册
         if (map.isEmpty()) {
             return JsonUtils.jsonPrint(-3, "收不到注册信息!", null);
         }
         return userProviderService.Register(map);  //返回调用结果
     }
 
+    /**
+     * 登录
+     */
     @RequestMapping(value = "Login", method = RequestMethod.POST)
-    public String Login(@RequestParam("account") String account, @RequestParam("password") String password) {  //登录
+    public String login(@RequestParam("account") String account, @RequestParam("password") String password) {  //登录
         if (StringUtils.isBlank(account)) {
             return JsonUtils.jsonPrint(-4, "请输入账号!", null);
         } else if (StringUtils.isBlank(password)) {
@@ -58,6 +60,9 @@ public class ConsumerController {
         return userProviderService.Login(account, password);  //返回调用结果
     }
 
+    /**
+     * 发表文章
+     */
     @RequestMapping(value = "createArticle")
     public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
         if (StringUtils.isEmpty(articleName) || StringUtils.isEmpty(category) || StringUtils.isEmpty(articleContents)) {
@@ -66,13 +71,19 @@ public class ConsumerController {
         return articleProviderService.createArticle(articleName, category, articleContents);
     }
 
+    /**
+     * 登出
+     */
     @RequestMapping(value = "Logout", method = RequestMethod.POST)
-    public String Logout() {  //登出
+    public String logout() {  //登出
         return userProviderService.Logout();  //返回调用结果
     }
 
+    /**
+     * 修改资料
+     */
     @RequestMapping(value = "ResetInfo", method = RequestMethod.POST)
-    public String ResetInfo(@RequestBody Map<String, String> map) {
+    public String resetInfo(@RequestBody Map<String, String> map) {
         if (map.isEmpty()) {
             return JsonUtils.jsonPrint(-3, "接收不到数据!", null);
         }
@@ -80,7 +91,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    public String ResetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+    public String resetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
         if (StringUtils.isEmpty(password) || StringUtils.isEmpty(password1) || StringUtils.isEmpty(password2)) {
             return JsonUtils.jsonPrint(-3, "有密码为空!", null);
         }
@@ -89,7 +100,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
-    public String ResetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+    public String resetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
         if (StringUtils.isEmpty(password1) || StringUtils.isEmpty(password2)) {
             return JsonUtils.jsonPrint(-3, "密码不能空!", null);
         }
@@ -97,7 +108,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)
-    public String ForgetPWD(@RequestParam("account") String account) {
+    public String forgetPWD(@RequestParam("account") String account) {
         try {
             if (userProviderService.ForgetPWD(account).equals("1")) {
                 return mailProviderService.sendMail(account);
@@ -111,7 +122,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "FileUpload")
-    public String FileUpload(@RequestParam("file") MultipartFile[] file) {
+    public String fileUpload(@RequestParam("file") MultipartFile[] file) {
         List<String> data = new ArrayList<>();
         if (file == null || file.length == 0) {
             return JsonUtils.jsonPrint(1, null);
@@ -133,7 +144,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String IconUpload(@RequestPart("file") MultipartFile[] file) {
+    public String iconUpload(@RequestPart("file") MultipartFile[] file) {
         if (file == null || file.length == 0) {
             return JsonUtils.jsonPrint(-2, "没有选择照片!", null);
         }
@@ -141,7 +152,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "SendMail", method = RequestMethod.POST)//注册
-    public String SendMail(@RequestParam("email") String email) {
+    public String sendMail(@RequestParam("email") String email) {
         if (StringUtils.isNotBlank(email)) {
             return JsonUtils.jsonPrint(-4, "没有收到用户邮箱!", null);
         }

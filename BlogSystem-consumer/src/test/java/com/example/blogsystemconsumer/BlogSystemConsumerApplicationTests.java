@@ -1,8 +1,9 @@
 package com.example.blogsystemconsumer;
 
-import org.junit.jupiter.api.Test;
 import com.example.blogsystemconsumer.controller.ConsumerController;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import javax.annotation.Resource;
 
 @SpringBootTest
@@ -11,14 +12,14 @@ class BlogSystemConsumerApplicationTests {
     ConsumerController consumerController;
 
     @Test
-    void contextLoads(){
-        String account="Peter";
-        String password="123456";
-        String result=consumerController.Login(account,password);
-        if(result!=null){
+    void contextLoads() {
+        String account = "Peter";
+        String password = "123456";
+        String result = consumerController.login(account, password);
+        if (result != null) {
             System.out.println(result);
-        }else{
-            System.out.println("something worng");
+        } else {
+            System.out.println("something wrong");
         }
     }
 }
