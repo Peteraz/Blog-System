@@ -3,6 +3,7 @@ package com.example.blogsystem.aop;
 import com.example.blogsystem.common.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -53,4 +54,9 @@ public class GlobalExceptionHandler {
         return JsonUtils.jsonPrint(-1, e.getMessage(), null);
     }
 
+    @ExceptionHandler(MailAuthenticationException.class)
+    public String handleMailAuthenticationException(MailAuthenticationException e) {
+        log.error("发送邮件发生异常: ", e);
+        return JsonUtils.jsonPrint(-1, e.getMessage(), null);
+    }
 }

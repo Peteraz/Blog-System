@@ -6,7 +6,6 @@
         <groupId>com.example</groupId>
         <artifactId>BlogSystem</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
     <artifactId>BlogSystem-article-provider</artifactId>
@@ -18,23 +17,6 @@
         <spring-cloud.version>2021.0.0-SNAPSHOT</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency><!--微服务间通信要用基于Http的Restful，所以要添加web依赖-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency><!--单元测试-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency><!--spring cloud actuator，应用监控与管理-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency><!--eureka client端-->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
         <dependency><!--将entity依赖添加到article-provider工程中-->
             <groupId>com.example</groupId>
             <artifactId>BlogSystem-entity</artifactId>
@@ -42,7 +24,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>groupId</groupId>
+            <groupId>com.example</groupId>
             <artifactId>Blog-System-common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
@@ -50,30 +32,10 @@
         <dependency><!--springboot下mybatis的依赖-->
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-maven-plugin</artifactId>
-            <version>1.4.0</version>
-            <scope>test</scope> <!--依赖作用范围-->
         </dependency>
         <dependency><!--mysql连接-->
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency><!--spring cloud openfeign依赖，product项目即可以作为生产者，又可以作为消费者-->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>3.0.3</version>
-        </dependency>
-        <dependency><!--redis依赖-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency><!--共享session-->
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -97,6 +59,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
                 <configuration>
                     <configurationFile>generateConfig.xml</configurationFile>
                     <overwrite>true</overwrite>

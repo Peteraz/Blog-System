@@ -6,7 +6,6 @@
         <groupId>com.example</groupId>
         <artifactId>BlogSystem</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
     <artifactId>BlogSystem-consumer</artifactId>
@@ -18,22 +17,9 @@
         <spring-cloud.version>2021.0.0-SNAPSHOT</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency><!--微服务间通信要用基于Http的Restful，所以要添加web依赖-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency><!--单元测试-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency><!--spring cloud actuator，应用监控与管理-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency><!--eureka client端-->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency><!--将entity依赖添加到consumer工程中-->
             <groupId>com.example</groupId>
@@ -42,15 +28,10 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>groupId</groupId>
+            <groupId>com.example</groupId>
             <artifactId>Blog-System-common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency><!--spring cloud openfeign依赖-->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>3.1.0-SNAPSHOT</version>
         </dependency>
         <dependency><!--取代URLConnection-->
             <groupId>io.github.openfeign</groupId>
@@ -69,18 +50,6 @@
             <groupId>cn.ocoop.framework</groupId>
             <artifactId>spring-cloud-resilience4j-over-openfeign</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency><!--redis依赖-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency><!--共享session-->
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <dependency><!--Thymeleaf是面向Web和独立环境的现代服务器端Java模板引擎-->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>

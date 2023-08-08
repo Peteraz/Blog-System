@@ -34,15 +34,17 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.6.1</spring-boot.version>
+        <openfeign.version>3.1.0</openfeign.version>
+        <data-redis.version>2.5.5</data-redis.version>
         <spring-web.version>5.3.13</spring-web.version>
         <lombok.version>1.18.26</lombok.version>
         <fastjson.version>2.0.10</fastjson.version>
         <jackson.version>2.14.2</jackson.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <slf4j-api.version>1.7.32</slf4j-api.version>
-        <eureka-client.version>3.1.1</eureka-client.version>
-        <data-redis.version>2.5.5</data-redis.version>
-        <thymeleaf.version>2.6.1</thymeleaf.version>
+        <eureka-client.version>3.1.0</eureka-client.version>
+        <spring-thymeleaf.version>2.6.1</spring-thymeleaf.version>
+        <mybatis.version>2.2.0</mybatis.version>
     </properties>
     <dependencyManagement><!--通过它元素来管理jar包的版本，让子项目中引用一个依赖而不用显示的列出版本号-->
         <dependencies>
@@ -67,10 +69,30 @@
                 <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
+            <dependency><!--email-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-mail</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
             <dependency><!--eureka client端-->
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                 <version>${eureka-client.version}</version>
+            </dependency>
+            <dependency><!--spring cloud openfeign依赖，product项目即可以作为生产者，又可以作为消费者-->
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+            <dependency><!--高速缓存，共享session-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${data-redis.version}</version>
+            </dependency>
+            <dependency><!--共享session-->
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>${data-redis.version}</version>
             </dependency>
             <dependency><!--MultipartFile需要这个包-->
                 <groupId>org.springframework</groupId>
@@ -113,20 +135,15 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j-api.version}</version>
             </dependency>
-            <dependency><!--高速缓存，共享session-->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${data-redis.version}</version>
-            </dependency>
-            <dependency><!--共享session-->
-                <groupId>org.springframework.session</groupId>
-                <artifactId>spring-session-data-redis</artifactId>
-                <version>${data-redis.version}</version>
-            </dependency>
             <dependency><!--Thymeleaf是面向Web和独立环境的现代服务器端Java模板引擎-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
-                <version>${thymeleaf.version}</version>
+                <version>${spring-thymeleaf.version}</version>
+            </dependency>
+            <dependency><!--springboot下mybatis的依赖-->
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

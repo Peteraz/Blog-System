@@ -27,7 +27,7 @@ public class SendMailServiceImpl implements SendMailService {
     @Autowired
     private JavaMailSender mailSender;  //邮件发送接口
 
-    @Resource
+    @Autowired
     private TemplateEngine templateEngine;
 
     @Resource
@@ -52,6 +52,7 @@ public class SendMailServiceImpl implements SendMailService {
         mailSender.send(mailMessage);
     }
 
+    @Override
     public void sendAttachmentsMail() throws MessagingException {
         MimeMessage mimeMailMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
@@ -66,6 +67,7 @@ public class SendMailServiceImpl implements SendMailService {
         mailSender.send(mimeMailMessage);
     }
 
+    @Override
     public void sendInlineMail() throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -78,6 +80,7 @@ public class SendMailServiceImpl implements SendMailService {
         mailSender.send(mimeMessage);
     }
 
+    @Override
     public String sendMail(String email) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
