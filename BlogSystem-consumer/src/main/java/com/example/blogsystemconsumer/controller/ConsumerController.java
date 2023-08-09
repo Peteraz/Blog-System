@@ -2,6 +2,7 @@ package com.example.blogsystemconsumer.controller;
 
 import com.example.blogsystem.common.FileUploadUtils;
 import com.example.blogsystem.common.JsonUtils;
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.ArticleProviderService;
 import com.example.blogsystemconsumer.service.MailProviderService;
 import com.example.blogsystemconsumer.service.UserProviderService;
@@ -40,11 +41,8 @@ public class ConsumerController {
      * 注册
      */
     @RequestMapping(value = "Register", method = RequestMethod.POST)
-    public String register(@RequestBody Map<String, String> map) {  //注册
-        if (map.isEmpty()) {
-            return JsonUtils.jsonPrint(-3, "收不到注册信息!", null);
-        }
-        return userProviderService.Register(map);  //返回调用结果
+    public String register(@RequestBody User user) {
+        return userProviderService.Register(user);  //返回调用结果
     }
 
     /**
@@ -127,10 +125,10 @@ public class ConsumerController {
         if (file == null || file.length == 0) {
             return JsonUtils.jsonPrint(1, null);
         }
-        for (int i = 0; i < file.length; i++) {
-            if (FileUploadUtils.isImg(file[i]).equals("yes")) {
+        for (MultipartFile multipartFile : file) {
+            if (FileUploadUtils.isImg(multipartFile).equals("yes")) {
                 try {
-                    String url = FileUploadUtils.upload(file[i]);
+                    String url = FileUploadUtils.upload(multipartFile);
                     if (!url.equals("error")) {
                         data.add(url);
                     }
@@ -158,4 +156,5 @@ public class ConsumerController {
         }
         return userProviderService.ForgetPWD(email);
     }
+
 }

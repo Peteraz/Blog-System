@@ -1,4 +1,4 @@
-package com.example.blogsystem.aop;
+package com.example.blogsystem.entity;
 
 import lombok.Data;
 

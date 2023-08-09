@@ -1,5 +1,6 @@
 package com.example.blogsystemconsumer.resilience4j;
 
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.service.UserProviderService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +13,7 @@ import java.util.Map;
 @Component
 public class BackendUserProviderService implements UserProviderService {
     @Override
-    public String Register(@RequestBody Map<String, String> map) {
+    public String Register(@RequestBody User user) {
         return "连接超时,请稍后重试!";
     }
 

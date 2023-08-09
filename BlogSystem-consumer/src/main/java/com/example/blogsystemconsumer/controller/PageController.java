@@ -126,8 +126,4 @@ public class PageController {
         }
     }
 
-    @RequestMapping(value = "getTest")
-    public ModelAndView getTest() {
-        return new ModelAndView("test");
-    }
 }

@@ -27,16 +27,23 @@ const upload = function (resultFiles, insertImgFn) {
 
 $('#register').click(function (result) {
     let state = $("#inputState").val().substr($("#inputState").val().indexOf("-") + 1); //截取省份出来
+    if (state == "请选择省份...") {
+        state = null;
+    }
+    let city = $("#inputCity").val();
+    if ( city == "请选择城市...") {
+        city = null;
+    }
     let data = {
         "account": $("#account").val(),
         "password": $("#password").val(),
-        "name": $("#user_name").val(),
+        "userName": $("#user_name").val(),
         "email": $("#email").val(),
         "birthday": $("#birthday").val(),
         "sex": $("input[name='sex']:checked").val(),
-        "phone_number": $("#phone_number").val(),
+        "phoneNumber": $("#phone_number").val(),
         "state": state,
-        "city": $("#inputCity").val()
+        "city": city
     }
     $.ajax({
         url: "http://localhost:9001/consumer/Register?token=123",
@@ -92,17 +99,7 @@ $('#register').click(function (result) {
 });
 
 $('#toRegister').click(function (result) {
-    $.ajax({
-        url: 'http://localhost:9001/consumer/getRegister',
-        type: "POST",
-        async: false,
-        cache: false,
-        dataType: "json",
-        //提交完就执行
-        complete: function (result) {
-            $(location).attr("href", "http://localhost:9001/consumer/getRegister");
-        },
-    });
+    $(location).attr("href", "http://localhost:9001/consumer/getRegister");
 });
 
 $('#login').click(function (result) {
@@ -149,17 +146,7 @@ $('#login').click(function (result) {
 });
 
 $('#toLogin').click(function (result) {
-    $.ajax({
-        url: 'http://localhost:9001/consumer/getLogin',
-        type: "POST",
-        async: false,
-        cache: false,
-        dataType: "json",
-        //提交完就执行
-        complete: function (result) {
-            $(location).attr("href", "http://localhost:9001/consumer/getLogin");
-        },
-    });
+    $(location).attr("href", "http://localhost:9001/consumer/getLogin");
 });
 
 //判断是否第一次选择
@@ -358,9 +345,9 @@ $('#chooseP').click(function () {   //选择照片
 
 $('#choosePicture').on('change', function (e) {  //获取图片
     //获取用户选择的文件
-    let filelist = e.target.files;
+    let fileList = e.target.files;
     //检查是否选择了文件
-    if (filelist.length === 0) {
+    if (fileList.length === 0) {
         return alert("请选择照片");
     }
     //拿到用户选择的文件

@@ -1,5 +1,6 @@
 package com.example.blogsystemuserprovider.controller;
 
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
@@ -20,8 +21,8 @@ public class UserController {
     private RedisTemplate<String, Object> redisTemplate;
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)
-    public String register(@RequestBody Map<String, String> map) {
-        return userService.register(map);
+    public String register(@RequestBody User user) {
+        return userService.register(user);
     }
 
     @RequestMapping(value = "Login", method = RequestMethod.POST)

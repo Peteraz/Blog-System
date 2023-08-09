@@ -1,5 +1,6 @@
 package com.example.blogsystemconsumer.service;
 
+import com.example.blogsystem.entity.User;
 import com.example.blogsystemconsumer.resilience4j.BackendUserProviderService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -17,7 +18,7 @@ import java.util.Map;
 public interface UserProviderService {
     //注册
     @RequestMapping(value = "Register", method = RequestMethod.POST)
-    String Register(@RequestBody Map<String, String> map);
+    String Register(@RequestBody User user);
 
     //登录
     @RequestMapping(value = "Login", method = RequestMethod.POST)

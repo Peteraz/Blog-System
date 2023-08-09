@@ -1,12 +1,13 @@
 package com.example.blogsystemuserprovider.service;
 
+import com.example.blogsystem.entity.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
 public interface UserService {
 
-    String register(Map<String, String> map);
+    String register(User user);
 
     String login(String account, String password);
 
