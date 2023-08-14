@@ -9,7 +9,7 @@ public class Article {
 
     private String articleId;
 
-    private String userid;
+    private String userId;
 
     private String articleName;
 

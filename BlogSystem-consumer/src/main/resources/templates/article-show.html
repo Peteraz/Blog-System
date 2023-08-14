@@ -294,18 +294,18 @@
 
     <main class="content">
       <div class="container-fluid p-0">
-        <h1 class="h3 mb-3">文章</h1>
+        <h1 class="h3 mb-3">文章列表</h1>
         <div class="row">
           <div class="col-12 col-lg-12">
-            <div th:each="article : ${articleList}" class="card">
+            <div th:each="article : ${articleList}" class="card" style="width:60%;height:200px">
               <div class="card-header align-content-lg-center">
-                <h1 th:if="${article.articleName}"></h1>
+                <h2 th:utext="${article.articleName}"></h2>
               </div>
               <div class="card-header align-content-lg-center">
-                文章类型:<h3 th:if="${article.categoryName}"></h3>
+                文章类型:<b th:utext="${article.categoryName}"></b>
               </div>
               <div class="card-body">
-                <h1 th:utext="${article.articleContents}"></h1>
+                <h5 th:utext="${article.articleContents}"></h5>
               </div>
             </div>
           </div>

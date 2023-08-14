@@ -32,7 +32,7 @@
     ,
     <include refid="Blob_Column_List" />
     from article
-    where userid = #{userid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </select>
   <select id="getArticleListById" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select

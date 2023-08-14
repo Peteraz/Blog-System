@@ -64,7 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
             if (!ObjectUtils.isEmpty(redisTemplate.opsForValue().get("user"))) {
                 user = JSONObject.parseObject(String.valueOf(redisTemplate.opsForValue().get("user")), User.class);
                 article.setArticleId(UUIDUtils.getId());     //文章id
-                article.setUserid(user.getUserId());         //用户id
+                article.setUserId(user.getUserId());         //用户id
                 article.setArticleName(articleName);         //文章标题
                 article.setCategoryName(category);           //文章分类
                 article.setArticleContents(articleContents); //文章内容

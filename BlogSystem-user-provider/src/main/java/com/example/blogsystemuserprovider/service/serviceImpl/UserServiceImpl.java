@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         user.setCreateTime(new Date());
         user.setLoginCount(ZERO);
         userMapper.insertSelective(user);
-        return JsonUtils.jsonPrint(1, "注册成功!", null); //注册成功
+        return JsonUtils.jsonPrint(1, "注册成功!", null);
     }
 
     @Override
@@ -80,8 +80,10 @@ public class UserServiceImpl implements UserService {
         user.setLoginTime(new Date());  //当前登录时间
         user.setLoginCount(user.getLoginCount() + 1);  //登录次数+1
         userMapper.updateByUserSelective(user);
-        user.setPassword("null");   //避免暴露密码
-        redisTemplate.opsForValue().set("user", JSON.toJSONString(user), 7, TimeUnit.DAYS); //redis缓存
+        //避免暴露密码
+        user.setPassword(null);
+        //redis缓存,保存7天
+        redisTemplate.opsForValue().set("user", JSON.toJSONString(user), 7, TimeUnit.DAYS);
         return JsonUtils.jsonPrint(1, "登录成功!", null);
     }
 
@@ -140,11 +142,11 @@ public class UserServiceImpl implements UserService {
     public String resetPassword(String password1, String password2) {
         User user;
         if (!password1.equals(password2)) {
-            return JsonUtils.jsonPrint(-1, "两个密码不一样!", null);     //两个密码不一样
+            return JsonUtils.jsonPrint(-1, "两个密码不一样!", null);
         }
         try {
             if (redisTemplate.getExpire("resetEmail") != 0 && redisTemplate.getExpire("resetEmail") == -2) {
-                return JsonUtils.jsonPrint(-2, "修改密码过期了!", null); //修改密码的时候已过期
+                return JsonUtils.jsonPrint(-2, "修改密码时效已过了!", null);
             }
             String email = String.valueOf(redisTemplate.opsForValue().get("resetEmail"));
             user = userMapper.getUserByEmail(email);
