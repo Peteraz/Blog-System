@@ -15,11 +15,11 @@ public interface UserService {
 
     String resetInfo(Map<String, String> map);
 
-    String resetPWD(String password, String password1, String password2);
+    String resetPWD(String userId, String password, String password1, String password2);
 
-    String resetPassword(String password1, String password2);
+    String resetPassword(String token, String password1, String password2);
 
-    String iconUpload(MultipartFile[] file);
+    String iconUpload(String userId, MultipartFile[] file);
 
     String forgetPWD(String email);
 

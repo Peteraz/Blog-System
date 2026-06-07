@@ -280,13 +280,13 @@ $('#password_submit').click(function (result) {
     $.ajax({
         url: "http://localhost:9001/consumer/ResetPWD?token=123",
         data: {
-            file
+            password: $('#inputPasswordCurrent').val(),
+            password1: $('#inputPasswordNew1').val(),
+            password2: $('#inputPasswordNew2').val()
         },
         type: "POST",
         async: false,
         cache: false,
-        processData: false,
-        contentType: false,
         dataType: "json",
         success: function (result) {
             if (result.status == "1") {
@@ -630,10 +630,12 @@ $('#reset_password').click(function (result) {
         });
         return;
     }
+    let token = new URLSearchParams(window.location.search).get("token");
     $.ajax({
-        url: "http://localhost:9001/consumer/ResetPassword?token=123",
+        url: "http://localhost:9001/consumer/ResetPassword",
         type: "POST",
         data: {
+            token: token,
             password1: $('#password1').val(),
             password2: $('#password2').val()
         },

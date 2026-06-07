@@ -15,8 +15,8 @@ public class ArticleController {
     private ArticleService articleService;
 
     @RequestMapping(value = "createArticle")
-    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
-        return articleService.createArticle(articleName, category, articleContents);
+    public String createArticle(@RequestParam("userId") String userId, @RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
+        return articleService.createArticle(userId, articleName, category, articleContents);
     }
 
     @RequestMapping(value = "getArticle")

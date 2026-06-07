@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class BackendArticleProviderService implements ArticleProviderService {
     @Override
-    public String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
+    public String createArticle(@RequestParam("userId") String userId, @RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
         return "连接超时,请稍后重试!";
     }
 

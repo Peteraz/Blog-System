@@ -95,9 +95,9 @@ public class SendMailServiceImpl implements SendMailService {
             String emailContent = templateEngine.process("/mail", context);
             mimeMessageHelper.setText(emailContent, true);
             mailSender.send(mimeMessage);
-            redisTemplate.opsForValue().set("resetPwdToken", token, 60 * 60 * 12, TimeUnit.SECONDS); //token
+            // Store email by token so multiple password reset requests can coexist safely.
+            redisTemplate.opsForValue().set("resetPwd:" + token, email, 60 * 60 * 12, TimeUnit.SECONDS);
             logger.info(token);
-            redisTemplate.opsForValue().set("resetEmail", email, 60 * 60 * 12, TimeUnit.SECONDS);    //接收用户
             return JsonUtils.jsonPrint(1, "邮件发送成功!", null);
         } catch (Exception e) {
             logger.error("send mail error: ", e);

@@ -34,15 +34,15 @@ public interface UserProviderService {
 
     //上传头像
     @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    String IconUpload(@RequestPart("file") MultipartFile[] file);
+    String IconUpload(@RequestParam("userId") String userId, @RequestPart("file") MultipartFile[] file);
 
     //修改密码
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    String ResetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2);
+    String ResetPWD(@RequestParam("userId") String userId, @RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2);
 
     //重置密码
     @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
-    String ResetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2);
+    String ResetPassword(@RequestParam("token") String token, @RequestParam("password1") String password1, @RequestParam("password2") String password2);
 
     //忘记密码
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)

@@ -10,6 +10,6 @@ public interface ArticleService {
 
     List<Article> getArticleListById(String userId);
 
-    String createArticle(String articleName, String category, String articleContents);
+    String createArticle(String userId, String articleName, String category, String articleContents);
 
 }

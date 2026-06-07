@@ -33,22 +33,22 @@ public class BackendUserProviderService implements UserProviderService {
     }
 
     @Override
-    public String IconUpload(@RequestPart("file") MultipartFile[] file) {
+    public String IconUpload(@RequestParam("userId") String userId, @RequestPart("file") MultipartFile[] file) {
         return "连接超时,请稍后重试!";
     }
 
     @Override
-    public String ResetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+    public String ResetPWD(@RequestParam("userId") String userId, @RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
         return "连接超时,请稍后重试!";
     }
 
     @Override
-    public String ResetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+    public String ResetPassword(@RequestParam("token") String token, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
         return "连接超时,请稍后重试!";
     }
 
     @Override
-    public String ForgetPWD(@RequestParam("account") String account) {
+    public String ForgetPWD(@RequestParam("email") String email) {
         return "连接超时,请稍后重试!";
     }
 }

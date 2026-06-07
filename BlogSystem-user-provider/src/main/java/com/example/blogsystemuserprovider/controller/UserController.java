@@ -2,7 +2,6 @@ package com.example.blogsystemuserprovider.controller;
 
 import com.example.blogsystem.entity.User;
 import com.example.blogsystemuserprovider.service.UserService;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,9 +15,6 @@ import java.util.Map;
 public class UserController {
     @Resource
     private UserService userService;
-
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
 
     @RequestMapping(value = "Register", method = RequestMethod.POST)
     public String register(@RequestBody User user) {
@@ -41,18 +37,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "ResetPWD", method = RequestMethod.POST)
-    public String resetPWD(@RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
-        return userService.resetPWD(password, password1, password2);
+    public String resetPWD(@RequestParam("userId") String userId, @RequestParam("password") String password, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+        return userService.resetPWD(userId, password, password1, password2);
     }
 
     @RequestMapping(value = "ResetPassword", method = RequestMethod.POST)
-    public String resetPassword(@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
-        return userService.resetPassword(password1, password2);
+    public String resetPassword(@RequestParam("token") String token, @RequestParam("password1") String password1, @RequestParam("password2") String password2) {
+        return userService.resetPassword(token, password1, password2);
     }
 
     @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String iconUpload(@RequestPart("file") MultipartFile[] file) {
-        return userService.iconUpload(file);
+    public String iconUpload(@RequestParam("userId") String userId, @RequestPart("file") MultipartFile[] file) {
+        return userService.iconUpload(userId, file);
     }
 
     @RequestMapping(value = "ForgetPWD", method = RequestMethod.POST)

@@ -16,7 +16,7 @@ import java.util.List;
 @FeignClient(name = "article-provider-server", path = "/article-provider", fallback = BackendArticleProviderService.class)
 public interface ArticleProviderService {
     @RequestMapping(value = "createArticle")
-    String createArticle(@RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents);
+    String createArticle(@RequestParam("userId") String userId, @RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents);
 
     @RequestMapping(value = "getArticle")
     Article getArticle(@RequestParam("userId") String userId);
