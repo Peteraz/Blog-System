@@ -5,6 +5,7 @@ import com.example.blogsystemconsumer.resilience4j.BackendArticleProviderService
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 //path 为user-provider项目中application.yml配置文件中的context.path;
 @FeignClient(name = "article-provider-server", path = "/article-provider", fallback = BackendArticleProviderService.class)
 public interface ArticleProviderService {
-    @RequestMapping(value = "createArticle")
+    @RequestMapping(value = "createArticle", method = RequestMethod.POST)
     String createArticle(@RequestParam("userId") String userId, @RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents);
 
     @RequestMapping(value = "getArticle")

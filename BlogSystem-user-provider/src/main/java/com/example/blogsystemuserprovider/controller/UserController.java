@@ -46,7 +46,7 @@ public class UserController {
         return userService.resetPassword(token, password1, password2);
     }
 
-    @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "IconUpload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String iconUpload(@RequestParam("userId") String userId, @RequestPart("file") MultipartFile[] file) {
         return userService.iconUpload(userId, file);
     }

@@ -3,6 +3,7 @@ package com.example.blogsystemarticleprovider.controller;
 import com.example.blogsystem.entity.Article;
 import com.example.blogsystemarticleprovider.service.ArticleService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class ArticleController {
     @Resource
     private ArticleService articleService;
 
-    @RequestMapping(value = "createArticle")
+    @RequestMapping(value = "createArticle", method = RequestMethod.POST)
     public String createArticle(@RequestParam("userId") String userId, @RequestParam("articleName") String articleName, @RequestParam("category") String category, @RequestParam("articleContents") String articleContents) {
         return articleService.createArticle(userId, articleName, category, articleContents);
     }

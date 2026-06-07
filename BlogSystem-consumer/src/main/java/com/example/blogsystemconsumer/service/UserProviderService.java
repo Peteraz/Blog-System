@@ -33,7 +33,7 @@ public interface UserProviderService {
     String ResetInfo(@RequestBody Map<String, String> map);
 
     //上传头像
-    @RequestMapping(value = "IconUpload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "IconUpload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     String IconUpload(@RequestParam("userId") String userId, @RequestPart("file") MultipartFile[] file);
 
     //修改密码

@@ -1,155 +1,56 @@
-2023-08-11 16:32:49.806 [main] INFO  c.e.b.BlogSystemConsumerApplication - Starting BlogSystemConsumerApplication using Java 17.0.2 on DESKTOP-I8BU1F2 with PID 24380 (D:\Code\Blog-System\BlogSystem-consumer\target\classes started by Peter in D:\Code\Blog-System)
-2023-08-11 16:32:49.809 [main] INFO  c.e.b.BlogSystemConsumerApplication - No active profile set, falling back to default profiles: default
-2023-08-11 16:32:50.437 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
-2023-08-11 16:32:50.439 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2023-08-11 16:32:50.455 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
-2023-08-11 16:32:50.609 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=ea17906a-0cb1-345a-b2c4-c8672e3ac5b4
-2023-08-11 16:32:50.967 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7099 (http)
-2023-08-11 16:32:50.972 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7099"]
-2023-08-11 16:32:50.973 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-08-11 16:32:50.973 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.55]
-2023-08-11 16:32:51.039 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/consumer] - Initializing Spring embedded WebApplicationContext
-2023-08-11 16:32:51.039 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1200 ms
-2023-08-11 16:32:51.564 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'user-provider-server' URL not provided. Will try picking an instance via load-balancing.
-2023-08-11 16:32:51.904 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'article-provider-server' URL not provided. Will try picking an instance via load-balancing.
-2023-08-11 16:32:51.919 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'mail-provider-server' URL not provided. Will try picking an instance via load-balancing.
-2023-08-11 16:32:52.370 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
-2023-08-11 16:32:53.064 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
-2023-08-11 16:32:53.109 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2023-08-11 16:32:53.118 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
-2023-08-11 16:32:53.169 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
-2023-08-11 16:32:53.195 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
-2023-08-11 16:32:53.198 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 16:32:53.213 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
-2023-08-11 16:32:53.213 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
-2023-08-11 16:32:53.213 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
-2023-08-11 16:32:53.213 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
-2023-08-11 16:32:53.214 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
-2023-08-11 16:32:53.214 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
-2023-08-11 16:32:53.214 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
-2023-08-11 16:32:53.323 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
-2023-08-11 16:32:53.327 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
-2023-08-11 16:32:53.330 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
-2023-08-11 16:32:53.338 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1691742773337 with initial instances count: 4
-2023-08-11 16:32:53.344 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application CONSUMER-SERVER with eureka with status UP
-2023-08-11 16:32:53.344 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1691742773344, current=UP, previous=STARTING]
-2023-08-11 16:32:53.345 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7099"]
-2023-08-11 16:32:53.345 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server: registering service...
-2023-08-11 16:32:53.351 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7099 (http) with context path '/consumer'
-2023-08-11 16:32:53.352 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 7099
-2023-08-11 16:32:53.370 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - registration status: 204
-2023-08-11 16:32:53.998 [main] INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor - No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
-2023-08-11 16:32:54.002 [main] INFO  c.e.b.BlogSystemConsumerApplication - Started BlogSystemConsumerApplication in 4.546 seconds (JVM running for 5.563)
-2023-08-11 16:32:54.313 [RMI TCP Connection(3)-192.168.110.202] INFO  o.a.c.c.C.[Tomcat].[localhost].[/consumer] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-08-11 16:32:54.314 [RMI TCP Connection(3)-192.168.110.202] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-08-11 16:32:54.314 [RMI TCP Connection(3)-192.168.110.202] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2023-08-11 16:33:58.280 [http-nio-7099-exec-1] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:33:58.284 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:33:58.285 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:33:58.910 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- HTTP/1.1 200  (624ms)
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] connection: keep-alive
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] content-type: application/json
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] date: Fri, 11 Aug 2023 08:33:58 GMT
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] keep-alive: timeout=60
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] transfer-encoding: chunked
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] 
-2023-08-11 16:33:58.911 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] [{"articleId":"4f5a8cb8a6ee4b90a7ecaab45574ca64","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:02:33.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的，这是一篇技术文章！<br/></p>"},{"articleId":"b8afb9bb3ca34b1bbf03717e84cabccb","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:16.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"20477b3d47e34e538c41e94eb7e987d8","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:14.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"f9714189a1464b8e84c91017db124664","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"JMM","categoryName":"原创","publishTime":"2023-08-10T08:47:16.000+00:00","editTime":null,"articleContents":"<p>1.什么是JMM？<br/> JMM 是Java内存模型（ Java Memory Model），简称JMM。它本身只是一个抽象的概念，并不真实存在，它描述的是一种规则或规范，是和多线程相关的一组规范。通过这组规范，定义了程序中对各个变量（包括实例字段，静态字段和构成数组对象的元素）的访问方式。需要每个JVM 的实现都要遵守这样的规范，有了JMM规范的保障，并发程序运行在不同的虚拟机上时，得到的程序结果才是安全可靠可信赖的。如果没有JMM 内存模型来规范，就可能会出现，经过不同 JVM 翻译之后，运行的结果不相同也不正确的情况。<br/><br/> 计算机在执行程序时，每条指令都是在CPU中执行的。而执行指令的过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主存（物理内存）当中的，这时就存在一个问题，由于CPU执行速度很快，而从内存读取数据和向内存写入数据的过程，跟CPU执行指令的速度比起来要慢的多（硬盘 &lt; 内存 &lt;缓存cache &lt; CPU）。因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在CPU里面就有了高速缓存。也就是当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时，就可以直接从它的高速缓存中读取数据或向其写入数据了。当运算结束之后，再将高速缓存中的数据刷新到主存当中。<br/><br/>JMM 抽象出主存储器（Main Memory）和工作存储器（Working Memory）两种。<br/>·主存储器是实例对象所在的区域，所有的实例都存在于主存储器内。比如，实例所拥有的字段即位于主存储器内，主存储器是所有的线程所共享的。<br/>·工作存储器是线程所拥有的作业区，每个线程都有其专用的工作存储器。工作存储器存有主存储器中必要部分的拷贝，称之为工作拷贝（Working Copy）。<br/>所以，线程无法直接对主内存进行操作，此外，线程A想要和线程B通信，只能通过主存进行。<br/></p>"},{"articleId":"a7edead89ff34f02959437e08a52a6b5","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:44:01.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"},{"articleId":"8ecdfb425a44476eb78eef4f303252a4","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:43:46.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"}]
-2023-08-11 16:33:58.912 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END HTTP (6602-byte body)
-2023-08-11 16:34:59.915 [http-nio-7099-exec-4] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:01.063 [http-nio-7099-exec-10] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:03.248 [http-nio-7099-exec-7] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:04.110 [http-nio-7099-exec-9] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:04.671 [http-nio-7099-exec-2] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:05.318 [http-nio-7099-exec-1] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:05.319 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:35:05.319 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:35:05.827 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- HTTP/1.1 200  (507ms)
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] connection: keep-alive
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] content-type: application/json
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] date: Fri, 11 Aug 2023 08:35:05 GMT
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] keep-alive: timeout=60
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] transfer-encoding: chunked
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] 
-2023-08-11 16:35:05.828 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] [{"articleId":"4f5a8cb8a6ee4b90a7ecaab45574ca64","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:02:33.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的，这是一篇技术文章！<br/></p>"},{"articleId":"b8afb9bb3ca34b1bbf03717e84cabccb","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:16.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"20477b3d47e34e538c41e94eb7e987d8","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:14.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"f9714189a1464b8e84c91017db124664","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"JMM","categoryName":"原创","publishTime":"2023-08-10T08:47:16.000+00:00","editTime":null,"articleContents":"<p>1.什么是JMM？<br/> JMM 是Java内存模型（ Java Memory Model），简称JMM。它本身只是一个抽象的概念，并不真实存在，它描述的是一种规则或规范，是和多线程相关的一组规范。通过这组规范，定义了程序中对各个变量（包括实例字段，静态字段和构成数组对象的元素）的访问方式。需要每个JVM 的实现都要遵守这样的规范，有了JMM规范的保障，并发程序运行在不同的虚拟机上时，得到的程序结果才是安全可靠可信赖的。如果没有JMM 内存模型来规范，就可能会出现，经过不同 JVM 翻译之后，运行的结果不相同也不正确的情况。<br/><br/> 计算机在执行程序时，每条指令都是在CPU中执行的。而执行指令的过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主存（物理内存）当中的，这时就存在一个问题，由于CPU执行速度很快，而从内存读取数据和向内存写入数据的过程，跟CPU执行指令的速度比起来要慢的多（硬盘 &lt; 内存 &lt;缓存cache &lt; CPU）。因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在CPU里面就有了高速缓存。也就是当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时，就可以直接从它的高速缓存中读取数据或向其写入数据了。当运算结束之后，再将高速缓存中的数据刷新到主存当中。<br/><br/>JMM 抽象出主存储器（Main Memory）和工作存储器（Working Memory）两种。<br/>·主存储器是实例对象所在的区域，所有的实例都存在于主存储器内。比如，实例所拥有的字段即位于主存储器内，主存储器是所有的线程所共享的。<br/>·工作存储器是线程所拥有的作业区，每个线程都有其专用的工作存储器。工作存储器存有主存储器中必要部分的拷贝，称之为工作拷贝（Working Copy）。<br/>所以，线程无法直接对主内存进行操作，此外，线程A想要和线程B通信，只能通过主存进行。<br/></p>"},{"articleId":"a7edead89ff34f02959437e08a52a6b5","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:44:01.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"},{"articleId":"8ecdfb425a44476eb78eef4f303252a4","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:43:46.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"}]
-2023-08-11 16:35:05.829 [http-nio-7099-exec-1] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END HTTP (6602-byte body)
-2023-08-11 16:35:06.074 [http-nio-7099-exec-4] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:06.770 [http-nio-7099-exec-10] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:35:06.770 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:35:06.771 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- HTTP/1.1 200  (426ms)
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] connection: keep-alive
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] content-type: application/json
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] date: Fri, 11 Aug 2023 08:35:07 GMT
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] keep-alive: timeout=60
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] transfer-encoding: chunked
-2023-08-11 16:35:07.198 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] 
-2023-08-11 16:35:07.199 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] [{"articleId":"4f5a8cb8a6ee4b90a7ecaab45574ca64","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:02:33.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的，这是一篇技术文章！<br/></p>"},{"articleId":"b8afb9bb3ca34b1bbf03717e84cabccb","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:16.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"20477b3d47e34e538c41e94eb7e987d8","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:14.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"f9714189a1464b8e84c91017db124664","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"JMM","categoryName":"原创","publishTime":"2023-08-10T08:47:16.000+00:00","editTime":null,"articleContents":"<p>1.什么是JMM？<br/> JMM 是Java内存模型（ Java Memory Model），简称JMM。它本身只是一个抽象的概念，并不真实存在，它描述的是一种规则或规范，是和多线程相关的一组规范。通过这组规范，定义了程序中对各个变量（包括实例字段，静态字段和构成数组对象的元素）的访问方式。需要每个JVM 的实现都要遵守这样的规范，有了JMM规范的保障，并发程序运行在不同的虚拟机上时，得到的程序结果才是安全可靠可信赖的。如果没有JMM 内存模型来规范，就可能会出现，经过不同 JVM 翻译之后，运行的结果不相同也不正确的情况。<br/><br/> 计算机在执行程序时，每条指令都是在CPU中执行的。而执行指令的过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主存（物理内存）当中的，这时就存在一个问题，由于CPU执行速度很快，而从内存读取数据和向内存写入数据的过程，跟CPU执行指令的速度比起来要慢的多（硬盘 &lt; 内存 &lt;缓存cache &lt; CPU）。因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在CPU里面就有了高速缓存。也就是当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时，就可以直接从它的高速缓存中读取数据或向其写入数据了。当运算结束之后，再将高速缓存中的数据刷新到主存当中。<br/><br/>JMM 抽象出主存储器（Main Memory）和工作存储器（Working Memory）两种。<br/>·主存储器是实例对象所在的区域，所有的实例都存在于主存储器内。比如，实例所拥有的字段即位于主存储器内，主存储器是所有的线程所共享的。<br/>·工作存储器是线程所拥有的作业区，每个线程都有其专用的工作存储器。工作存储器存有主存储器中必要部分的拷贝，称之为工作拷贝（Working Copy）。<br/>所以，线程无法直接对主内存进行操作，此外，线程A想要和线程B通信，只能通过主存进行。<br/></p>"},{"articleId":"a7edead89ff34f02959437e08a52a6b5","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:44:01.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"},{"articleId":"8ecdfb425a44476eb78eef4f303252a4","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:43:46.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"}]
-2023-08-11 16:35:07.200 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END HTTP (6602-byte body)
-2023-08-11 16:37:53.223 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 16:42:53.229 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 16:44:58.114 [http-nio-7099-exec-3] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:44:58.796 [http-nio-7099-exec-6] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:44:59.361 [http-nio-7099-exec-5] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:45:04.379 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] ---> POST http://user-provider-server/user-provider/Logout HTTP/1.1
-2023-08-11 16:45:04.380 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] ---> END HTTP (0-byte body)
-2023-08-11 16:45:04.484 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] <--- HTTP/1.1 200  (104ms)
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] connection: keep-alive
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] content-length: 34
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] content-type: text/plain;charset=UTF-8
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] date: Fri, 11 Aug 2023 08:45:04 GMT
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] keep-alive: timeout=60
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] 
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] {"msg":"登出成功!","status":1}
-2023-08-11 16:45:04.485 [http-nio-7099-exec-8] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Logout] <--- END HTTP (34-byte body)
-2023-08-11 16:45:11.217 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] ---> POST http://user-provider-server/user-provider/Login?account=Peter&password=123456 HTTP/1.1
-2023-08-11 16:45:11.217 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] ---> END HTTP (0-byte body)
-2023-08-11 16:45:26.228 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] <--- ERROR SocketTimeoutException: Read timed out (15009ms)
-2023-08-11 16:45:26.229 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] java.net.SocketTimeoutException: Read timed out
-	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
-	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
-	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
-	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
-	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
-	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157)
-	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
-	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at feign.httpclient.ApacheHttpClient.execute(ApacheHttpClient.java:83)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:56)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:91)
-	at org.springframework.cloud.openfeign.loadbalancer.FeignBlockingLoadBalancerClient.execute(FeignBlockingLoadBalancerClient.java:113)
-	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:119)
-	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)
-	at io.github.resilience4j.retry.Retry.lambda$decorateCheckedFunction$7bb28b04$1(Retry.java:187)
-	at io.github.resilience4j.circuitbreaker.CircuitBreaker.lambda$decorateCheckedFunction$5ab9fe2d$1(CircuitBreaker.java:386)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$77eb0c64$1(RateLimiter.java:283)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedSupplier$9076412b$1(RateLimiter.java:215)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$66fb1c1a$1(RateLimiter.java:284)
-	at io.github.resilience4j.bulkhead.Bulkhead.lambda$decorateCheckedFunction$d00c695e$1(Bulkhead.java:340)
-	at io.github.resilience4j.feign.DefaultFallbackHandler.lambda$decorate$d1dbf1d4$1(DefaultFallbackHandler.java:47)
-	at io.github.resilience4j.feign.DecoratorInvocationHandler.invoke(DecoratorInvocationHandler.java:95)
-	at jdk.proxy2/jdk.proxy2.$Proxy131.Login(Unknown Source)
-	at com.example.blogsystemconsumer.controller.ConsumerController.login(ConsumerController.java:58)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+2023-09-19 15:20:26.154 [main] INFO  c.e.b.BlogSystemConsumerApplication - Starting BlogSystemConsumerApplication using Java 17.0.2 on DESKTOP-I8BU1F2 with PID 24704 (D:\Code\Blog-System\BlogSystem-consumer\target\classes started by Peter in D:\Code\Blog-System)
+2023-09-19 15:20:26.156 [main] INFO  c.e.b.BlogSystemConsumerApplication - No active profile set, falling back to default profiles: default
+2023-09-19 15:20:26.780 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-09-19 15:20:26.782 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-09-19 15:20:26.799 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2023-09-19 15:20:26.957 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=ea17906a-0cb1-345a-b2c4-c8672e3ac5b4
+2023-09-19 15:20:27.314 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7099 (http)
+2023-09-19 15:20:27.319 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7099"]
+2023-09-19 15:20:27.319 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-19 15:20:27.319 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2023-09-19 15:20:27.388 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/consumer] - Initializing Spring embedded WebApplicationContext
+2023-09-19 15:20:27.388 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1202 ms
+2023-09-19 15:20:27.901 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'user-provider-server' URL not provided. Will try picking an instance via load-balancing.
+2023-09-19 15:20:28.250 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'article-provider-server' URL not provided. Will try picking an instance via load-balancing.
+2023-09-19 15:20:28.265 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'mail-provider-server' URL not provided. Will try picking an instance via load-balancing.
+2023-09-19 15:20:28.708 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+2023-09-19 15:20:29.407 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2023-09-19 15:20:29.452 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-19 15:20:29.461 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-19 15:20:29.513 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2023-09-19 15:20:29.540 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2023-09-19 15:20:29.543 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2023-09-19 15:20:29.558 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2023-09-19 15:20:29.559 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2023-09-19 15:20:29.559 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2023-09-19 15:20:29.559 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2023-09-19 15:20:29.559 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2023-09-19 15:20:29.559 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2023-09-19 15:20:29.559 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2023-09-19 15:20:29.669 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2023-09-19 15:20:29.673 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2023-09-19 15:20:29.676 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-19 15:20:29.684 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1695108029683 with initial instances count: 1
+2023-09-19 15:20:29.690 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application CONSUMER-SERVER with eureka with status UP
+2023-09-19 15:20:29.690 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1695108029690, current=UP, previous=STARTING]
+2023-09-19 15:20:29.691 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server: registering service...
+2023-09-19 15:20:29.691 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7099"]
+2023-09-19 15:20:29.698 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7099 (http) with context path '/consumer'
+2023-09-19 15:20:29.698 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 7099
+2023-09-19 15:20:29.717 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - registration status: 204
+2023-09-19 15:20:30.362 [main] INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor - No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2023-09-19 15:20:30.366 [main] INFO  c.e.b.BlogSystemConsumerApplication - Started BlogSystemConsumerApplication in 4.579 seconds (JVM running for 4.943)
+2023-09-19 15:20:30.592 [RMI TCP Connection(4)-192.168.110.202] INFO  o.a.c.c.C.[Tomcat].[localhost].[/consumer] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-19 15:20:30.592 [RMI TCP Connection(4)-192.168.110.202] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-19 15:20:30.593 [RMI TCP Connection(4)-192.168.110.202] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-19 15:21:54.615 [http-nio-7099-exec-1] ERROR c.e.b.exception.GlobalExceptionHandler - 请求地址'/consumer/Register',发生系统异常.
+org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'user' for method parameter type User is not present
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:218)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
@@ -202,57 +103,14 @@
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-
-2023-08-11 16:45:26.229 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] <--- END ERROR
-2023-08-11 16:45:26.743 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] ---> POST http://user-provider-server/user-provider/Login?account=Peter&password=123456 HTTP/1.1
-2023-08-11 16:45:26.744 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] ---> END HTTP (0-byte body)
-2023-08-11 16:45:41.757 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] <--- ERROR SocketTimeoutException: Read timed out (15012ms)
-2023-08-11 16:45:41.757 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] java.net.SocketTimeoutException: Read timed out
-	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
-	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
-	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
-	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
-	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
-	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157)
-	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
-	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at feign.httpclient.ApacheHttpClient.execute(ApacheHttpClient.java:83)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:56)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:91)
-	at org.springframework.cloud.openfeign.loadbalancer.FeignBlockingLoadBalancerClient.execute(FeignBlockingLoadBalancerClient.java:113)
-	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:119)
-	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)
-	at io.github.resilience4j.retry.Retry.lambda$decorateCheckedFunction$7bb28b04$1(Retry.java:187)
-	at io.github.resilience4j.circuitbreaker.CircuitBreaker.lambda$decorateCheckedFunction$5ab9fe2d$1(CircuitBreaker.java:386)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$77eb0c64$1(RateLimiter.java:283)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedSupplier$9076412b$1(RateLimiter.java:215)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$66fb1c1a$1(RateLimiter.java:284)
-	at io.github.resilience4j.bulkhead.Bulkhead.lambda$decorateCheckedFunction$d00c695e$1(Bulkhead.java:340)
-	at io.github.resilience4j.feign.DefaultFallbackHandler.lambda$decorate$d1dbf1d4$1(DefaultFallbackHandler.java:47)
-	at io.github.resilience4j.feign.DecoratorInvocationHandler.invoke(DecoratorInvocationHandler.java:95)
-	at jdk.proxy2/jdk.proxy2.$Proxy131.Login(Unknown Source)
-	at com.example.blogsystemconsumer.controller.ConsumerController.login(ConsumerController.java:58)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+2023-09-19 15:22:02.724 [http-nio-7099-exec-7] ERROR c.e.b.exception.GlobalExceptionHandler - 请求地址'/consumer/Register',发生系统异常.
+org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'user' for method parameter type User is not present
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:218)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
@@ -305,75 +163,14 @@
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-
-2023-08-11 16:45:41.757 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] <--- END ERROR
-2023-08-11 16:45:42.261 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] ---> POST http://user-provider-server/user-provider/Login?account=Peter&password=123456 HTTP/1.1
-2023-08-11 16:45:42.261 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] ---> END HTTP (0-byte body)
-2023-08-11 16:45:43.322 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] <--- HTTP/1.1 200  (1061ms)
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] connection: keep-alive
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] content-length: 34
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] content-type: text/plain;charset=UTF-8
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] date: Fri, 11 Aug 2023 08:45:43 GMT
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] keep-alive: timeout=60
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] 
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] {"msg":"登录成功!","status":1}
-2023-08-11 16:45:43.323 [http-nio-7099-exec-4] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Login] <--- END HTTP (34-byte body)
-2023-08-11 16:45:43.350 [http-nio-7099-exec-3] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:46:34.035 [http-nio-7099-exec-6] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:46:38.177 [http-nio-7099-exec-5] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:46:39.389 [http-nio-7099-exec-8] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:46:39.390 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:46:39.390 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:46:40.543 [http-nio-7099-exec-10] INFO  c.e.blogsystemconsumer.controller.PageController - 184bbe7e52994725b64795172bbdb7a5
-2023-08-11 16:46:40.544 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:46:40.544 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:46:54.397 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- ERROR SocketTimeoutException: Read timed out (15005ms)
-2023-08-11 16:46:54.398 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] java.net.SocketTimeoutException: Read timed out
-	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
-	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
-	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
-	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
-	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
-	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157)
-	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
-	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at feign.httpclient.ApacheHttpClient.execute(ApacheHttpClient.java:83)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:56)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:91)
-	at org.springframework.cloud.openfeign.loadbalancer.FeignBlockingLoadBalancerClient.execute(FeignBlockingLoadBalancerClient.java:113)
-	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:119)
-	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)
-	at io.github.resilience4j.retry.Retry.lambda$decorateCheckedFunction$7bb28b04$1(Retry.java:187)
-	at io.github.resilience4j.circuitbreaker.CircuitBreaker.lambda$decorateCheckedFunction$5ab9fe2d$1(CircuitBreaker.java:386)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$77eb0c64$1(RateLimiter.java:283)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedSupplier$9076412b$1(RateLimiter.java:215)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$66fb1c1a$1(RateLimiter.java:284)
-	at io.github.resilience4j.bulkhead.Bulkhead.lambda$decorateCheckedFunction$d00c695e$1(Bulkhead.java:340)
-	at io.github.resilience4j.feign.DefaultFallbackHandler.lambda$decorate$d1dbf1d4$1(DefaultFallbackHandler.java:47)
-	at io.github.resilience4j.feign.DecoratorInvocationHandler.invoke(DecoratorInvocationHandler.java:95)
-	at jdk.proxy2/jdk.proxy2.$Proxy133.getArticleListById(Unknown Source)
-	at com.example.blogsystemconsumer.controller.PageController.getArticleShow(PageController.java:77)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+2023-09-19 15:22:05.381 [http-nio-7099-exec-5] ERROR c.e.b.exception.GlobalExceptionHandler - 请求地址'/consumer/Register',发生系统异常.
+org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'user' for method parameter type User is not present
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:218)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
@@ -381,8 +178,8 @@
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
@@ -426,57 +223,14 @@
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-
-2023-08-11 16:46:54.398 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END ERROR
-2023-08-11 16:46:54.904 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:46:54.904 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:46:55.548 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- ERROR SocketTimeoutException: Read timed out (15004ms)
-2023-08-11 16:46:55.548 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] java.net.SocketTimeoutException: Read timed out
-	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
-	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
-	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
-	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
-	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
-	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
-	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157)
-	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
-	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at feign.httpclient.ApacheHttpClient.execute(ApacheHttpClient.java:83)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:56)
-	at org.springframework.cloud.openfeign.loadbalancer.LoadBalancerUtils.executeWithLoadBalancerLifecycleProcessing(LoadBalancerUtils.java:91)
-	at org.springframework.cloud.openfeign.loadbalancer.FeignBlockingLoadBalancerClient.execute(FeignBlockingLoadBalancerClient.java:113)
-	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:119)
-	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)
-	at io.github.resilience4j.retry.Retry.lambda$decorateCheckedFunction$7bb28b04$1(Retry.java:187)
-	at io.github.resilience4j.circuitbreaker.CircuitBreaker.lambda$decorateCheckedFunction$5ab9fe2d$1(CircuitBreaker.java:386)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$77eb0c64$1(RateLimiter.java:283)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedSupplier$9076412b$1(RateLimiter.java:215)
-	at io.github.resilience4j.ratelimiter.RateLimiter.lambda$decorateCheckedFunction$66fb1c1a$1(RateLimiter.java:284)
-	at io.github.resilience4j.bulkhead.Bulkhead.lambda$decorateCheckedFunction$d00c695e$1(Bulkhead.java:340)
-	at io.github.resilience4j.feign.DefaultFallbackHandler.lambda$decorate$d1dbf1d4$1(DefaultFallbackHandler.java:47)
-	at io.github.resilience4j.feign.DecoratorInvocationHandler.invoke(DecoratorInvocationHandler.java:95)
-	at jdk.proxy2/jdk.proxy2.$Proxy133.getArticleListById(Unknown Source)
-	at com.example.blogsystemconsumer.controller.PageController.getArticleShow(PageController.java:77)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+2023-09-19 15:22:07.974 [http-nio-7099-exec-8] ERROR c.e.b.exception.GlobalExceptionHandler - 请求地址'/consumer/Register',发生系统异常.
+org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'user' for method parameter type User is not present
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:218)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
@@ -484,8 +238,8 @@
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
@@ -529,66 +283,249 @@
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-
-2023-08-11 16:46:55.548 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END ERROR
-2023-08-11 16:46:56.054 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> GET http://article-provider-server/article-provider/getArticleListById?userId=184bbe7e52994725b64795172bbdb7a5 HTTP/1.1
-2023-08-11 16:46:56.054 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] ---> END HTTP (0-byte body)
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- HTTP/1.1 200  (5517ms)
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] connection: keep-alive
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] content-type: application/json
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] date: Fri, 11 Aug 2023 08:46:59 GMT
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] keep-alive: timeout=60
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] transfer-encoding: chunked
-2023-08-11 16:47:00.422 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] 
-2023-08-11 16:47:00.423 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] [{"articleId":"4f5a8cb8a6ee4b90a7ecaab45574ca64","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:02:33.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的，这是一篇技术文章！<br/></p>"},{"articleId":"b8afb9bb3ca34b1bbf03717e84cabccb","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:16.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"20477b3d47e34e538c41e94eb7e987d8","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:14.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"f9714189a1464b8e84c91017db124664","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"JMM","categoryName":"原创","publishTime":"2023-08-10T08:47:16.000+00:00","editTime":null,"articleContents":"<p>1.什么是JMM？<br/> JMM 是Java内存模型（ Java Memory Model），简称JMM。它本身只是一个抽象的概念，并不真实存在，它描述的是一种规则或规范，是和多线程相关的一组规范。通过这组规范，定义了程序中对各个变量（包括实例字段，静态字段和构成数组对象的元素）的访问方式。需要每个JVM 的实现都要遵守这样的规范，有了JMM规范的保障，并发程序运行在不同的虚拟机上时，得到的程序结果才是安全可靠可信赖的。如果没有JMM 内存模型来规范，就可能会出现，经过不同 JVM 翻译之后，运行的结果不相同也不正确的情况。<br/><br/> 计算机在执行程序时，每条指令都是在CPU中执行的。而执行指令的过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主存（物理内存）当中的，这时就存在一个问题，由于CPU执行速度很快，而从内存读取数据和向内存写入数据的过程，跟CPU执行指令的速度比起来要慢的多（硬盘 &lt; 内存 &lt;缓存cache &lt; CPU）。因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在CPU里面就有了高速缓存。也就是当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时，就可以直接从它的高速缓存中读取数据或向其写入数据了。当运算结束之后，再将高速缓存中的数据刷新到主存当中。<br/><br/>JMM 抽象出主存储器（Main Memory）和工作存储器（Working Memory）两种。<br/>·主存储器是实例对象所在的区域，所有的实例都存在于主存储器内。比如，实例所拥有的字段即位于主存储器内，主存储器是所有的线程所共享的。<br/>·工作存储器是线程所拥有的作业区，每个线程都有其专用的工作存储器。工作存储器存有主存储器中必要部分的拷贝，称之为工作拷贝（Working Copy）。<br/>所以，线程无法直接对主内存进行操作，此外，线程A想要和线程B通信，只能通过主存进行。<br/></p>"},{"articleId":"a7edead89ff34f02959437e08a52a6b5","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:44:01.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"},{"articleId":"8ecdfb425a44476eb78eef4f303252a4","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:43:46.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"}]
-2023-08-11 16:47:00.423 [http-nio-7099-exec-8] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END HTTP (6602-byte body)
-2023-08-11 16:47:01.314 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- HTTP/1.1 200  (5259ms)
-2023-08-11 16:47:01.314 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] connection: keep-alive
-2023-08-11 16:47:01.314 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] content-type: application/json
-2023-08-11 16:47:01.314 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] date: Fri, 11 Aug 2023 08:47:01 GMT
-2023-08-11 16:47:01.314 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] keep-alive: timeout=60
-2023-08-11 16:47:01.314 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] transfer-encoding: chunked
-2023-08-11 16:47:01.315 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] 
-2023-08-11 16:47:01.315 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] [{"articleId":"4f5a8cb8a6ee4b90a7ecaab45574ca64","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:02:33.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的，这是一篇技术文章！<br/></p>"},{"articleId":"b8afb9bb3ca34b1bbf03717e84cabccb","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:16.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"20477b3d47e34e538c41e94eb7e987d8","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"这是第一篇文章","categoryName":"原创","publishTime":"2023-08-10T04:05:14.000+00:00","editTime":null,"articleContents":"<p>这是我的第一篇文章，我用来测试的！<br/></p>"},{"articleId":"f9714189a1464b8e84c91017db124664","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"JMM","categoryName":"原创","publishTime":"2023-08-10T08:47:16.000+00:00","editTime":null,"articleContents":"<p>1.什么是JMM？<br/> JMM 是Java内存模型（ Java Memory Model），简称JMM。它本身只是一个抽象的概念，并不真实存在，它描述的是一种规则或规范，是和多线程相关的一组规范。通过这组规范，定义了程序中对各个变量（包括实例字段，静态字段和构成数组对象的元素）的访问方式。需要每个JVM 的实现都要遵守这样的规范，有了JMM规范的保障，并发程序运行在不同的虚拟机上时，得到的程序结果才是安全可靠可信赖的。如果没有JMM 内存模型来规范，就可能会出现，经过不同 JVM 翻译之后，运行的结果不相同也不正确的情况。<br/><br/> 计算机在执行程序时，每条指令都是在CPU中执行的。而执行指令的过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主存（物理内存）当中的，这时就存在一个问题，由于CPU执行速度很快，而从内存读取数据和向内存写入数据的过程，跟CPU执行指令的速度比起来要慢的多（硬盘 &lt; 内存 &lt;缓存cache &lt; CPU）。因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在CPU里面就有了高速缓存。也就是当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时，就可以直接从它的高速缓存中读取数据或向其写入数据了。当运算结束之后，再将高速缓存中的数据刷新到主存当中。<br/><br/>JMM 抽象出主存储器（Main Memory）和工作存储器（Working Memory）两种。<br/>·主存储器是实例对象所在的区域，所有的实例都存在于主存储器内。比如，实例所拥有的字段即位于主存储器内，主存储器是所有的线程所共享的。<br/>·工作存储器是线程所拥有的作业区，每个线程都有其专用的工作存储器。工作存储器存有主存储器中必要部分的拷贝，称之为工作拷贝（Working Copy）。<br/>所以，线程无法直接对主内存进行操作，此外，线程A想要和线程B通信，只能通过主存进行。<br/></p>"},{"articleId":"a7edead89ff34f02959437e08a52a6b5","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:44:01.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"},{"articleId":"8ecdfb425a44476eb78eef4f303252a4","userId":"184bbe7e52994725b64795172bbdb7a5","articleName":"ConcurrentHashMap原理详解","categoryName":"原创","publishTime":"2023-08-10T10:43:46.000+00:00","editTime":null,"articleContents":"<p>一、什么是ConcurrentHashMap<br/>ConcurrentHashMap和HashMap一样，是一个存放键值对的容器。使用hash算法来获取值的地址，因此时间复杂度是O(1)。查询非常快。<br/>同时，ConcurrentHashMap是线程安全的HashMap。专门用于多线程环境。<br/><br/>二、ConcurrentHashMap和HashMap以及Hashtable的区别<br/>2.1 HashMap<br/>HashMap是线程不安全的，因为HashMap中操作都没有加锁，因此在多线程环境下会导致数据覆盖之类的问题，所以，在多线程中使用HashMap是会抛出异常的。<br/><br/>2.2 HashTable<br/>HashTable是线程安全的,但是HashTable只是单纯的在put()方法上加上synchronized。保证插入时阻塞其他线程的插入操作。虽然安全，但因为设计简单，所以性能低下。<br/><br/>2.3 ConcurrentHashMap<br/>ConcurrentHashMap是线程安全的，ConcurrentHashMap并非锁住整个方法，而是通过原子操作和局部加锁的方法保证了多线程的线程安全，且尽可能减少了性能损耗。<br/><br/>由此可见，HashTable可真是一无是处…<br/><br/>三、ConcurrentHashMap原理<br/>这一节专门介绍ConcurrentHashMap是如何保证线程安全的。如果想详细了解ConcurrentHashMap的数据结构，请参考HashMap。<br/><br/>3.1 volatile修饰的节点数组<br/></p>"}]
-2023-08-11 16:47:01.315 [http-nio-7099-exec-10] DEBUG c.e.b.service.ArticleProviderService - [ArticleProviderService#getArticleListById] <--- END HTTP (6602-byte body)
-2023-08-11 16:47:53.232 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 16:52:53.233 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 16:57:53.234 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:02:53.238 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:07:53.250 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:12:53.263 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:17:53.264 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:22:53.267 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:27:53.274 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:32:53.285 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:37:53.286 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:42:53.289 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:47:53.290 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:52:53.305 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 17:57:53.316 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:02:53.327 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:07:53.339 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:12:53.347 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:17:53.363 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:22:53.364 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:27:53.367 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:32:53.368 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:37:53.371 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:42:53.384 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:47:53.396 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:52:53.409 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 18:57:53.418 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:02:53.427 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:07:53.435 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:12:53.447 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:17:53.450 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:22:53.462 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:27:53.473 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 19:32:53.488 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2023-08-11 20:48:46.389 [SpringApplicationShutdownHook] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Unregistering application CONSUMER-SERVER with eureka with status DOWN
-2023-08-11 20:48:46.389 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1691758126389, current=DOWN, previous=UP]
-2023-08-11 20:48:46.389 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server: registering service...
-2023-08-11 20:48:46.397 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.n.d.s.t.decorator.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8081/eureka/eureka/} exception=I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2023-09-19 15:22:11.862 [http-nio-7099-exec-9] ERROR c.e.b.exception.GlobalExceptionHandler - 请求地址'/consumer/Register',发生系统异常.
+org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'user' for method parameter type User is not present
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:218)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.session.web.http.SessionRepositoryFilter.doFilterInternal(SessionRepositoryFilter.java:142)
+	at org.springframework.session.web.http.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:82)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-09-19 15:22:19.132 [SpringApplicationShutdownHook] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Unregistering application CONSUMER-SERVER with eureka with status DOWN
+2023-09-19 15:22:19.132 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1695108139132, current=DOWN, previous=UP]
+2023-09-19 15:22:19.133 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server: registering service...
+2023-09-19 15:22:19.136 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - registration status: 204
+2023-09-19 15:22:19.272 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2023-09-19 15:22:22.288 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Unregistering ...
+2023-09-19 15:22:22.293 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - deregister  status: 200
+2023-09-19 15:22:22.324 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2023-09-19 15:23:49.743 [main] INFO  c.e.b.BlogSystemConsumerApplication - Starting BlogSystemConsumerApplication using Java 17.0.2 on DESKTOP-I8BU1F2 with PID 16640 (D:\Code\Blog-System\BlogSystem-consumer\target\classes started by Peter in D:\Code\Blog-System)
+2023-09-19 15:23:49.745 [main] INFO  c.e.b.BlogSystemConsumerApplication - No active profile set, falling back to default profiles: default
+2023-09-19 15:23:50.357 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-09-19 15:23:50.358 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-09-19 15:23:50.375 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2023-09-19 15:23:50.526 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=ea17906a-0cb1-345a-b2c4-c8672e3ac5b4
+2023-09-19 15:23:50.855 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7099 (http)
+2023-09-19 15:23:50.860 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7099"]
+2023-09-19 15:23:50.860 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-19 15:23:50.860 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2023-09-19 15:23:50.922 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/consumer] - Initializing Spring embedded WebApplicationContext
+2023-09-19 15:23:50.922 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1149 ms
+2023-09-19 15:23:51.696 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'user-provider-server' URL not provided. Will try picking an instance via load-balancing.
+2023-09-19 15:23:52.178 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'article-provider-server' URL not provided. Will try picking an instance via load-balancing.
+2023-09-19 15:23:52.193 [main] INFO  o.s.cloud.openfeign.FeignClientFactoryBean - For 'mail-provider-server' URL not provided. Will try picking an instance via load-balancing.
+2023-09-19 15:23:52.845 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+2023-09-19 15:23:53.706 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2023-09-19 15:23:53.764 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-09-19 15:23:53.776 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-19 15:23:53.837 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2023-09-19 15:23:53.883 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2023-09-19 15:23:53.888 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2023-09-19 15:23:53.913 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2023-09-19 15:23:54.120 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2023-09-19 15:23:54.125 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2023-09-19 15:23:54.129 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-09-19 15:23:54.139 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1695108234137 with initial instances count: 3
+2023-09-19 15:23:54.145 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application CONSUMER-SERVER with eureka with status UP
+2023-09-19 15:23:54.145 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1695108234145, current=UP, previous=STARTING]
+2023-09-19 15:23:54.147 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server: registering service...
+2023-09-19 15:23:54.148 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7099"]
+2023-09-19 15:23:54.158 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7099 (http) with context path '/consumer'
+2023-09-19 15:23:54.159 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 7099
+2023-09-19 15:23:54.186 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - registration status: 204
+2023-09-19 15:23:54.841 [main] INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor - No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2023-09-19 15:23:54.848 [main] INFO  c.e.b.BlogSystemConsumerApplication - Started BlogSystemConsumerApplication in 5.449 seconds (JVM running for 5.838)
+2023-09-19 15:23:55.289 [RMI TCP Connection(2)-192.168.110.202] INFO  o.a.c.c.C.[Tomcat].[localhost].[/consumer] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-19 15:23:55.289 [RMI TCP Connection(2)-192.168.110.202] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-19 15:23:55.290 [RMI TCP Connection(2)-192.168.110.202] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-19 15:25:24.757 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:24.757 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:24.758 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:24.758 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:24.758 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:24.758 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:25.914 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1155ms)
+2023-09-19 15:25:25.914 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:25.914 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:25.914 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:25 GMT
+2023-09-19 15:25:25.914 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:25.915 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:25.915 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:25.904+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:25.915 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:26.429 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:26.429 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:26.429 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:26.429 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:26.429 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:26.429 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:27.461 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1031ms)
+2023-09-19 15:25:27.461 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:27.461 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:27.461 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:27 GMT
+2023-09-19 15:25:27.462 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:27.462 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:27.462 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:27.460+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:27.462 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:27.968 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:27.968 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:27.968 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:27.969 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:27.969 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:27.969 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:28.986 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1016ms)
+2023-09-19 15:25:28.986 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:28.986 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:28.986 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:28 GMT
+2023-09-19 15:25:28.986 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:28.986 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:28.987 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:28.985+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:28.987 [http-nio-7099-exec-1] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:29.931 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:29.931 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:29.931 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:29.931 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:29.931 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:29.932 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:30.951 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1019ms)
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:30 GMT
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:30.951+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:30.952 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:31.467 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:31.468 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:31.468 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:31.468 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:31.468 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:31.468 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:32.489 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1020ms)
+2023-09-19 15:25:32.489 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:32.489 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:32.489 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:32 GMT
+2023-09-19 15:25:32.489 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:32.489 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:32.490 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:32.488+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:32.490 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:32.992 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:32.993 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:32.993 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:32.993 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:32.993 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:32.993 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1014ms)
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:34 GMT
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:34.008 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:34.007+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:34.009 [http-nio-7099-exec-2] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:35.663 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:35.663 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:35.663 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:35.663 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:35.663 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:35.663 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:36.688 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1024ms)
+2023-09-19 15:25:36.688 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:36.688 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:36.689 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:36 GMT
+2023-09-19 15:25:36.689 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:36.689 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:36.689 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:36.687+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:36.689 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:37.198 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:37.198 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:37.198 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:37.199 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:37.199 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:37.199 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:38.205 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1006ms)
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:38 GMT
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:38.205+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:38.206 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:25:38.719 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> POST http://user-provider-server/user-provider/Register HTTP/1.1
+2023-09-19 15:25:38.719 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Length: 349
+2023-09-19 15:25:38.719 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] Content-Type: application/json
+2023-09-19 15:25:38.720 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:38.720 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"userId":null,"account":"PeterPan","password":"123456","email":"windows9.99999@hotmail.com","userName":"Peter","userIcon":null,"age":null,"sex":"男","phoneNumber":"15627866317","birthday":"2018-01-31","state":"北京市","city":"东城区","biography":null,"createTime":null,"loginTime":null,"lastLoginTime":null,"loginCount":null,"identity":null}
+2023-09-19 15:25:38.720 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] ---> END HTTP (349-byte body)
+2023-09-19 15:25:39.728 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- HTTP/1.1 500  (1008ms)
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] connection: close
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] content-type: application/json
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] date: Tue, 19 Sep 2023 07:25:39 GMT
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] transfer-encoding: chunked
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] 
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] {"timestamp":"2023-09-19T07:25:39.728+00:00","status":500,"error":"Internal Server Error","path":"/user-provider/Register"}
+2023-09-19 15:25:39.729 [http-nio-7099-exec-3] DEBUG c.e.blogsystemconsumer.service.UserProviderService - [UserProviderService#Register] <--- END HTTP (123-byte body)
+2023-09-19 15:26:13.928 [SpringApplicationShutdownHook] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Unregistering application CONSUMER-SERVER with eureka with status DOWN
+2023-09-19 15:26:13.928 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1695108373928, current=DOWN, previous=UP]
+2023-09-19 15:26:13.928 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server: registering service...
+2023-09-19 15:26:13.933 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.n.d.s.t.decorator.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8081/eureka/eureka/} exception=I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
 	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
 	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
 	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
@@ -639,8 +576,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
 	... 35 more
 
-2023-08-11 20:48:46.398 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
-2023-08-11 20:48:46.403 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.n.d.s.t.decorator.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8081/eureka/eureka/}, exception=I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2023-09-19 15:26:13.933 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2023-09-19 15:26:13.938 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.n.d.s.t.decorator.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8081/eureka/eureka/}, exception=I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
 	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
 	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
 	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
@@ -692,8 +629,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
 	... 36 more
 
-2023-08-11 20:48:46.404 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
-2023-08-11 20:48:46.405 [DiscoveryClient-InstanceInfoReplicator-0] WARN  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - registration failed Cannot execute request on any known server
+2023-09-19 15:26:13.938 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: I/O error on POST request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2023-09-19 15:26:13.939 [DiscoveryClient-InstanceInfoReplicator-0] WARN  com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - registration failed Cannot execute request on any known server
 com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
 	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
 	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
@@ -710,7 +647,7 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-2023-08-11 20:48:46.406 [DiscoveryClient-InstanceInfoReplicator-0] WARN  com.netflix.discovery.InstanceInfoReplicator - There was a problem with the instance info replicator
+2023-09-19 15:26:13.940 [DiscoveryClient-InstanceInfoReplicator-0] WARN  com.netflix.discovery.InstanceInfoReplicator - There was a problem with the instance info replicator
 com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
 	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
 	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
@@ -727,9 +664,9 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-2023-08-11 20:48:46.551 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
-2023-08-11 20:48:49.569 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Unregistering ...
-2023-08-11 20:48:49.573 [SpringApplicationShutdownHook] INFO  c.n.d.s.t.decorator.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8081/eureka/eureka/}, exception=I/O error on DELETE request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER/consumer-server": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER/consumer-server": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2023-09-19 15:26:14.073 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2023-09-19 15:26:17.083 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Unregistering ...
+2023-09-19 15:26:17.087 [SpringApplicationShutdownHook] INFO  c.n.d.s.t.decorator.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8081/eureka/eureka/}, exception=I/O error on DELETE request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER/consumer-server": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER/consumer-server": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
 	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
 	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
 	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
@@ -798,8 +735,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
 	... 53 more
 
-2023-08-11 20:48:49.573 [SpringApplicationShutdownHook] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: I/O error on DELETE request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER/consumer-server": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
-2023-08-11 20:48:49.573 [SpringApplicationShutdownHook] ERROR com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - de-registration failedCannot execute request on any known server
+2023-09-19 15:26:17.087 [SpringApplicationShutdownHook] WARN  c.n.d.s.t.decorator.RetryableEurekaHttpClient - Request execution failed with message: I/O error on DELETE request for "http://localhost:8081/eureka/eureka/apps/CONSUMER-SERVER/consumer-server": Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8081 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2023-09-19 15:26:17.087 [SpringApplicationShutdownHook] ERROR com.netflix.discovery.DiscoveryClient - DiscoveryClient_CONSUMER-SERVER/consumer-server - de-registration failedCannot execute request on any known server
 com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
 	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
 	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
@@ -833,4 +770,4 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
 	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-2023-08-11 20:48:49.603 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2023-09-19 15:26:17.117 [SpringApplicationShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
